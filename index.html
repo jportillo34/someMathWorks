@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Apollo Guidance Computer</title>
+<meta name="description" content="A research in history of computers and software from 1960s" />
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    line-height: 1.6;
+    color: #222;
+    background: #fff;
+  }
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  h2 {
+    margin-top: 2rem;
+    font-weight: bold;
+  }
+  p, li {
+    font-size: 1rem;
+  }
+  a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  ul {
+    padding-left: 1.5rem;
+  }
+  img {
+            width: 400px !important;
+            max-width: none;
+            height: auto;
+            display: block;
+            margin: 1rem auto;
+  }  
+  .center {
+    text-align: center;
+  }
+  .small-text {
+    font-size: 0.85rem;
+    margin: 0.2rem 0;
+  }
+  .image-container {
+    text-align: center; /* Centers the image and title */
+    margin-bottom: 20px; /* Adds some space below the image */
+  }
+  .image-title {
+    font-size: 16px; /* Adjust the font size of the title */
+    color: #333; /* You can change this color to whatever you prefer */
+    margin-top: 5px; /* Adds a little space between the image and the title */
+  }
+</style>
+</head>
+<body>
+
+<header class="center">
+  <h1>The Apollo Guidance Computer: A research in history of computers and software from 1960s</h1>
+  <p class="small-text"><strong>Research by José Portillo</strong></p>
+  <p class="small-text">
+    GitHub: <a href="https://github.com/jportillo34/ApolloGuidanceComputer" target="_blank" rel="noopener noreferrer">https://github.com/jportillo34/ApolloGuidanceComputer</a>
+  </p>
+  <p class="small-text">
+    Email: <a href="mailto:jportillo34@gmail.com">jportillo34@gmail.com</a>
+  </p>
+</header>
+
+<main>
+  <section>
+    <p align="justify">
+      From 1992 to 2006, I had the opportunity to engage in historical research on the Apollo Guidance Computer (AGC) and its interfaces with the Apollo spacecraft. This work led me to learn about computers in the 1960s, the beginnings of integrated logic gate circuits, and to personally meet the designers (Eldon C. Hall - Chief Designer, Hugh Blair-Smith - Designer of AGC's basic assembler language and Interpreter, Alan Green - DISKY interface software programmer, Ramon Alonso - Designer of the DSKY and AGC's architecture, Robert Stengel - Designer and programmer of the Apollo lunar module's hand-controller software, all from MIT's Instrumentation Lab), Cline Frasier (from NASA), David Bates (from Raytheon), some of the Apollo Lunar Module programmer team (Donal Eyles, John Dyest), astronauts (John Young - Apollo 10 and Apollo 16, Fred Haise - Apollo 13) who were the AGC's users, computer historians (Frank O'Brien, Ronald Burkey), and modern NASA engineers (Richard Katz - organizer of MAPLD conferences). I did a lot of research during my visits to MIT's Drapper Lab (1998 - 1999) and to NASA's Office of Logic Design MAPLD conferences in Washington (2004 and 2006).
+    </p>
+    <p align="justify">
+      As a device, the AGC was a rectangular structure machined of magnesium, divided in two trays and measuring two feet (60.96 cm) by one foot (30.48 cm) by six inches (15.24 cm), weighing 70 pounds (31 kg) and consuming 55 watts. As an electronic system it was a general-purpose microprogrammed NOR-Gate logic based computer with an 2.048-MHz oscillator as the primary timming source, and a memory cycle of 11.7 microseconds and addition time 23.4 microseconds. However, its interfaces with the outside world were purpose-specific, designed to integrate with the Apollo spacecraft (although later it was also used in a modified F-8 Crusader). One of those interfaces was with the hand controller, which allowed the crew to send commands (of different electrical types) to the mission software during different mission phases. Some commands were low-level, while others were high-level (used to intervene in or guide the automatic system toward a territorial target different from the one pre-programmed before the mission). The AGC was the "brain" part of an inertial navigation, guidance and control system. Inertia is just resistance to change in direction of motion. This resistance is electrically measured and processed. Single-precision arithmetic relied on a single adder, which handled all input/output activities. In contrast, multiple precision, required for vector/matrix guidance and navigation operations, was implemented in software. The microprogramming level was implemented in a Sequence Generator circuit inside the wire-wrapped machined logic.
+    </p>
+    <p align="justify">
+      At the system and operation software level (above the microprogramming level), there were programs and subroutines stored in the AGC's read-only memory modules (Core Rope memory), organized into two categories: "low-level" programs and "high-level" programs. The low-level programs were control software that interfaced the AGC with the outside world, including the hand controllers. The high-level programs were part of the "mathematical world" in which Apollo conducted its space missions. This virtual space was modeled and operated inside the computer as pseudo-mathematical expressions that programmers called "equations," such as the list that applies a transformation (matrix vector product) to an state vector (taken from the lunar landing software equations): 
+      VLOAD	MXV VATT1 REFSMMAT VSR1 VAD UNFC/2 STORE V.
+    </p>
+    <p align="justify">
+      In 2004, I presented the results of my research on the interface between the AGC and the manual control of the Apollo lunar module's Digital Autopilot as a use case of the same hardware interface (the "A" interface circuit and the "D" interface circuit) with different functions (implemented through mission software) and the use of software virtual machines (Interpreters) during the 1960s. This research has been used as a reference to some publications, and also used in the Virtual AGC project (<a href="https://www.ibiblio.org/apollo/#gsc.tab=0" target="_blank">https://www.ibiblio.org/apollo/#gsc.tab=0</a>). Below, I present some links of interest regarding the events, technical papers, presentations and photographs.
+    </p>
+  </section>
+  <div class="image-container">
+    <img src="DraperLabVisit_January_1999.jpg" alt="Event 1" title="Visit to MIT's Draper Lab with Eldon C. Hall (AGC chief designer), Cambridge MA, January 1999" />
+    <p class="image-title">Visit to MIT's Draper Lab with Eldon C. Hall (AGC chief designer), Cambridge MA, January 1999</p>
+  </div>
+  <br>
+  <br>
+  <div class="image-container">
+    <img src="Apollo_personal.JPG" alt="Event 1" title="Meeting some Apollo Guidance Computer personnel" style="width: 600px !important; max-width: none; height: auto;" />
+    <p class="image-title">Meeting some Apollo Guidance Computer personnel</p>
+  </div>
+  <br>
+  MAPLD 2004 Conference:
+  <a href="https://www.klabs.org/mapld04/program_sessions/session_g.html">MAPLD 2004 Conference</a>
+  <br>
+  <div class="image-container">
+    <img src="portillo_letter_scanned.jpg" alt="Event 1" title="Meeting some Apollo Guidance Computer personnel" />
+    <p class="image-title">Invitation to the MAPLD 2004 Conference</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="CHERRY_George_Letter_2004.JPG" alt="Event 1" title="Letter from George Cherry, chief designer of the AGC's Digital Autopilot" />
+    <p class="image-title">Letter from George Cherry, chief designer of the AGC's Digital Autopilot</p>
+  </div>
+  <br>
+  <br>
+  MAPLD 2004 Blog:
+  <a href="https://jportillolugo.blogspot.com/2007/03/conferencia-nasa-mapld-2004-digital.html">MAPLD 2004 Blog</a>
+  <br>
+  <div class="image-container">
+    <img src="MAPLD2004_participants.jpg" alt="Event 1" title="Some participants of the MAPLD 2004 conference: Eldon C. Hall, Ramon Alonso, Cline Frasier, Hugh Blair-Smith and myself" />
+    <p class="image-title">Some participants of the MAPLD 2004 conference: Eldon C. Hall, Ramon Alonso, Cline Frasier, Hugh Blair-Smith and myself</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="YoungHallMe_MAPLD2004.jpg" alt="Event 1" title="With astronaut John Young (Apollo 10, Apollo 16) user of the AGC, and Eldon C. Hall AGC chief designer" />
+    <p class="image-title">With astronaut John Young (Apollo 10, Apollo 16) user of the AGC, and Eldon C. Hall AGC chief designer</p>
+  </div>
+  <br>
+  <br>
+  APOLLO Lunar Landing Challenge: An Opportunity to review what was learned from the Apollo project? By Eldon C. Hall
+  <a href="https://github.com/jportillo34/ApolloGuidanceComputer/blob/5ebb2f7fd67cd609d910a8669bf156bf94830cba/Corrections%20to%20SPECIAL%20RELATIVITY%20%20Final-March%202016.pdf">APOLLO Lunar Landing Challenge, Eldon C. Hall</a>
+  <br>
+  <br>
+  Lunar Module Attitude Controller Assembly Input Processing memo:
+  <br>
+  <a href="https://web.mit.edu/digitalapollo/Documents/Chapter8/portillo.pdf">At MIT's Digital Apollo web site</a>
+  <br>
+  <br>
+  <a href="https://www.ibiblio.org/apollo/klabs/papers/g202_portillo_p.pdf">At MAPLD 2004 web site</a>
+  <br>
+  <br>
+  MAPLD 2006 Conference:
+  <a href="https://jportillolugo.blogspot.com/2007/03/conferencia-nasa-mapld-2006-digital.html">MAPLD 2006 Conference</a>
+  <br>
+  <br>
+  <div class="image-container">
+    <img src="Smithsonian_Visit_2006.jpg" alt="Event 1" title="With NASA historian Frank O'Brien and AGC designer and assembler language designer Hugh Blair_Smith (behind us is the Apollo 11 command module)" />
+    <p class="image-title">With NASA historian Frank O'Brien and AGC designer and assembler language designer Hugh Blair_Smith (behind us is the Apollo 11 command module)</p>
+  </div>
+  <br>
+  <br>
+  <div class="image-container">
+    <img src="2.JPG" alt="Event 1" title="Apollo Guidance Computer's A Circuit interface module" />
+    <p class="image-title">Apollo Guidance Computer's A Circuit interface module</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="LGC_ACA_GRUMMAN_Interface_Circuit_A.jpg" alt="Event 1" title="Apollo Guidance Computer's A Circuit interface module diagram (from Grumman Aircraft Interface Document" />
+    <p class="image-title">Apollo Guidance Computer's A Circuit interface module diagram (from Grumman Aircraft Interface Document</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="1.jpg" alt="Event 1" title="Apollo Guidance Computer's interface modules" />
+    <p class="image-title">Apollo Guidance Computer's interface modules</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="LGC_ACA_GRUMMAN_Interface_Circuit_D.jpg" alt="Event 1" title="Apollo Guidance Computer's D interface circuit (taken from Grumman Aircraft Interface Document)" />
+    <p class="image-title">Apollo Guidance Computer's D interface circuit (taken from Grumman Aircraft Interface Document)</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="AGC_Manufacture_Raytheon.jpg" alt="Event 1" title="AGC manufacture processes: wire-wrap machinery (for the logic design) and magnesium drilling (for the mechanical design)" />
+    <p class="image-title">AGC manufacture processes: wire-wrap machinery (for the logic design) and magnesium drilling (for the mechanical design)</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="AGC_Adder_Wirewrap.png" alt="Event 1" title="AGC’s adder electronic components, as well as the (microprogram) sequence generator that controls it, were built as a wire-wrapped fixed panel" />
+    <p class="image-title">AGC’s adder electronic components, as well as the (microprogram) sequence generator that controls it, were built as a wire-wrapped fixed panel</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="agc_blockII_2.jpg" alt="Event 1" title="The Apollo Guidance Computer Block II" />
+    <p class="image-title">The Apollo Guidance Computer Block II</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="NOR-Gate.jpg" alt="Event 1" title="NOR-Gate chip made by Philco-Ford (about 1962-1964) and a single bit adder from AGC's Adder" />
+    <p class="image-title">An AGC silicon chip (top left) made by Philco-Ford (about 1962-1964) and a single bit adder from AGC's Adder (below). The chip contains two gates each one consisting of three modified direct-coupled transistors (DCTL) in parallel, along with four resistors (top right). By using Morgan's Law any logic circuit can be built using only NOR-Gates like these. The single-bit Adder circuit includes a single-bit flip-flop as the basic storage pice</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="NOR-Gate_vs_RISC.JPG" alt="Event 1" title="NOR-Gate chips versus 1970s and 1990s chips" />
+    <p class="image-title">Compare AGC's Dual NOR-Gate logic module versus an MOTOROLA's 68701 Microcontroller (1970s era) and an Microchip's RISC microcontroller (1990s era). I had the opportunity to program both processors</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="AGC_BlockI_BlockII_2004.png" alt="Event 1" title="The Apollo Guidance Computer Block I Tray (left) and Block II (right) - MAPLD 2004 conference" />
+    <p class="image-title">The Apollo Guidance Computer Block I Tray (left) and Block II (right) - MAPLD 2004 conference</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="AGC_ACA_Interface_A_Circuit.JPG" alt="Event 1" title="AGC's interface circuit (MAPLD 2004 conference)" />
+    <p class="image-title">AGC's "A" interface circuit (MAPLD 2004 conference)</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="foto2.jpg" alt="Event 1" title="Disassembly of the Apollo Guidance Computer (MAPLD 2004 conference)" />
+    <p class="image-title">Disassembly of the Apollo Guidance Computer (MAPLD 2004 conference)</p>
+  </div>
+  <br>  
+  <div class="image-container">
+    <img src="Eldon_AGC_1.jpg" alt="Event 1" title="Eldon C. Hall and the Apollo Guidance Computer and DSKY (MIT/IL 1969)" />
+    <p class="image-title">Eldon C. Hall and the Apollo Guidance Computer and DSKY (MIT/IL 1969)</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="AGC_Test_Raytheon.png" alt="Event 1" title="The Apollo Guidance Computer in its test stand at Raytheon" />
+    <p class="image-title">The Apollo Guidance Computer in its test stand at Raytheon</p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="apollo15_LM_interior_1.JPG" alt="Event 1" title="The Apollo Guidance Computer inplace inside the Apollo 15's Lunar Module: A use case of the AGC as a control box " />
+    <p class="image-title">The Apollo Guidance Computer inplace inside the Apollo 15's Lunar Module: A use case of the AGC as a control box </p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="DSKY_4.jpeg" alt="Event 1" title="AGC Display and Keyboard (DSKY) in the Apollo Command Module main panel: A use case of the AGC as a control box " />
+    <p class="image-title">AGC Display and Keyboard (DSKY) in the Apollo Command Module main panel: A use case of the AGC as a control box </p>
+  </div>
+  <br>
+  <div class="image-container">
+    <img src="McCALL_Landing.jpg" alt="Event 1" title="Apollo lunar landing approach and landing phases: A use case of the AGC as a control box (McCall)" />
+    <p class="image-title">Apollo lunar landing approach and landing phases (McCall): A use case of the AGC as a control box </p>
+  </div>
+  <br>
+  MAPLD 2004 presentation:
+  <a href="http://klabs.org/mapld04/presentations/session_p/p202_portillo_s.ppt">My MAPLD 2004 Conference presentation</a>
+  <br>
+  All about Interpreters:
+  <a href="https://jportillolugo.blogspot.com/2010/04/conversaciones-con-hugh-blair-smith.html">All about Software Virtual Machines (Interpreters)</a>
+</main>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
