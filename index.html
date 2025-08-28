@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Apollo Guidance Computer</title>
-<meta name="description" content="A research in history of computers and software from 1960s" />
+<title>The High Level: Some math articles</title>
+<meta name="description" content="A personal journey into the N-dimensional objects and operations" />
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -68,10 +68,10 @@
 <body>
 
 <header class="center">
-  <h1>The Apollo Guidance Computer: A research in history of computers and software from 1960s</h1>
+  <h1>The high level: A personal journey into the N-dimensional objects and operations</h1>
   <p class="small-text"><strong>Research by José Portillo</strong></p>
   <p class="small-text">
-    GitHub: <a href="https://github.com/jportillo34/ApolloGuidanceComputer" target="_blank" rel="noopener noreferrer">https://github.com/jportillo34/ApolloGuidanceComputer</a>
+    GitHub: <a href="https://github.com/jportillo34/someMathWorks" target="_blank" rel="noopener noreferrer">https://github.com/jportillo34/someMathWorks</a>
   </p>
   <p class="small-text">
     Email: <a href="mailto:jportillo34@gmail.com">jportillo34@gmail.com</a>
@@ -81,17 +81,7 @@
 <main>
   <section>
     <p align="justify">
-      From 1992 to 2006, I had the opportunity to engage in historical research on the Apollo Guidance Computer (AGC) and its interfaces with the Apollo spacecraft. This work led me to learn about computers in the 1960s, the beginnings of integrated logic gate circuits, and to personally meet the designers (Eldon C. Hall - Chief Designer, Hugh Blair-Smith - Designer of AGC's basic assembler language and Interpreter, Alan Green - DISKY interface software programmer, Ramon Alonso - Designer of the DSKY and AGC's architecture, Robert Stengel - Designer and programmer of the Apollo lunar module's hand-controller software, all from MIT's Instrumentation Lab), Cline Frasier (from NASA), David Bates (from Raytheon), some of the Apollo Lunar Module programmer team (Donal Eyles, John Dyest), astronauts (John Young - Apollo 10 and Apollo 16, Fred Haise - Apollo 13) who were the AGC's users, computer historians (Frank O'Brien, Ronald Burkey), and modern NASA engineers (Richard Katz - organizer of MAPLD conferences). I did a lot of research during my visits to MIT's Drapper Lab (1998 - 1999) and to NASA's Office of Logic Design MAPLD conferences in Washington (2004 and 2006).
-    </p>
-    <p align="justify">
-      As a device, the AGC was a rectangular structure machined of magnesium, divided in two trays and measuring two feet (60.96 cm) by one foot (30.48 cm) by six inches (15.24 cm), weighing 70 pounds (31 kg) and consuming 55 watts. As an electronic system it was a general-purpose microprogrammed NOR-Gate logic based computer with an 2.048-MHz oscillator as the primary timming source, and a memory cycle of 11.7 microseconds and addition time 23.4 microseconds. However, its interfaces with the outside world were purpose-specific, designed to integrate with the Apollo spacecraft (although later it was also used in a modified F-8 Crusader). One of those interfaces was with the hand controller, which allowed the crew to send commands (of different electrical types) to the mission software during different mission phases. Some commands were low-level, while others were high-level (used to intervene in or guide the automatic system toward a territorial target different from the one pre-programmed before the mission). The AGC was the "brain" part of an inertial navigation, guidance and control system. Inertia is just resistance to change in direction of motion. This resistance is electrically measured and processed. Single-precision arithmetic relied on a single adder, which handled all input/output activities. In contrast, multiple precision, required for vector/matrix guidance and navigation operations, was implemented in software. The microprogramming level was implemented in a Sequence Generator circuit inside the wire-wrapped machined logic.
-    </p>
-    <p align="justify">
-      At the system and operation software level (above the microprogramming level), there were programs and subroutines stored in the AGC's read-only memory modules (Core Rope memory), organized into two categories: "low-level" programs and "high-level" programs. The low-level programs were control software that interfaced the AGC with the outside world, including the hand controllers. The high-level programs were part of the "mathematical world" in which Apollo conducted its space missions. This virtual space was modeled and operated inside the computer as pseudo-mathematical expressions that programmers called "equations," such as the list that applies a transformation (matrix vector product) to an state vector (taken from the lunar landing software equations): 
-      VLOAD	MXV VATT1 REFSMMAT VSR1 VAD UNFC/2 STORE V.
-    </p>
-    <p align="justify">
-      In 2004, I presented the results of my research on the interface between the AGC and the manual control of the Apollo lunar module's Digital Autopilot as a use case of the same hardware interface (the "A" interface circuit and the "D" interface circuit) with different functions (implemented through mission software) and the use of software virtual machines (Interpreters) during the 1960s. This research has been used as a reference to some publications, and also used in the Virtual AGC project (<a href="https://www.ibiblio.org/apollo/#gsc.tab=0" target="_blank">https://www.ibiblio.org/apollo/#gsc.tab=0</a>). Below, I present some links of interest regarding the events, technical papers, presentations and photographs.
+      Here is a list of articles about N-dimensional space's objects and other mathematics.
     </p>
   </section>
   <div class="image-container">
@@ -248,6 +238,7 @@
 </main>
 </body>
 </html>
+
 
 
 
