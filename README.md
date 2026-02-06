@@ -1,2 +1,2 @@
 # someMathWorks
-Easys on Math subjects
+This is a collection of articles and unfinished notes on linear algebra, geometry in high-dimensional spaces, and number systems. The focus is on abstract, high-level topics that have remained relevant over time and are largely independent of technological change. For more concrete, technology-dependent topics—such as the hardware and practical developments that support these mathematical formulations—please visit my other GitHub Pages site, where I explore the history of computing: <a href="https://jportillo34.github.io/ApolloGuidanceComputer/">History of Computing
