@@ -1,0 +1,190 @@
+\documentclass[12pt,openany]{book}
+
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Linear, Geometric, and Structural Transformations: An Axiomatic and Coordinate-Free Perspective},
+  pdfauthor={Jose Portillo},
+  pdfsubject={Linear algebra, geometry, tensors, and logarithmic structure},
+  pdfkeywords={linear transformations, inner products, tensors, tensor product, logarithms}
+}
+
+\begin{document}
+
+\pagestyle{plain}
+
+\frontmatter
+
+\begin{titlepage}
+\thispagestyle{empty}
+
+\vspace*{2.2cm}
+
+{\Large\bfseries
+Linear, Geometric, and Structural Transformations\par}
+\vspace{0.4cm}
+
+\vspace{1.4cm}
+{\Large Jose Portillo\par}
+
+\vspace{1.8cm}
+\rule{\textwidth}{0.6pt}
+\vspace{0.35cm}
+
+{\small
+\textbf{Release date:} February 15, 2026\par
+\textbf{Version:} 0.4\par
+}
+
+\vfill
+
+\end{titlepage}
+
+
+\thispagestyle{empty}
+\null\vfill
+\begin{center}
+To the memory of\par
+Mercelena Portillo Holskin,\par
+Eldon C. Hall,\par
+Hugh Blair-Smith\par
+\vspace{1cm}
+To my family
+\end{center}
+\vfill\null
+\clearpage
+
+\tableofcontents
+
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+This monograph began as an attempt to understand what remains invariant when formulas, coordinates, and representations are removed.
+
+\medskip
+
+Vector spaces are introduced as abstract sets equipped with addition and scalar multiplication. Linear transformations are defined as the maps that preserve this structure.
+
+\medskip
+
+By introducing bilinear forms and, ultimately, inner products, vectors are allowed to interact in a way that produces scalars. From this single interaction arise norms, orthogonality, distances, and classical geometric objects such as balls, spheres, and ellipsoids.
+
+\medskip
+
+Many constructions encountered earlier—bilinear forms, inner products, matrix multiplication—share a common feature: they are linear in each argument separately. This observation leads naturally to multilinear maps and to tensors.
+
+\medskip
+
+Tensors are treated as abstract multilinear objects defined without coordinates. The tensor product is introduced through its universal property, explaining how multilinear problems are canonically reduced to linear ones. Index notation, arrays, and computational implementations are presented explicitly as representations.
+
+\medskip
+
+A recurring distinction will be made between an axiomatic theory and a concrete model of that theory. In a refined axiomatic treatment of Euclidean geometry, objects such as \textit{point}, \textit{line}, and \textit{plane} are taken as primitive (undefined) terms, and the axioms specify only the relations they must satisfy. A Cartesian coordinate system does not redefine these primitives; rather, it provides a \emph{model} in which points are represented by tuples in $\mathbb{R}^n$, lines by solution sets of linear equations, and incidence becomes set membership \cite{iribarren2}. As stated in \cite{wilder}, this is \textit{the assignment of meanings}. This perspective helps place coordinate formulas as representations of structure, and not as the structure itself.
+
+\medskip
+
+Concretely, the text is organized around four recurring structural themes (linear structure, geometric and topological structure, multilinear structure, and logarithmic structure).
+
+\medskip
+
+These themes are successive refinements of the same organizing idea: structure is revealed through invariance under transformations.
+
+\medskip
+
+For the reader, in order to understand the subjects, and use these notes as a starting point for more research, it is assumed prior familiarity with basic set theory \cite{wilder}\cite{cohen}\cite{apostol}, relations, functions \cite{apostol}, and $n$-tuples \cite{iribarren}\cite{cohen}, and basic  algebra \cite{iribarren}. It also assumes basic knowledge of calculus  \cite{apostol}. The reports \cite{kolecki} and \cite{kolecki2} include all the basic material on tensors. Other introductory material needed is scattered throughout the bibliography.
+
+\medskip
+
+An AI language model was used for edition, LaTeX and stylistic refinement.
+
+\medskip
+
+This monograph presents the abstract part that underlies every algorithm and autonomous computing system, and therefore remains invariant under any change in the state of technology. There is a more physical/hardware-oriented counterpart (centered on a 1960s computer: the Apollo Guidance Computer), which is more specific to a moment in that state of the art. For the full context, see:
+
+\medskip
+
+{\small
+\url{https://jportillo34.github.io/ApolloGuidanceComputer/}
+}
+
+\clearpage
+
+\makeatletter
+\@mainmattertrue
+\makeatother
+\pagenumbering{arabic}
+
+\include{Structures_I}
+\include{Structures_II}
+\include{Structures_III}
+\include{Structures_IV}
+
+\backmatter
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+
+\begin{thebibliography}{99}
+
+\bibitem{iribarren}
+Iribarren Ignacio L., \textit{Álgebra Lineal}, Editorial Equinoccio, 2009.
+
+\bibitem{halmos}
+Halmos, Paul R., \textit{Finite-Dimensional Vector Spaces}, Springer-Verlag, 1987.
+
+\bibitem{iribarren2}
+Iribarren, Ignacio L., \textit{Topología de Espacios Métricos}, Editorial Limusa-Wiley, 1973.
+
+\bibitem{cohen}
+Cohen, Leon and Ehrlich, Gertrude, \textit{The Structure of the Real Number System}, D. Van Nostrand Company, 1963.
+
+\bibitem{wilder}
+Wilder, Raymond L., \textit{Introduction to The Foundations of Mathematics}, Dover Publications, Inc., 2012.
+
+\bibitem{greub}
+Greub, Werner, \textit{Linear Algebra}, Springer-Verlag, 1975.
+
+\bibitem{rada}
+Rada, Juan, \textit{Introducción al Álgebra Lineal}, Consejo de Publicaciones de la Universidad de Los Andes, 2011.
+
+\bibitem{oxford}
+Lukas, Andre, \textit{The Oxford Linear Algebra for Scientists}, Oxford University Press, 2022.
+
+\bibitem{apostol}
+Apostol, Tom M., \textit{Calculus Volume I}, John Wiley \& Sons Inc., 1967.
+
+\bibitem{knuth}
+Knuth, Donald E., \textit{The Art of Computer Programming Volume I: Fundamental Algorithms}, Addison-Wesley, 1997.
+
+\bibitem{knuth2}
+Knuth, Donald E., \textit{The Art of Computer Programming Volume II: Seminumerical Algorithms}, Addison-Wesley, 1981.
+
+\bibitem{knuth3}
+Knuth, Donald E., \textit{The Art of Computer Programming Volume I, Fascicle 1: MMIX—A RISC Computer for the New Millennium}, Addison-Wesley, 2005.
+
+\bibitem{feynman}
+Feynman Richard P., Leighton Robert, Sands Matthew, \textit{The Feynman Lectures on Physics, Volume II}, California Institute of Technology, 2010.
+
+\bibitem{kolecki}
+Kolecki, Joseph C., \textit{An Introduction to Tensors for Students of Physics and Engineering}, NASA/TM-2002-211716, 2002.
+
+\bibitem{kolecki2}
+Kolecki, Joseph C., \textit{Foundations of Tensor Analysis for Students of Physics and Engineering With an Introduction
+to the Theory of Relativity}, NASA/TP—2005-213115, 2005.
+
+\bibitem{kung}
+Kung, H. T., Liserson, Charles L., \textit{Introduction to VLSI Systems - Algorithms for VLSI Processor Arrays}, ed. C. Mead and L. Conway, Addison-Wesley, Reading, MA, 1980.
+
+\end{thebibliography}
+
+\end{document}
