@@ -1,0 +1,300 @@
+\chapter{Los Logaritmos como Transformaciones que Preservan Estructura}
+
+En los capítulos precedentes, la invariancia bajo cambios de coordenadas fue
+identificada como la característica definitoria de los objetos geométricos y
+tensoriales.
+Un vector, una forma bilineal, un tensor --- ninguno queda definido por sus
+componentes numéricas, sino por las relaciones estructurales que preserva bajo
+transformación.
+El presente capítulo constata que ese mismo principio opera fuera del ámbito
+lineal.
+El logaritmo es un isomorfismo entre estructuras algebraicas: convierte la
+multiplicación en adición preservando íntegramente las relaciones que importan.
+El invariante no es una coordenada, una longitud ni una componente tensorial ---
+es la propia correspondencia algebraica.
+
+% ------------------------------------------------------------------
+%\section*{La Idea Central: una Aplicación que Preserva Estructura}
+% ------------------------------------------------------------------
+
+\medskip
+
+En su nivel más elemental, el logaritmo responde a la pregunta:
+\emph{¿qué exponente produce un número dado?}
+Sin embargo, tanto histórica como matemáticamente,
+el poder de los logaritmos radica en algo más profundo:
+convierten la multiplicación en adición --- y lo hacen de forma exacta.
+
+\medskip
+
+En el Capítulo~I se definió un isomorfismo como una aplicación entre sistemas
+algebraicos que preserva su estructura.
+El logaritmo proporciona una realización precisa y global de esa idea.
+
+\medskip
+
+La aplicación
+\[
+\log:\mathbb{R}^+\to\mathbb{R}
+\]
+no es una mera biyección; es un isomorfismo entre dos estructuras de grupo:
+
+\begin{enumerate}
+    \item Un grupo multiplicativo $(\mathbb{R}^+,\cdot)$.
+    \item Un grupo aditivo $(\mathbb{R},+)$.
+    \item Un isomorfismo
+    \[
+    \log:(\mathbb{R}^+,\cdot)\longrightarrow(\mathbb{R},+),
+    \]
+    cuya inversa es $\exp:(\mathbb{R},+)\to(\mathbb{R}^+,\cdot)$.
+\end{enumerate}
+
+\medskip
+
+La propiedad definitoria es:
+\[
+\log(ab)=\log(a)+\log(b),
+\qquad
+\log(1)=0.
+\]
+
+La multiplicación corresponde a la adición; el elemento neutro multiplicativo
+corresponde al elemento neutro aditivo; los inversos multiplicativos corresponden
+a los inversos aditivos.
+Ninguna relación algebraica se pierde --- solo cambia su apariencia.
+
+\medskip
+
+No se trata de un artificio numérico ni de un atajo computacional.
+Es una equivalencia estructural: los dos grupos son, desde el punto de vista
+algebraico, el mismo objeto con distinta notación.
+
+% ------------------------------------------------------------------
+%\section*{Manifestación Física: la Regla de Cálculo}
+% ------------------------------------------------------------------
+
+\medskip
+
+Este isomorfismo cobra existencia física en la regla de cálculo.
+Las distancias sobre una escala logarítmica representan valores logarítmicos.
+Sumar distancias equivale a multiplicar números.
+
+\medskip
+
+La construcción de escalas logarítmicas consiste en aplicar la transformación
+\[
+x \mapsto \log_{10}(x),
+\]
+situando cada número a una distancia proporcional a su logaritmo.
+Razones iguales corresponden a distancias iguales.
+La identidad estructural $\log(ab)=\log(a)+\log(b)$ se convierte en una
+operación mecánica: al deslizar una regla sobre otra, la multiplicación se
+realiza mediante una adición de longitudes.
+
+\medskip
+
+Las longitudes no son números, pero obedecen las mismas reglas estructurales.
+Al explotar esta correspondencia, la regla de cálculo se convierte en un
+computador analógico --- un modelo físico de un isomorfismo algebraico.
+
+% ------------------------------------------------------------------
+%\section*{El Logaritmo como Área: Interpretación Geométrica}
+% ------------------------------------------------------------------
+
+\medskip
+
+Los logaritmos admiten también una definición puramente geométrica,
+independiente de la exponenciación.
+Por construcción,
+\[
+\ln(a)=\int_1^a \frac{1}{x}\,dx,
+\]
+esto es, el área con signo bajo la curva $y=\frac{1}{x}$ entre $1$ y $a$.
+
+\medskip
+
+Esta definición integral hace transparente la propiedad de isomorfismo.
+Para $a,b>0$,
+\[
+\ln(ab)
+=\int_1^{ab}\frac{1}{x}\,dx
+=\int_1^{a}\frac{1}{x}\,dx+\int_a^{ab}\frac{1}{x}\,dx.
+\]
+El cambio de variable $x=at$ en la segunda integral da
+\[
+\int_a^{ab}\frac{1}{x}\,dx=\int_1^{b}\frac{1}{t}\,dt=\ln(b),
+\]
+y por tanto $\ln(ab)=\ln(a)+\ln(b)$.
+El isomorfismo de grupos es un teorema, no un supuesto.
+
+\medskip
+
+La definición integral también proporciona de inmediato la fórmula fundamental
+de derivación:
+\[
+\frac{d}{da}\ln(a)=\frac{1}{a}.
+\]
+
+% ------------------------------------------------------------------
+%\section*{Tasa de Cambio y Aproximación Lineal}
+% ------------------------------------------------------------------
+
+\medskip
+
+El comportamiento de $\frac{d}{da}\ln(a) = \frac{1}{a}$ conecta el logaritmo
+con el marco general de las derivadas y la linealización local.
+
+\medskip
+
+Recordemos que para una función $y = f(x)$, la derivada en un punto $a$ es
+\[
+f'(a) = \lim_{h\to0}\frac{f(a+h)-f(a)}{h},
+\]
+la tasa de cambio instantánea y, geométricamente, la pendiente de la recta
+tangente.
+En un entorno de $a$, toda función diferenciable se comporta aproximadamente
+como su recta tangente:
+\[
+f(x) \approx f(a) + f'(a)(x-a).
+\]
+
+\medskip
+
+Esta linealidad local es el reflejo, en el ámbito del análisis, del paso de
+los tensores a sus componentes tratado en el Capítulo~II: la estructura global
+no lineal se vuelve manejable al aproximarse por su mejor modelo lineal en
+cada punto.
+La derivada sustituye localmente una aplicación no lineal por una lineal;
+el logaritmo sustituye globalmente una estructura multiplicativa por una
+aditiva.
+Ambos son instancias del mismo principio organizador.
+
+% ------------------------------------------------------------------
+%\section*{Cálculo Numérico: Newton--Raphson Aplicado al Logaritmo}
+% ------------------------------------------------------------------
+
+\medskip
+
+La derivada del logaritmo también permite su cálculo numérico eficiente
+mediante el método de Newton--Raphson.
+Calcular $\ln(x)$ equivale a resolver la ecuación
+\[
+e^y = x,
+\]
+o, de forma equivalente, encontrar el cero de $f(y) = e^y - x$.
+
+\medskip
+
+La iteración de Newton--Raphson reemplaza la ecuación no lineal por una
+sucesión de ecuaciones lineales.
+Partiendo de una aproximación inicial $y_n$, se linealiza $f$ en torno a $y_n$
+y se resuelve:
+\[
+0 = f(y_n) + f'(y_n)(y_{n+1}-y_n).
+\]
+Como $f'(y) = e^y$, se obtiene
+\[
+y_{n+1} = y_n - \frac{e^{y_n}-x}{e^{y_n}}
+         = y_n + \frac{x - e^{y_n}}{e^{y_n}}.
+\]
+
+Partiendo de $y_0 = 1{,}5$, las iteraciones sucesivas convergen rápidamente a
+$\ln(5) \approx 1{,}60944$.
+
+\medskip
+
+La simplicidad de esta iteración no es casual.
+Trabajar en base $e$ garantiza que $\frac{d}{dy}e^y = e^y$,
+lo que minimiza la carga algebraica y mejora la estabilidad numérica.
+Los logaritmos en otras bases se obtienen mediante la fórmula de cambio de base:
+\[
+\log_{b}(x) = \frac{\ln(x)}{\ln(b)}.
+\]
+
+% ------------------------------------------------------------------
+%\section*{Algoritmo Histórico: Briggs y la Acumulación Binaria}
+% ------------------------------------------------------------------
+
+\medskip
+
+La misma idea estructural subyace a los algoritmos históricos de construcción
+de tablas de logaritmos.
+Henry Briggs calculó tablas en base~10 acumulando pequeñas correcciones
+multiplicativas; un método estrechamente relacionado, adaptado a la aritmética
+binaria, se describe en~\cite{knuth}.
+
+\medskip
+
+El algoritmo construye el número objetivo mediante multiplicaciones sucesivas
+de la forma
+\[
+\frac{10^k}{10^k-1},
+\]
+acumulando los logaritmos correspondientes cada vez que el producto parcial no
+supera el objetivo.
+Lo que aparece como cómputo es, en rigor, preservación de estructura:
+cada paso multiplicativo corresponde a un incremento aditivo en el lado
+logarítmico, ejecutando fielmente el isomorfismo $\log(ab) = \log(a) + \log(b)$.
+
+% ------------------------------------------------------------------
+%\section*{La Constante $e$ y sus Representaciones}
+% ------------------------------------------------------------------
+
+\medskip
+
+La base natural $e$ no es una elección arbitraria.
+Es la única base para la que $\frac{d}{dx}e^x = e^x$,
+y la única solución a $\int_1^e \frac{1}{x}\,dx = 1$.
+Su carácter aritmético queda revelado por varias construcciones independientes.
+
+\medskip
+
+Una definición clásica proviene del interés compuesto:
+\[
+e = \lim_{n\to\infty}\left(1+\frac{1}{n}\right)^n.
+\]
+
+Otra la proporciona su desarrollo en fracción continua:
+\[
+e = [2;\,1,2,1,1,4,1,1,6,\dots],
+\]
+que en forma extendida se escribe
+\[
+e
+=
+2 + \cfrac{1}{1 + \cfrac{1}{2 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{4 + \cdots}}}}}.
+\]
+
+Estas representaciones convergen rápidamente y resultan adecuadas para el
+cómputo, pero su significado más profundo es estructural:
+$e$ es la unidad natural del isomorfismo entre $(\mathbb{R}^+,\cdot)$
+y $(\mathbb{R},+)$.
+
+% ------------------------------------------------------------------
+%\section*{Dos Linealizaciones Complementarias}
+% ------------------------------------------------------------------
+
+\medskip
+
+El logaritmo transforma el crecimiento no lineal en desplazamiento lineal.
+Convierte la multiplicación en adición, los productos en sumas
+y las escalas exponenciales en escalas lineales.
+
+\medskip
+
+Se hacen así visibles dos manifestaciones complementarias del principio
+invariante.
+El logaritmo es un isomorfismo \emph{global}:
+establece una equivalencia estructural perfecta entre dos mundos algebraicos,
+válida en todo $\mathbb{R}^+$.
+La derivada, en cambio, proporciona una linealización \emph{local}:
+aproxima una transformación arbitraria por su mejor modelo lineal en cada punto.
+
+\medskip
+
+En ambos casos, la complejidad se hace inteligible al expresarse mediante
+relaciones lineales.
+Por eso los logaritmos aparecen simultáneamente en el análisis, la geometría,
+los métodos numéricos y los instrumentos de cómputo.
+No pertenecen a un único dominio.
+Preservan estructura a través de todos ellos.

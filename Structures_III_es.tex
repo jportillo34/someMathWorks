@@ -1,0 +1,1015 @@
+\chapter{Tensores como Aplicaciones Multilineales}
+
+La linealidad expresa que una aplicación respeta la estructura algebraica de
+un espacio vectorial.
+Sin embargo, muchas construcciones en matemáticas dependen de funciones que
+toman varios argumentos vectoriales simultáneamente y permanecen lineales en
+cada uno de ellos cuando los demás se mantienen fijos. Esto conduce de manera
+natural a la noción de multilinealidad.
+
+\medskip
+
+Sean \(E_1, E_2, \dots, E_n\) y \(F\) espacios vectoriales sobre el mismo
+cuerpo \(K\).
+
+\begin{definition}[Aplicación multilineal]
+Una aplicación
+\[
+T : E_1 \times E_2 \times \cdots \times E_n \to F
+\]
+se llama \emph{multilineal} si es lineal en cada argumento por separado.
+Es decir, para cada índice \(i \in \{1,\dots,n\}\) y para todo
+\[
+x_i, y_i \in E_i, \quad \alpha \in K,
+\]
+se tiene
+\[
+T(x_1,\dots,x_i +_{E_i} y_i,\dots,x_n)
+=
+T(x_1,\dots,x_i,\dots,x_n)
++_F
+T(x_1,\dots,y_i,\dots,x_n),
+\]
+y
+\[
+T(x_1,\dots,\alpha \circ x_i,\dots,x_n)
+=
+\alpha \circ T(x_1,\dots,x_i,\dots,x_n),
+\]
+con todos los demás argumentos fijos.
+\end{definition}
+
+Cuando \(n=1\), una aplicación multilineal es simplemente una aplicación lineal.
+Así, las aplicaciones multilineales no son un tipo de objeto nuevo, sino una
+generalización directa de las transformaciones lineales.
+
+\medskip
+
+Las aplicaciones multilineales aparecen de manera natural en muchos contextos:
+productos bilineales, emparejamientos entre vectores y formas lineales,
+e interacciones de orden superior que no pueden reducirse a una única entrada.
+Su estudio sistemático conduce al concepto de tensor.
+
+\medskip
+
+Informalmente, un tensor es un objeto diseñado para codificar comportamiento
+multilineal de manera intrínseca y sin coordenadas.
+
+\medskip
+
+A lo largo de este documento se utilizarán dos puntos de vista equivalentes.
+El primero trata los tensores directamente como aplicaciones multilineales.
+
+\medskip
+
+Sea \(E\) un espacio vectorial sobre \(K\), y sea \(E^*\) su espacio dual,
+es decir, el espacio vectorial de las aplicaciones lineales de \(E\) en \(K\).
+
+\begin{definition}[Tensor como aplicación multilineal]
+Un \emph{tensor de tipo \((k,\ell)\)} sobre \(E\) es una aplicación multilineal
+\[
+T : \underbrace{E^* \times \cdots \times E^*}_{k\ \text{veces}}
+\times
+\underbrace{E \times \cdots \times E}_{\ell\ \text{veces}}
+\;\longrightarrow\; K.
+\]
+\end{definition}
+
+Tal tensor toma \(k\) formas lineales y \(\ell\) vectores como argumentos,
+y produce un escalar.
+Se requiere linealidad en cada argumento por separado.
+
+\medskip
+
+Esta definición precisa varios casos familiares:
+\begin{itemize}
+\item Un escalar en \(K\) puede verse como un tensor de tipo \((0,0)\).
+\item Un vector en \(E\) corresponde a un tensor de tipo \((0,1)\).
+\item Una forma lineal en \(E^*\) es un tensor de tipo \((1,0)\).
+\item Una forma bilineal sobre \(E\) es un tensor de tipo \((0,2)\).
+\item Si $E$ es de dimensión finita, una aplicación lineal $T : E \to E$ puede
+      identificarse con un tensor de tipo $(1,1)$.
+\end{itemize}
+
+Así, los vectores y las matrices reaparecen como los casos de orden más bajo
+de un único marco unificado.
+
+\medskip
+
+A este nivel de abstracción no intervienen coordenadas, tablas ni
+interpretaciones geométricas.
+Un tensor queda definido enteramente por cómo actúa sobre vectores y formas
+lineales, y por la multilinealidad de dicha acción.
+
+% CORRECCIÓN 1: La motivación del producto tensorial está ahora claramente
+% separada de su definición. La versión anterior mezclaba motivación y solución
+% en el mismo bloque, con la frase final anticipando la definición que seguía
+% a continuación (circular). La motivación es ahora autocontenida: identifica la
+% limitación de las aplicaciones multilineales (no existe composición natural) y
+% plantea la pregunta que el producto tensorial responderá, sin nombrar la
+% solución prematuramente.
+
+\medskip
+
+La definición anterior es conceptualmente clara, pero tiene una limitación
+práctica.
+Las aplicaciones lineales se componen: si $S : E \to F$ y $T : F \to G$ son
+lineales, entonces $T \circ S : E \to G$ es de nuevo lineal, y su matriz es
+el producto de las matrices de $T$ y $S$.
+Las aplicaciones multilineales no admiten una operación análoga.
+Sus salidas y entradas no encajan de manera natural como para permitir una
+composición canónica, y no existe ninguna regla general para combinar dos
+aplicaciones multilineales en una tercera preservando la multilinealidad.
+
+\medskip
+
+Las aplicaciones multilineales forman espacios vectoriales bajo las operaciones
+punto a punto, de modo que pueden sumarse y escalarse.
+Lo que falta es una manera de \emph{reducir} la multilinealidad a la linealidad:
+sustituir un problema multilineal por uno lineal sobre un espacio
+convenientemente construido.
+Esto es precisamente lo que logra el producto tensorial.
+
+\medskip
+
+Sean \(E_1,\dots,E_n\) espacios vectoriales sobre el mismo cuerpo \(K\).
+Consideremos el conjunto de todas las aplicaciones multilineales
+\[
+T : E_1 \times \cdots \times E_n \longrightarrow F
+\]
+con valores en un espacio vectorial arbitrario \(F\).
+El producto tensorial se define de modo que cada tal aplicación multilineal
+corresponda de manera única a una aplicación lineal definida sobre un único
+espacio vectorial.
+
+\medskip
+
+\begin{definition}[Producto tensorial]
+El \emph{producto tensorial} de los espacios vectoriales \(E_1,\dots,E_n\) es
+un espacio vectorial, denotado
+\[
+E_1 \otimes \cdots \otimes E_n,
+\]
+junto con una aplicación multilineal
+\[
+\otimes : E_1 \times \cdots \times E_n \longrightarrow
+E_1 \otimes \cdots \otimes E_n,
+\]
+que satisface la siguiente propiedad universal:
+
+Para todo espacio vectorial \(F\) y toda aplicación multilineal
+\[
+T : E_1 \times \cdots \times E_n \longrightarrow F,
+\]
+existe una única aplicación lineal
+\[
+\widetilde{T} : E_1 \otimes \cdots \otimes E_n \longrightarrow F
+\]
+tal que
+\[
+T(x_1,\dots,x_n) = \widetilde{T}(x_1 \otimes \cdots \otimes x_n)
+\]
+para todo \(x_i \in E_i\).
+\end{definition}
+
+\medskip
+
+Esta propiedad caracteriza completamente el producto tensorial.
+Los elementos \(x_1 \otimes \cdots \otimes x_n\) se llaman \emph{tensores simples}.
+Todo elemento del espacio producto tensorial es una combinación lineal finita
+de tensores simples.
+
+\medskip
+
+Como consecuencia, el estudio de las aplicaciones multilineales es equivalente
+al estudio de las aplicaciones lineales definidas sobre productos tensoriales.
+Concretamente,
+\[
+\text{Aplicaciones multilineales } E_1 \times \cdots \times E_n \to F
+\quad\longleftrightarrow\quad
+\text{Aplicaciones lineales } E_1 \otimes \cdots \otimes E_n \to F.
+\]
+
+\medskip
+
+Esta equivalencia es el fundamento conceptual de la teoría de tensores.
+Explica por qué los tensores pueden manipularse algebraicamente, componerse
+con aplicaciones lineales y representarse concretamente una vez elegidas las bases.
+
+\medskip
+
+Volviendo al caso de un único espacio vectorial \(E\), un tensor de tipo
+\((k,\ell)\) puede verse equivalentemente como una aplicación lineal
+\[
+T :
+\underbrace{E^* \otimes \cdots \otimes E^*}_{k}
+\otimes
+\underbrace{E \otimes \cdots \otimes E}_{\ell}
+\;\longrightarrow\; K.
+\]
+
+\medskip
+
+Así los tensores son aplicaciones lineales definidas sobre productos tensoriales,
+y su aparente complejidad surge únicamente al introducir coordenadas.
+
+\medskip
+
+A diferencia de la suma directa (Capítulo~I), que combina componentes
+independientes de manera aditiva, el producto tensorial codifica interacciones
+entre componentes mediante la multilinealidad.
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Nota:} Una vez elegidas las bases, los productos tensoriales se
+convierten en espacios vectoriales de dimensión finita, y los tensores admiten
+representaciones coordenadas como tablas multidimensionales. Estas
+representaciones dependen de las bases elegidas y no definen el tensor en sí.
+
+\medskip
+\hrule
+\bigskip
+
+Sea $E$ un espacio vectorial de dimensión finita sobre $K$, y sea
+\[
+B = \{ e_1, \dots, e_n \}
+\]
+una base de $E$. Su base dual
+\[
+B^* = \{ e^1, \dots, e^n \}
+\subset E^*
+\]
+se define por las relaciones
+\[
+e^i(e_j) = \delta^i_j,
+\]
+donde $\delta^i_j$ es la delta de Kronecker.
+
+\medskip
+
+Todo vector $x \in E$ admite una expansión única
+\[
+x = x^i \circ e_i,
+\]
+y toda forma lineal $\varphi \in E^*$ admite una expansión única
+\[
+\varphi = \varphi_i \circ e^i.
+\]
+
+Los escalares $x^i$ y $\varphi_i$ son las \emph{componentes} de $x$ y de
+$\varphi$ respecto a las bases elegidas.
+
+\medskip
+
+Sea ahora $T$ un tensor de tipo $(k,\ell)$ sobre $E$, es decir,
+\[
+T : \underbrace{E^* \times \cdots \times E^*}_{k}
+\times
+\underbrace{E \times \cdots \times E}_{\ell}
+\longrightarrow K.
+\]
+
+La acción de $T$ queda completamente determinada por sus valores sobre los
+elementos de la base:
+\[
+T(e^{i_1}, \dots, e^{i_k}, e_{j_1}, \dots, e_{j_\ell})
+= T^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}.
+\]
+
+Estos escalares se llaman las \emph{componentes de $T$ respecto a la base $B$}.
+Codifican el tensor por completo una vez fijada una base.
+
+\medskip
+
+Para argumentos arbitrarios
+\[
+(\varphi^1, \dots, \varphi^k, x_1, \dots, x_\ell),
+\]
+la multilinealidad implica la expansión
+\[
+T(\varphi^1, \dots, \varphi^k, x_1, \dots, x_\ell)
+=
+T^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}
+\,
+\varphi^1_{i_1} \cdots \varphi^k_{i_k}
+\,
+x_1^{j_1} \cdots x_\ell^{j_\ell}.
+\]
+
+Así, la notación de índices es la expresión coordenada de la multilinealidad
+una vez elegida una base.
+
+\medskip
+
+Las aplicaciones bilineales proporcionan el ejemplo computacional más simple
+de multilinealidad.
+Una aplicación bilineal
+\[
+B : V \times W \to U
+\]
+es lineal en cada argumento por separado. Una vez elegidas bases en los espacios
+vectoriales involucrados, la aplicación queda representada por coeficientes
+$t_{ij}^{\;k}$ tales que las componentes del vector de salida satisfacen
+\begin{equation}
+z^{k} = \sum_{i=1}^{m}\sum_{j=1}^{n} t_{ij}^{\;k}\, x^{i} y^{j}.
+\end{equation}
+
+La colección de coeficientes $(t_{ij}^{\;k})$ forma un tensor de rango tres.
+Esta representación muestra que los procedimientos computacionales familiares
+son expresiones coordenadas de aplicaciones multilineales. Por ejemplo, la
+multiplicación de números complejos
+\begin{equation}
+(x_1 + i x_2)(y_1 + i y_2)
+= (x_1 y_1 - x_2 y_2)
++ i(x_1 y_2 + x_2 y_1)
+\end{equation}
+puede interpretarse como la evaluación de dos formas bilineales determinadas
+por un tensor de coeficientes $2 \times 2 \times 2$.
+
+Desde este punto de vista, los algoritmos que manipulan tablas numéricas son
+implementaciones de transformaciones tensoriales escritas en un sistema de
+referencia elegido. El cálculo hace por tanto explícita la estructura
+multilineal invariante subyacente a las operaciones algebraicas.
+
+\medskip
+
+En particular, una aplicación bilineal
+\[
+B : E \times F \to G
+\]
+entre espacios vectoriales de dimensión finita queda representada, una vez
+elegidas las bases, por componentes
+\[
+B^k{}_{ij},
+\]
+de modo que para vectores $x \in E$ e $y \in F$,
+\[
+(B(x,y))^k = B^k{}_{ij}\, x^i y^j.
+\]
+Así, las tablas multidimensionales de coeficientes que aparecen en los
+algoritmos numéricos son representaciones coordenadas de tensores que codifican
+operaciones multilineales.
+
+\medskip
+
+Una vez fijada una base, las componentes
+\[
+T^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}
+\]
+pueden disponerse en una tabla multidimensional de escalares.
+
+\medskip
+
+Cambiar la base de $E$ cambia los valores numéricos de las componentes según
+reglas de transformación precisas, mientras que el tensor en sí permanece
+inalterado.
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Nota: Tensores mediante leyes de transformación}
+
+La definición de tensor como aplicación multilineal es intrínseca y libre de
+coordenadas. Una caracterización equivalente pone de relieve cómo se
+transforman las componentes de un tensor bajo un cambio de base.
+
+\medskip
+
+Este punto de vista hace explícito el contenido invariante que sobrevive a los
+cambios de coordenadas, que es precisamente lo que permite que las leyes
+tensoriales aparezcan en física y en aplicaciones de ingeniería con
+independencia de la representación elegida.
+
+\medskip
+
+Sean $B = \{e_i\}$ y $B' = \{e'_i\}$ dos bases de $E$, relacionadas por
+\[
+e'_i = A^j{}_i \, e_j,
+\]
+donde $A^j{}_i$ es una matriz de cambio de base invertible.
+Las bases duales correspondientes satisfacen
+\[
+e'^i = (A^{-1})^i{}_j \, e^j.
+\]
+
+\medskip
+
+Sea $T$ un tensor de tipo $(k,\ell)$ sobre $E$, con componentes respecto a
+$B$ dadas por
+\[
+T^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}.
+\]
+
+La matriz $A^j{}_i$ expresa los nuevos vectores de la base en términos de los
+anteriores, tal como se trató en el Capítulo~I.
+En consecuencia, la regla de transformación siguiente describe cómo cambia la
+representación coordenada de $T$ al pasar de la base $B$ a $B'$.
+
+\medskip
+
+Las componentes respecto a la nueva base $B'$ vienen dadas por
+\[
+T'^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}
+=
+A^{i_1}{}_{p_1}
+\cdots
+A^{i_k}{}_{p_k}
+\,
+(A^{-1})^{q_1}{}_{j_1}
+\cdots
+(A^{-1})^{q_\ell}{}_{j_\ell}
+\,
+T^{p_1 \dots p_k}{}_{q_1 \dots q_\ell}.
+\]
+
+\medskip
+
+Los índices contravariantes (índices superiores) se transforman con la matriz
+$A$, mientras que los índices covariantes (índices inferiores) se transforman
+con su inversa.
+Esta regla de transformación no es una hipótesis adicional.
+Es una consecuencia directa de la multilinealidad y de cómo se transforman
+los vectores y los vectores duales bajo un cambio de base.
+
+\medskip
+
+Recíprocamente, supongamos que para cada elección de base se asigna una tabla
+multidimensional de escalares
+\[
+T^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}
+\]
+de tal manera que estas tablas están relacionadas por la ley de transformación
+anterior siempre que se cambie la base.
+Entonces estas colecciones coordenadas definen una única aplicación multilineal
+\[
+T :
+\underbrace{E^* \times \cdots \times E^*}_{k}
+\times
+\underbrace{E \times \cdots \times E}_{\ell}
+\longrightarrow K,
+\]
+independiente de la base elegida.
+
+\medskip
+
+Así los dos puntos de vista siguientes son equivalentes:
+\begin{itemize}
+\item Un tensor es una aplicación multilineal.
+\item Un tensor es una colección de componentes que se transforman según la
+      ley de transformación tensorial.
+\end{itemize}
+
+La primera definición enfatiza la estructura intrínseca.
+La segunda enfatiza la invariancia bajo cambio de sistema de referencia.
+Su equivalencia explica por qué la teoría de tensores desempeña un papel
+central en geometría y física: las ecuaciones tensoriales son válidas en todo
+sistema de coordenadas, porque ambos lados se transforman según la misma ley.
+
+\medskip
+\hrule
+\bigskip
+
+Así:
+\begin{itemize}
+\item los tensores son objetos multilineales abstractos;
+\item las tablas son representaciones dependientes de la base;
+\item los índices registran cómo la multilinealidad se descompone en coordenadas.
+\end{itemize}
+
+Esta distinción es esencial para interpretar las implementaciones computacionales.
+
+\medskip
+
+Hasta este punto, los tensores se han considerado como objetos multilineales
+estáticos.
+Introducimos ahora la operación que les permite interactuar algebraicamente.
+
+% CORRECCIÓN 3: La frase rota («operación. introducimos ahora...») y la
+% repetición de la observación sobre la no composición han sido eliminadas.
+% La transición es ahora una única frase limpia que abre la sección de contracción.
+
+\medskip
+
+Para combinar tensores y producir nuevos objetos multilineales, se introduce
+la operación fundamental de contracción tensorial, que generaliza el producto
+de matrices y explica la aparición de sumas sobre índices repetidos.
+
+\medskip
+
+Denotamos por
+\[
+\mathcal{T}^{(k,\ell)}(E)
+\]
+el espacio vectorial de todos los tensores de tipo $(k,\ell)$ sobre $E$.
+
+\medskip
+
+Sea $E$ un espacio vectorial de dimensión finita sobre $K$.
+Consideremos un tensor
+\[
+T \in \mathcal{T}^{(k,\ell)}(E)
+\]
+y un tensor
+\[
+S \in \mathcal{T}^{(m,n)}(E).
+\]
+
+Supongamos que se selecciona un índice covariante de $T$ y un índice
+contravariante de $S$.
+La contracción tensorial es la operación que empareja estos dos índices mediante
+la aplicación de evaluación natural
+\[
+E^* \times E \to K.
+\]
+
+\begin{definition}[Contracción tensorial]
+Sean
+\[
+T \in \mathcal{T}^{(k,\ell)}(E),
+\qquad
+S \in \mathcal{T}^{(m,n)}(E).
+\]
+Eligiendo un índice covariante de $T$ y un índice contravariante de $S$, su
+contracción se define componiendo estos argumentos con el emparejamiento de
+evaluación natural
+\[
+\langle\cdot,\cdot\rangle : E^* \times E \to K.
+\]
+En coordenadas, esta operación aparece como una suma sobre una base.
+
+\medskip
+
+El tensor resultante tiene tipo
+\[
+(k+m-1,\;\ell+n-1).
+\]
+\end{definition}
+
+\medskip
+
+La contracción reduce el número total de índices del tensor en dos: un índice
+contravariante y uno covariante se emparejan y eliminan.
+No se requieren coordenadas para definir esta operación.
+
+\medskip
+
+Para expresar la contracción en coordenadas, debe elegirse una base.
+El emparejamiento abstracto aparece entonces como una suma sobre índices repetidos.
+
+\medskip
+
+Fijemos una base $\{e_i\}$ de $E$ y su base dual $\{e^i\}$.
+
+Sean
+\[
+T^{i}{}_{j}
+\quad\text{y}\quad
+S^{j}{}_{k}
+\]
+las componentes de dos tensores de tipo $(1,1)$.
+
+\medskip
+
+La contracción sobre el índice $j$ produce un nuevo tensor con componentes
+\[
+R^{i}{}_{k}
+=
+T^{i}{}_{j} \, S^{j}{}_{k}.
+\]
+
+El índice repetido $j$ indica una suma:
+\[
+R^{i}{}_{k}
+=
+\sum_{j=1}^{n}
+T^{i}{}_{j} \, S^{j}{}_{k}.
+\]
+Esta suma no es una regla adicional.
+Es la expresión coordenada del emparejamiento abstracto entre $E^*$ y $E$.
+
+\medskip
+
+Sean $A : E \to E$ y $B : E \to E$ aplicaciones lineales.
+Cada una puede identificarse con un tensor de tipo $(1,1)$.
+Respecto a una base, sus componentes se escriben como
+\[
+A^{i}{}_{j},
+\qquad
+B^{j}{}_{k}.
+\]
+
+La composición $A \circ B : E \to E$ tiene componentes
+\[
+(A \circ B)^{i}{}_{k}
+=
+A^{i}{}_{j} \, B^{j}{}_{k}.
+\]
+
+Así, el producto de matrices es exactamente la contracción tensorial entre dos
+tensores de tipo $(1,1)$, y la regla de suma familiar para el producto de
+matrices es un caso especial del emparejamiento abstracto entre $E^*$ y $E$.
+
+\medskip
+
+A nivel abstracto tenemos:
+\[
+\text{Contracción tensorial}
+\]
+que, tras elegir bases, se convierte en
+\[
+\text{Suma sobre índices}
+\quad\longrightarrow\quad
+C^{i}{}_{k} = \sum_j A^{i}{}_{j} B^{j}{}_{k}.
+\]
+
+% CORRECCIÓN 4: El párrafo que comenzaba con «Es fundamental reconocer...»
+% ha sido eliminado. Su tono era marcadamente más retórico que el texto
+% circundante, introducía el término no estándar «demolición de índices»,
+% y su contenido (la contracción como motor del cálculo) ya se transmite
+% de manera más precisa en la nota sobre Arrays Sistólicos más adelante.
+
+% CORRECCIÓN 2: El ejemplo de la cuadrícula discreta (tabla de fuerzas) se ha
+% trasladado aquí, tras definir la contracción. El lector dispone ahora de las
+% herramientas algebraicas para comprender qué significan los índices de la tabla
+% y cómo podrían contraerse. Anteriormente aparecía antes de la contracción,
+% dejando la tabla sin ningún contexto operacional.
+
+\medskip
+
+En contextos computacionales y de modelado, los tensores aparecen con frecuencia
+a través de tablas multidimensionales cuyos índices etiquetan parámetros
+independientes del problema.
+El siguiente ejemplo ilustra cómo surgen en la práctica tales tablas mientras
+siguen representando datos tensoriales.
+
+\medskip
+
+Consideremos un sistema físico modelado sobre una cuadrícula bidimensional
+discreta.
+En cada punto espacial $(i,j)$ y en cada instante de tiempo $t$, se mide un
+vector de fuerza
+\[
+F(t,i,j) \in \mathbb{R}^2
+\]
+con componentes $(F_x, F_y)$ respecto a un sistema de referencia espacial fijo.
+
+\medskip
+
+Sean:
+\begin{itemize}
+\item $t \in \{1,\dots,T\}$ el índice de tiempo,
+\item $(i,j) \in \{1,\dots,N\} \times \{1,\dots,M\}$ el índice de posición espacial,
+\item $\alpha \in \{1,2\}$ el índice de componentes de la fuerza.
+\end{itemize}
+
+Los datos recopilados pueden escribirse como una tabla
+\[
+F_{t i j \alpha},
+\]
+de forma $(T,N,M,2)$.
+
+\medskip
+
+Cada índice corresponde a una elección de modelado independiente: tiempo,
+espacio y componentes vectoriales.
+La tabla almacena valores numéricos respecto a sistemas de coordenadas elegidos.
+Solo el índice de componente $\alpha$ corresponde a un índice vectorial genuino
+en el sentido tensorial; los índices $(t,i,j)$ etiquetan parámetros
+independientes del modelo.
+Contraer el índice $\alpha$ con una forma lineal produce, en cada punto del
+espacio-tiempo, una medición escalar de la fuerza en una dirección elegida.
+
+\medskip
+
+Abstractamente, estos datos pueden interpretarse como la representación
+coordenada de una función con valores tensoriales sobre un dominio discreto.
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Nota: El álgebra lineal realizada en hardware --- Arrays sistólicos
+\cite{kung}}
+
+\medskip
+
+La interpretación del producto de matrices como contracción tensorial no es
+solo una reformulación conceptual.
+También determina cómo se diseña el hardware computacional moderno.
+
+\medskip
+
+En los grandes cálculos numéricos, la operación dominante es la evaluación
+repetida de productos internos,
+\[
+c_i = \sum_{j=1}^{n} a_{ij} b_j,
+\]
+que es la expresión coordenada de una aplicación lineal aplicada a un vector.
+Equivalentemente, es una contracción entre un tensor de tipo $(1,1)$ y un
+tensor de tipo $(0,1)$.
+
+\medskip
+
+A finales de la década de 1970, H.~T.~Kung y C.~E.~Leiserson propusieron
+organizar el cálculo en torno a esta operación mediante arquitecturas llamadas
+\emph{arrays sistólicos}.
+En lugar de transferir datos de ida y vuelta entre la memoria y un procesador
+central, los datos fluyen rítmicamente a través de una cuadrícula de elementos
+de procesamiento simples.
+Cada elemento realiza repetidamente una única operación de la forma
+\[
+C \leftarrow A B + C,
+\]
+un paso de multiplicación-acumulación que implementa una contribución a un
+producto interno.
+
+\medskip
+
+Matemáticamente, cada elemento de procesamiento evalúa una contracción tensorial
+parcial.
+A medida que los datos se propagan por el array, las contracciones sucesivas
+se acumulan, y el resultado global emerge de la acción coordinada de muchas
+operaciones lineales locales.
+
+\medskip
+
+Esta organización refleja un principio estructural: la eficiencia del hardware
+se logra cuando el cálculo refleja la estructura algebraica.
+Dado que las transformaciones lineales se descomponen en sumas de productos,
+una arquitectura optimizada para las operaciones de multiplicación-acumulación
+implementa de manera natural el álgebra lineal a gran escala.
+
+\medskip
+
+Las arquitecturas computacionales modernas de alto rendimiento adoptan con
+frecuencia variantes de este paradigma, disponiendo muchos elementos de
+procesamiento simples para evaluar operaciones de multiplicación-acumulación
+en paralelo.
+Lo que aparece a nivel de software como contracción tensorial o producto de
+matrices se ejecuta físicamente como flujos de productos internos coordinados.
+
+\medskip
+
+Desde el presente punto de vista, este desarrollo no es accidental.
+La contracción tensorial es la interacción fundamental entre objetos
+multilineales, y el cálculo a gran escala reduce los algoritmos complejos a
+evaluaciones repetidas de esta interacción.
+
+\medskip
+
+En este sentido, las tablas numéricas almacenadas en memoria, las sumas sobre
+índices escritas en fórmulas y los datos que fluyen por circuitos de silicio
+son tres realizaciones del mismo objeto matemático: la evaluación de
+aplicaciones multilineales.
+
+\medskip
+\hrule
+\bigskip
+
+Los principios abstractos desarrollados anteriormente aparecen de manera
+concreta en la física clásica, donde las cantidades tensoriales describen
+relaciones invariantes entre observables físicas.
+
+\medskip
+
+\textit{Un ejemplo clásico: el tensor de inercia \cite{feynman}}
+
+En mecánica clásica, la distribución de masa en un cuerpo rígido se codifica
+mediante un tensor de segundo orden llamado \emph{tensor de inercia}.
+Respecto a una base ortonormal elegida de $\mathbb{R}^3$, sus componentes
+vienen dadas por
+\[
+I_{ij} = \int_{\Omega}
+\big( \delta_{ij} \|x\|^2 - x_i x_j \big)\, dm,
+\]
+donde $\Omega$ es el cuerpo y $x$ es el vector de posición.
+
+\medskip
+
+El tensor de inercia define una relación lineal entre la velocidad angular
+$\omega$ y el momento angular $L$:
+\[
+L_i = I_{ij} \, \omega^j.
+\]
+
+\medskip
+
+Bajo un cambio de base determinado por una matriz invertible $A$, sus
+componentes se transforman según
+\[
+I'_{ij}
+=
+A^{p}{}_{i} \,
+A^{q}{}_{j} \,
+I_{pq},
+\]
+que es precisamente la ley de transformación de un tensor de tipo $(0,2)$.
+
+\medskip
+
+Así, aunque las entradas numéricas de $I_{ij}$ dependen del sistema de
+referencia elegido, el objeto geométrico que representa no depende de él.
+El contenido físico ---la resistencia a la aceleración rotacional--- es
+invariante bajo cambio de coordenadas.
+
+\medskip
+
+La teoría de tensores extiende por tanto el principio central introducido en
+el Capítulo~I: la estructura matemática se identifica no por su representación
+numérica, sino por la invariancia de sus relaciones definidoras bajo las
+transformaciones admisibles.
+
+% CORRECCIÓN 5 y 6: Las notas se reordenan para agrupar los ejemplos aplicados
+% y separarlos de la perspectiva especulativa.
+% Orden: Perspectivas (hardware futuro) -> observación sobre chi-cuadrado
+% (puente con el Cap. II) -> cubos OLAP (aplicación en análisis de datos)
+% -> Arrays sistólicos (hardware).
+% El párrafo introductorio redundante que precedía a la nota sobre Arrays
+% Sistólicos en el texto principal ha sido eliminado; la apertura de la propia
+% nota resulta ahora suficiente.
+
+\section*{Notas y Observaciones}
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Perspectiva: Computación más allá de la Electrónica \cite{Xu}}
+
+\medskip
+
+Los avances recientes en arquitecturas de cómputo exploran sustratos físicos
+más allá de los circuitos electrónicos tradicionales, entre ellos los sistemas
+ópticos y fotónicos en los que la información se procesa mediante
+interferencia, difracción y propagación de la luz.
+
+\medskip
+
+A pesar de sus diferencias físicas, estos sistemas están concebidos para
+implementar las mismas operaciones algebraicas fundamentales que aparecen a lo
+largo de este capítulo.
+En particular, la tarea computacional dominante sigue siendo la evaluación de
+expresiones de la forma
+\[
+C^{i}{}_{k} = A^{i}{}_{j} B^{j}{}_{k},
+\]
+es decir, la contracción tensorial.
+
+\medskip
+
+En estas arquitecturas emergentes, la interacción de las señales físicas
+realiza de forma natural operaciones de multiplicación y acumulación en
+paralelo, de modo que la evaluación de aplicaciones multilineales es ejecutada
+directamente por el proceso físico subyacente, sin necesidad de instrucciones
+electrónicas secuenciales.
+
+\medskip
+
+Sin embargo, surge una restricción no trivial debida a la codificación física
+de la información.
+Los sistemas ópticos no coherentes representan valores como intensidades
+luminosas, que son intrínsecamente no negativas; operan, por tanto, dentro del
+dominio restringido~$\mathbb{R}^+$ en lugar de sobre la recta real completa.
+Dado que las contracciones tensoriales exigen pesos y activaciones que recorren
+todo~$\mathbb{R}$, tales sistemas resultan algebraicamente incompletos para el
+cómputo en general.
+Las arquitecturas coherentes resuelven esta limitación codificando los valores
+como \emph{amplitudes} de campo óptico --- magnitudes que admiten signo --- y
+recuperando la salida con signo mediante interferencia en la detección.
+El grupo completo $(\mathbb{R},+)$ queda así disponible, y las contracciones
+tensoriales de signo arbitrario son realizables directamente en el hardware.
+
+\medskip
+
+Desde esta perspectiva, los avances en hardware no alteran la estructura
+matemática de la computación.
+Proporcionan nuevas realizaciones físicas de las mismas operaciones
+invariantes: transformaciones lineales y contracciones tensoriales, ahora
+extendidas a su dominio natural.
+La completitud algebraica que aquí se requiere --- el paso
+de~$\mathbb{R}^+$ a~$\mathbb{R}$ --- es precisamente la distinción estructural
+entre un grupo multiplicativo y uno aditivo, cuya correspondencia es el objeto
+del Capítulo~IV.
+
+\medskip
+
+Así, con independencia de si el cómputo se lleva a cabo por medios
+electrónicos, ópticos o de cualquier otra naturaleza física, el marco
+algebraico desarrollado aquí permanece inalterado.
+
+\medskip
+\hrule
+\bigskip
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Observación: Puente con el Capítulo~II --- el estadístico chi-cuadrado
+como tensor de tipo $(0,2)$}
+
+\medskip
+
+El estadístico chi-cuadrado encontrado en el Capítulo~II proporciona un ejemplo
+anterior de tensor de tipo $(0,2)$.
+Recordemos que la expresión
+\[
+V
+=
+\sum_{i=1}^{n}
+\frac{(Y_i - np_i)^2}{np_i}
+\]
+fue identificada como la norma al cuadrado inducida por una forma bilineal
+simétrica definida positiva $B$ sobre $\mathbb{R}^n$, cuya matriz en la base
+estándar es diagonal con entradas $(np_i)^{-1}$.
+Desde el presente punto de vista, $B$ es precisamente un tensor de tipo $(0,2)$:
+una aplicación multilineal
+\[
+B : \mathbb{R}^n \times \mathbb{R}^n \longrightarrow \mathbb{R}
+\]
+que es simétrica y definida positiva.
+Su representación coordenada cambia con la base, pero el objeto geométrico que
+define ---los conjuntos de nivel elipsoidales de $V$--- no cambia.
+Así, la cantidad estadística $V$, la forma cuadrática del Capítulo~II y el
+tensor de tipo $(0,2)$ del presente capítulo son tres descripciones de la
+misma estructura invariante.
+
+\medskip
+\hrule
+\bigskip
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Nota: Cubos OLAP y contracción tensorial}
+
+\medskip
+
+En el análisis de datos a gran escala, las observaciones se organizan con
+frecuencia a lo largo de múltiples dimensiones categóricas independientes como
+tiempo, ubicación, componente del sistema o tipo de medición.
+La estructura resultante se llama comúnmente \emph{cubo OLAP} (cubo de
+Procesamiento Analítico en Línea, por sus siglas en inglés).
+
+\medskip
+
+Matemáticamente, tal objeto asigna valores numéricos a elementos de un
+producto cartesiano
+\[
+D_1 \times D_2 \times \cdots \times D_n,
+\]
+donde cada conjunto $D_i$ representa una dimensión de observación.
+Tras enumerar estas dimensiones, los datos pueden escribirse como una tabla
+multidimensional
+\[
+F_{i_1 i_2 \dots i_n},
+\]
+que es precisamente la representación coordenada de un tensor indexado por
+$n$ parámetros independientes.
+
+\medskip
+
+En la práctica, solo se observa un pequeño subconjunto de todas las
+combinaciones posibles de índices, por lo que la tabla es típicamente dispersa.
+Esto refleja de nuevo una distinción enfatizada a lo largo de este capítulo:
+las tablas dependen de las coordenadas y las convenciones de almacenamiento
+elegidas, mientras que la estructura multilineal subyacente es independiente
+de la representación.
+
+\medskip
+
+Las consultas analíticas suelen agregar datos a lo largo de dimensiones
+seleccionadas.
+Por ejemplo, combinar observaciones ignorando ciertos índices produce cantidades
+de la forma
+\[
+G_{i_1 \dots i_k}
+=
+\sum_{j_1,\dots,j_m}
+F_{i_1 \dots i_k j_1 \dots j_m}.
+\]
+Desde el punto de vista tensorial, esta operación es una contracción: los
+índices correspondientes a las dimensiones agregadas se suman, reduciendo el
+orden del tensor.
+
+\medskip
+
+Así, las operaciones conocidas operacionalmente como filtrado, agrupación o
+agregación corresponden matemáticamente a proyecciones de un tensor de alta
+dimensión sobre subtensores de dimensión inferior.
+El cubo OLAP proporciona por tanto una realización concreta de la estructura
+tensorial que surge en el análisis de datos moderno.
+
+\medskip
+
+Este ejemplo refuerza un tema recurrente: la contracción tensorial aparece
+dondequiera que las relaciones multidimensionales se resumen mediante
+agregación sistemática.
+
+\medskip
+\hrule
+\bigskip

@@ -1,0 +1,287 @@
+\chapter{Logarithms as Structure-Preserving Transformations}
+
+In the preceding chapters, invariance under change of coordinates was identified
+as the defining characteristic of geometric and tensorial objects.
+A vector, a bilinear form, a tensor --- each was defined not by its numerical
+components, but by the structural relations it preserves under transformation.
+The present chapter observes that this same principle operates outside the
+linear setting.
+The logarithm is an isomorphism between algebraic structures, converting
+multiplication into addition while preserving every relation that matters.
+The invariant is not a coordinate, a length, or a tensor component ---
+it is the algebraic correspondence itself.
+
+% ------------------------------------------------------------------
+%\section*{The Central Idea: A Structure-Preserving Map}
+% ------------------------------------------------------------------
+
+\medskip
+
+At the most basic level, a logarithm answers the question:
+\emph{what exponent produces a given number?}
+Yet historically and mathematically,
+logarithms owe their power to something deeper:
+they convert multiplication into addition --- and they do so exactly.
+
+\medskip
+
+In Chapter~I, an isomorphism was defined as a structure-preserving mapping
+between algebraic systems.
+The logarithm provides a precise, global realization of that idea.
+
+\medskip
+
+The mapping
+\[
+\log:\mathbb{R}^+\to\mathbb{R}
+\]
+is not merely a bijection; it is an isomorphism between two group structures:
+
+\begin{enumerate}
+    \item A multiplicative group $(\mathbb{R}^+,\cdot)$.
+    \item An additive group $(\mathbb{R},+)$.
+    \item An isomorphism
+    \[
+    \log:(\mathbb{R}^+,\cdot)\longrightarrow(\mathbb{R},+),
+    \]
+    whose inverse is $\exp:(\mathbb{R},+)\to(\mathbb{R}^+,\cdot)$.
+\end{enumerate}
+
+\medskip
+
+The defining property is:
+\[
+\log(ab)=\log(a)+\log(b),
+\qquad
+\log(1)=0.
+\]
+
+Multiplication corresponds to addition; multiplicative identity corresponds to
+additive identity; multiplicative inverses correspond to additive inverses.
+No algebraic relation is lost --- only its appearance changes.
+
+\medskip
+
+This is not a numerical trick or a computational shortcut.
+It is a structural equivalence: the two groups are, from an algebraic standpoint,
+the same object wearing different notation.
+
+% ------------------------------------------------------------------
+%\section*{Physical Manifestation: The Slide Rule}
+% ------------------------------------------------------------------
+
+\medskip
+
+This isomorphism is made physical in the slide rule.
+Distances on a logarithmic scale represent logarithmic values.
+Adding distances corresponds to multiplying numbers.
+
+\medskip
+
+The construction of logarithmic scales proceeds by mapping
+\[
+x \mapsto \log_{10}(x),
+\]
+placing numbers at distances proportional to their logarithms.
+Equal ratios correspond to equal distances.
+The structural identity $\log(ab)=\log(a)+\log(b)$ becomes a mechanical operation:
+slide one rule against another, and multiplication is performed by addition of lengths.
+
+\medskip
+
+Lengths are not numbers, but they obey the same structural rules.
+By exploiting this correspondence, the slide rule becomes an analog computer ---
+a physical model of an algebraic isomorphism.
+
+% ------------------------------------------------------------------
+%\section*{Logarithms as Area: The Geometric Interpretation}
+% ------------------------------------------------------------------
+
+\medskip
+
+Logarithms also admit a purely geometric definition independent of exponentiation.
+By construction,
+\[
+\ln(a)=\int_1^a \frac{1}{x}\,dx,
+\]
+the signed area under the curve $y=\frac{1}{x}$ from $1$ to $a$.
+
+\medskip
+
+This integral definition makes the isomorphism property transparent.
+For $a,b>0$,
+\[
+\ln(ab)
+=\int_1^{ab}\frac{1}{x}\,dx
+=\int_1^{a}\frac{1}{x}\,dx+\int_a^{ab}\frac{1}{x}\,dx.
+\]
+The substitution $x=at$ in the second integral gives
+\[
+\int_a^{ab}\frac{1}{x}\,dx=\int_1^{b}\frac{1}{t}\,dt=\ln(b),
+\]
+and therefore $\ln(ab)=\ln(a)+\ln(b)$.
+The group isomorphism is a theorem, not an assumption.
+
+\medskip
+
+The integral definition also yields the fundamental derivative formula immediately:
+\[
+\frac{d}{da}\ln(a)=\frac{1}{a}.
+\]
+
+% ------------------------------------------------------------------
+%\section*{Rate of Change and Linear Approximation}
+% ------------------------------------------------------------------
+
+\medskip
+
+The behavior of $\frac{d}{da}\ln(a) = \frac{1}{a}$ connects the logarithm to
+the general framework of derivatives and local linearization.
+
+\medskip
+
+Recall that for a function $y = f(x)$, the derivative at a point $a$ is
+\[
+f'(a) = \lim_{h\to0}\frac{f(a+h)-f(a)}{h},
+\]
+the instantaneous rate of change, and geometrically the slope of the tangent line.
+Near $a$, a differentiable function behaves approximately like its tangent line:
+\[
+f(x) \approx f(a) + f'(a)(x-a).
+\]
+
+\medskip
+
+This local linearity mirrors the passage from tensors to their components
+discussed in Chapter~II: global nonlinear structure becomes tractable when
+approximated by its best linear model at each point.
+The derivative replaces a nonlinear map by a linear one locally;
+the logarithm replaces a multiplicative structure by an additive one globally.
+Both are instances of the same organizing principle.
+
+% ------------------------------------------------------------------
+%\section*{Numerical Computation: Newton--Raphson Applied to the Logarithm}
+% ------------------------------------------------------------------
+
+\medskip
+
+The derivative of the logarithm also enables its efficient numerical computation
+via the Newton--Raphson method.
+Suppose we wish to find $\ln(x)$, i.e., to solve the equation
+\[
+e^y = x,
+\]
+or equivalently $f(y) = e^y - x = 0$.
+
+\medskip
+
+The Newton--Raphson iteration replaces the nonlinear equation by a sequence of
+linear ones.
+Starting from a guess $y_n$, we approximate $f$ by its tangent line and solve:
+\[
+0 = f(y_n) + f'(y_n)(y_{n+1}-y_n).
+\]
+Since $f'(y) = e^y$, this yields
+\[
+y_{n+1} = y_n - \frac{e^{y_n}-x}{e^{y_n}}
+         = y_n + \frac{x - e^{y_n}}{e^{y_n}}.
+\]
+
+Starting from $y_0 = 1.5$, successive iterations converge rapidly to
+$\ln(5) \approx 1.60944$.
+
+\medskip
+
+The simplicity of this iteration is not accidental.
+Working in base $e$ ensures that $\frac{d}{dy}e^y = e^y$,
+minimizing algebraic overhead and improving numerical stability.
+Logarithms in other bases are recovered by the change-of-base formula:
+\[
+\log_{b}(x) = \frac{\ln(x)}{\ln(b)}.
+\]
+
+% ------------------------------------------------------------------
+%\section*{Historical Algorithm: Briggs and Binary Accumulation}
+% ------------------------------------------------------------------
+
+\medskip
+
+The same structural idea underlies historical algorithms for constructing
+logarithm tables.
+Henry Briggs computed base-10 tables by accumulating small multiplicative
+corrections; a closely related method suited to binary arithmetic is described
+in~\cite{knuth}.
+
+\medskip
+
+The algorithm builds a target number by successive multiplications of the form
+\[
+\frac{10^k}{10^k-1},
+\]
+accumulating the corresponding logarithms whenever the partial product does not
+overshoot the target.
+What appears as computation is, in fact, structure preservation:
+each multiplicative step corresponds to an additive increment on the logarithmic
+side, faithfully enacting the isomorphism $\log(ab) = \log(a) + \log(b)$.
+
+% ------------------------------------------------------------------
+%\section*{The Constant $e$ and Its Representations}
+% ------------------------------------------------------------------
+
+\medskip
+
+The natural base $e$ is not an arbitrary choice.
+It is the unique base for which $\frac{d}{dx}e^x = e^x$,
+and the unique solution to $\int_1^e \frac{1}{x}\,dx = 1$.
+Its arithmetic character is revealed by several independent constructions.
+
+\medskip
+
+One classical definition arises from compound interest:
+\[
+e = \lim_{n\to\infty}\left(1+\frac{1}{n}\right)^n.
+\]
+
+Another is provided by its continued fraction expansion:
+\[
+e = [2;\,1,2,1,1,4,1,1,6,\dots],
+\]
+written in expanded form as
+\[
+e
+=
+2 + \cfrac{1}{1 + \cfrac{1}{2 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{4 + \cdots}}}}}.
+\]
+
+These representations converge rapidly and are well suited for computation,
+but their deeper significance is structural:
+$e$ is the natural unit of the isomorphism between $(\mathbb{R}^+,\cdot)$
+and $(\mathbb{R},+)$.
+
+% ------------------------------------------------------------------
+%\section*{Two Complementary Linearizations}
+% ------------------------------------------------------------------
+
+\medskip
+
+The logarithm transforms nonlinear growth into linear motion.
+It converts multiplication into addition, products into sums,
+and exponential scales into linear ones.
+
+\medskip
+
+Two complementary manifestations of the invariant spirit are therefore visible.
+The logarithm is a \emph{global} isomorphism:
+it establishes a perfect structural equivalence between two algebraic worlds,
+valid everywhere on $\mathbb{R}^+$.
+The derivative, by contrast, provides a \emph{local} linearization:
+it approximates an arbitrary transformation by its best linear model at each point.
+
+\medskip
+
+In both cases, complexity is rendered intelligible by expressing it through
+linear relations.
+This is why logarithms appear simultaneously in analysis, geometry, numerical
+methods, and physical instruments.
+They do not belong to a single domain.
+They preserve structure across domains.

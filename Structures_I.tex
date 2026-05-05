@@ -1,0 +1,921 @@
+\chapter{Linear Transformations, Matrices, and Composition}
+
+\[
+\Big\langle
+\big\langle K, +_g, \cdot \big\rangle,\;
+\big\langle E, +_E \big\rangle,\;
+\circ
+\Big\rangle
+\]
+
+The triple above defines a \emph{vector space $E$} over the \emph{field $K$} \cite{cohen}. Elements of $K$ are called \emph{scalars}, and elements of $E$ are called \emph{vectors}. The operation
+\(
+\circ : K \times E \to E
+\)
+is scalar multiplication, and $+_E$ is vector addition. In what follows, symbols $\alpha_1,\dots,\alpha_k$ always denote scalars in $K$, and symbols $x_1,\dots,x_k$ always denote vectors in $E$.
+
+\medskip
+
+Informally, a vector space is a set of vectors that can be added together and scaled by elements of a field.
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Example (Coordinate $n$-space, \cite{greub}).}
+
+Let $\Gamma$ be a field. Consider the set
+\[
+\Gamma^n = \Gamma \times \dots \times \Gamma
+\]
+of $n$-tuples $(\xi^1,\dots,\xi^n)$, with $\xi^i \in \Gamma$. Define addition by
+
+\[
+(\xi^1,\dots,\xi^n)+(\eta^1,\dots,\eta^n)=(\xi^1+\eta^1,\dots,\xi^n+\eta^n)
+\]
+
+and scalar multiplication by
+
+\[
+\lambda(\xi^1,\dots,\xi^n)=(\lambda\xi^1,\dots,\lambda\xi^n),\quad \lambda \in \Gamma.
+\]
+
+With these operations, $\Gamma^n$ is a vector space over $\Gamma$, called the \emph{$n$-space over $\Gamma$}. In particular, $\Gamma$ itself is a vector space over $\Gamma$, where scalar multiplication coincides with field multiplication.
+
+\medskip
+\hrule
+\bigskip
+
+Given vectors $x_1,\dots,x_k \in E$ and scalars $\alpha_1,\dots,\alpha_k \in K$, an expression of the form
+\[
+\alpha_1 \circ x_1 +_E \alpha_2 \circ x_2 +_E \dots +_E \alpha_k \circ x_k
+\]
+is called a \emph{linear combination}.
+
+\medskip
+
+A subset $S \subset E$ is called a \emph{system of generators} (or a \emph{spanning set}) of $E$ if every vector $x \in E$ can be written as a linear combination of elements of $S$ \cite{greub}. That is, for every $x \in E$ there exist vectors $s_1,\dots,s_k \in S$ and scalars $\alpha_1,\dots,\alpha_k \in K$ such that
+\[
+x = \alpha_1 \circ s_1 +_E \dots +_E \alpha_k \circ s_k.
+\]
+
+\medskip
+
+A finite family of vectors $\{x_1,\dots,x_k\} \subset E$ is called \emph{linearly independent} if the relation
+\[
+\alpha_1 \circ x_1 +_E \dots +_E \alpha_k \circ x_k = 0
+\]
+implies
+\[
+\alpha_1 = \dots = \alpha_k = 0.
+\]
+If such a nontrivial relation exists (i.e., with at least one coefficient $\alpha_i\neq 0$), the family is called \emph{linearly dependent}.
+
+\medskip
+
+A finite set of vectors $\{b_1,\dots,b_n\} \subset E$ is called a \emph{basis} of the vector space $E$ if it is both a system of generators of $E$ and linearly independent.
+
+\medskip
+
+Equivalently, $\{b_1,\dots,b_n\}$ is a basis of $E$ if every vector $x \in E$ can be written \emph{uniquely} as a linear combination
+\[
+x = \alpha_1 \circ b_1 +_E \alpha_2 \circ b_2 +_E \dots +_E \alpha_n \circ b_n,
+\quad \alpha_1,\dots,\alpha_n \in K.
+\]
+
+A basis therefore provides a minimal and non-redundant set of building blocks for the entire space. Once a basis is fixed, every vector is completely determined by its coefficients relative to that basis, so we can say the basis generates the space.
+
+\medskip
+
+If the vector space $E$ admits a finite basis, the number of vectors in any basis of $E$ is called the \emph{dimension} of $E$ and is denoted by $\dim E$.
+
+\bigskip
+\hrule
+\medskip
+
+% CORRECTION 1: The "Remark on coordinates" originally appeared here and used the term
+% "linear isomorphism" before it was formally defined. The remark has been moved to
+% immediately after the definition of isomorphism, where the term is available to the reader.
+
+Let $E$ and $G$ be vector spaces over the same field $K$. A function
+\(
+\psi : E \to G
+\)
+is called a \emph{linear transformation} (also known as \textit{linear map}) if it preserves linear combinations \cite{iribarren}:
+\[
+\psi(\alpha_1 \circ_E x_1 + \dots + \alpha_k \circ_E x_k)
+=
+\alpha_1 \circ_G \psi(x_1) + \dots + \alpha_k \circ_G \psi(x_k).
+\]
+
+Linear transformations preserve the algebraic structure of vector spaces independently of any choice of basis.
+
+\medskip
+
+\textit{Definition (Isomorphism).}
+Let $E$ and $F$ be vector spaces over the same field $K$.
+A linear transformation $\varphi : E \to F$ is called an \emph{isomorphism}
+if for every $y \in F$ there exists a unique $x \in E$ such that $\varphi(x) = y$,
+and $\varphi(x_1) = \varphi(x_2)$ implies $x_1 = x_2$.
+In this case, we say that $E$ and $F$ are \emph{isomorphic}.
+
+\medskip
+
+An isomorphism preserves all linear structure:
+addition, scalar multiplication, linear independence, dimension,
+and the validity of linear relations.
+Hence, isomorphic vector spaces are structurally identical.
+
+\bigskip
+\hrule
+\medskip
+
+% CORRECTION 1 (continued): Remark on coordinates moved here, after isomorphism is defined.
+
+\textit{Remark (On coordinates and isomorphism \cite{halmos}).}
+
+Let $E$ be a finite-dimensional vector space over $K$ with $\dim E = n$.
+Once a basis $B=\{b_1,\dots,b_n\}$ is chosen, every vector $x\in E$
+is uniquely represented by its coordinate column
+\[
+[x]_B \in K^n.
+\]
+This correspondence defines a linear isomorphism
+\[
+E \longrightarrow K^n.
+\]
+
+\medskip
+
+Thus, from the purely algebraic point of view, every $n$-dimensional
+vector space over $K$ is structurally indistinguishable from $K^n$.
+
+\medskip
+
+However, this identification depends on the chosen basis.
+Different bases produce different coordinate representations.
+The intrinsic properties of the space are precisely those
+that remain invariant under such changes of reference system.
+
+\medskip
+
+For this reason, we treat vector spaces as abstract entities,
+independent of any particular coordinate realization.
+Coordinates are tools for computation; structure is the object of study.
+
+\medskip
+\hrule
+\bigskip
+
+We define the \emph{kernel} of $\psi$ by
+\[
+    \ker(\psi)=\{x\in E:\psi(x)=0\},
+\]
+that is, the set of vectors in $E$ that the transformation sends to the zero vector of $G$. We define the \emph{image} of $\psi$ by
+\[
+\operatorname{Im}(\psi)=\{\psi(x):x\in E\}\subseteq G
+\]
+
+that is, the image is the set of values in $G$ that $\psi$ actually attains.
+
+\medskip
+
+If $E$ is finite-dimensional, then
+\[
+\dim E = \dim \ker(\psi) + \dim \operatorname{Im}(\psi),
+\]
+a relation known as the rank--nullity theorem.
+
+\medskip
+
+We say that a linear transformation $\psi$ is \emph{injective} if $\psi(x)=\psi(y)\Rightarrow x=y$ (equivalently, $\ker(\psi)=\{0\}$), and \emph{surjective} if for every $g\in G$ there exists $x\in E$ such that $\psi(x)=g$ (equivalently, $\operatorname{Im}(\psi)=G$).
+
+\medskip
+
+Let $B_E=\{e_1,\dots,e_n\}$ and $B_G=\{g_1,\dots,g_m\}$ be bases of $E$ and $G$. Each image $\psi(e_i)$ can be written uniquely as
+\(
+\psi(e_i) = \alpha_{1i} \circ g_1 +_G \dots +_G \alpha_{mi} \circ g_m.
+\)
+The scalars $\alpha_{ji}$ form an $m\times n$ rectangular array
+\[
+A =
+\begin{bmatrix}
+\alpha_{11} & \alpha_{12} & \dots & \alpha_{1n} \\
+\alpha_{21} & \alpha_{22} & \dots & \alpha_{2n} \\
+\vdots & \vdots & & \vdots \\
+\alpha_{m1} & \alpha_{m2} & \dots & \alpha_{mn}
+\end{bmatrix}.
+\]
+and its abbreviated form
+\[
+A=(\alpha_{ij}),
+\]
+called the \emph{matrix of $\psi$ relative to the chosen bases}.
+
+\medskip
+
+Let $A=(\alpha_{ij})$ be an $m \times n$ matrix over a field $K$.
+
+For each $i=1,\dots,m$, the $i$th row
+\[
+(\alpha_{i1},\dots,\alpha_{in})
+\]
+is called a \textit{row vector} of $A$.
+It is naturally regarded as an element of $K^n$.
+
+For each $j=1,\dots,n$, the $j$th column
+\[
+(\alpha_{1j},\dots,\alpha_{mj})^T
+\]
+is called a \textit{column vector} of $A$.
+It is naturally regarded as an element of $K^m$.
+
+\medskip
+
+When $A$ represents a linear transformation $\psi:E\to G$
+with respect to chosen bases,
+the $j$th column of $A$ is precisely the coordinate vector
+of $\psi(e_j)$ in the basis of $G$.
+
+\medskip
+
+This fact follows directly from linearity.
+Let $B_E=\{e_1,\dots,e_n\}$ be the chosen basis of $E$.
+Every vector $x\in E$ admits a unique representation
+\[
+x=\alpha_1 e_1+\cdots+\alpha_n e_n.
+\]
+Since $\psi$ preserves linear combinations,
+\[
+\psi(x)=\alpha_1\psi(e_1)+\cdots+\alpha_n\psi(e_n).
+\]
+
+Thus the action of $\psi$ on an arbitrary vector is completely
+determined by its values on the basis vectors.
+If the coordinates of each $\psi(e_j)$ relative to the basis of $G$
+are arranged as the $j$th column of a matrix $A$, then the coordinate
+vector of $\psi(x)$ is obtained by forming the same linear combination
+of those columns with coefficients $\alpha_1,\dots,\alpha_n$.
+In coordinates,
+\[
+[\psi(x)]_{B_G}=A[x]_{B_E}.
+\]
+Thus a linear transformation is completely determined by the images
+of the basis vectors, and the matrix records precisely these images
+in coordinate form.
+
+\medskip
+
+Matrices are concrete representations of linear transformations once bases have been chosen.
+
+\medskip
+
+Linear transformations may also be applied successively.
+Understanding how their coordinate representations combine
+leads naturally to matrix multiplication.
+
+\medskip
+
+Matrix multiplication is the coordinate expression of \emph{composition of linear maps}.
+
+\medskip
+
+\textit{Derivation (Matrix multiplication from composition).}
+
+\medskip
+
+Let
+\[
+S : K^p \longrightarrow K^n,
+\qquad
+T : K^n \longrightarrow K^m
+\]
+be linear transformations with matrices (relative to chosen bases)
+\[
+B \in M_{n\times p}(K),
+\qquad
+A \in M_{m\times n}(K).
+\]
+
+For a vector $x \in K^p$, matrix--vector multiplication represents
+application of the corresponding linear map:
+\[
+S(x)=Bx,
+\qquad
+T(y)=Ay.
+\]
+
+The composition $T\circ S : K^p \to K^m$ therefore satisfies
+\[
+(T\circ S)(x)=T(S(x))=A(Bx).
+\]
+
+Since a matrix represents a linear transformation uniquely in coordinates,
+there must exist a matrix $C$ such that
+\[
+(T\circ S)(x)=Cx
+\quad \text{for all } x\in K^p.
+\]
+By definition, this matrix is the product $C=AB$, and it is determined by
+the requirement
+\[
+(AB)x=A(Bx).
+\]
+Writing this relation in coordinates shows that the entries of $C=AB$
+are necessarily given by
+\[
+(AB)_{ij}
+=
+\sum_{k=1}^{n} A_{ik} B_{kj},
+\qquad
+1\le i\le m,\; 1\le j\le p.
+\]
+
+Thus the familiar rule for matrix multiplication is the coordinate expression of composition of linear maps.
+
+\medskip
+
+% CORRECTION 2: The change-of-basis section originally reopened the justification
+% for matrix-vector multiplication after it had already been established via composition.
+% It is now presented as a distinct application — interpreting vectors as states of a
+% system — rather than as a second derivation of the same product rule.
+
+In many practical cases, a vector does not merely represent an abstract element of a
+vector space, but the \emph{state} of a system expressed relative to a chosen basis.
+We will refer to such a choice of basis as a \emph{reference system}.
+This framing adds no new algebraic content, but it motivates a natural question:
+what happens to the coordinate representation of a state when the reference
+system changes?
+
+\medskip
+
+% CORRECTION 3: The introduction of "state" and "reference system" now includes
+% an explicit bridge sentence linking the abstract language used previously
+% to the applied terminology being introduced here.
+
+Let $E$ be a finite-dimensional vector space and let
+\[
+B=\{e_1,\dots,e_n\}
+\]
+be a basis of $E$. Any vector $x\in E$ can be written uniquely as
+\[
+x = \alpha_1 \circ e_1 +_E \dots +_E \alpha_n \circ e_n.
+\]
+
+The scalars $\alpha_1,\dots,\alpha_n$ are the \emph{coordinates} of the state $x$ relative to the reference system $B$. Writing these coordinates as a column vector,
+
+\[
+[x]_B =
+\begin{bmatrix}
+\alpha_1\\
+\vdots\\
+\alpha_n
+\end{bmatrix},
+\]
+is a notational convenience: it encodes the action of linear combinations relative to the chosen basis.
+
+\medskip
+
+Suppose now that a second reference system
+\[
+B'=\{e'_1,\dots,e'_n\}
+\]
+is chosen for the same space $E$. The vector $x$ is the same abstract object, but its coordinates relative to $B'$ form a different column vector $[x]_{B'}$.
+
+\medskip
+
+The passage from $[x]_B$ to $[x]_{B'}$ is not arbitrary. It is determined by a linear transformation
+\[
+T : K^n \longrightarrow K^n,
+\]
+whose matrix depends only on the relation between the two bases. Thus,
+\[
+[x]_{B'} = A\,[x]_B,
+\]
+where $A$ is the matrix of the change of reference system.
+This is a direct instance of the matrix--vector product $[\psi(x)]_{B_G} = A[x]_{B_E}$
+derived above: here the ``transformation'' is precisely the relabelling of coordinates
+induced by passing from $B$ to $B'$.
+
+\medskip
+
+In coordinates, each row of the matrix represents the coordinate expression of a linear functional on $K^n$ (we will formalize this identification when discussing dual spaces), and matrix--vector multiplication consists precisely in applying each of these functionals to the coordinate vector. Concretely, if $A$ is an $m\times n$ matrix and $x$ is a column vector in $K^n$, then the $i$th component of $Ax$ is the value of the functional given by the $i$th row of $A$ applied to $x$; this is defined only when $x$ has $n$ components, i.e., only when the number of columns of $A$ equals the number of rows of $x$.
+
+\medskip
+
+The requirement that the number of columns of $A$ equal the number of components of $[x]_B$ is not a convention; it expresses the fact that the codomain of one linear map must match the domain of the next.
+
+\medskip
+
+In this sense, column vectors represent states, matrices represent transformations between reference systems, and matrix multiplication represents successive changes of coordinates. The familiar computational rules are therefore consequences of the abstract structure introduced earlier.
+
+\medskip
+
+% CORRECTION 4: The duplicated sentence about nonlinear systems has been removed.
+% Only the more informative version is retained.
+
+Linear transformations therefore form the structural backbone of many quantitative models.
+Even in systems where nonlinear effects dominate, computations are typically organized
+around repeated applications and compositions of linear maps. The linear framework
+therefore provides a universal computational language, even when the phenomena being
+modeled are not themselves linear.
+
+\medskip
+
+% CORRECTION 5: A bridge paragraph now connects the composition/matrix discussion
+% to the dual space, motivating the new concept from what the reader has already seen.
+
+The derivation of matrix multiplication revealed that a row vector acts on a column
+vector to produce a scalar: each row of a matrix defines a rule that assigns a number
+to any element of $K^n$, and this rule is linear. This suggests that row vectors
+and column vectors are fundamentally different kinds of objects. Making this distinction
+precise requires introducing the \emph{dual space}.
+
+\medskip
+
+The set of all linear transformations from $E$ into the base field $K$ is denoted by
+\[
+E^* = L(E,K)
+\]
+and is called the \emph{dual space} of $E$. An element $x^* \in E^*$ is called a \emph{linear functional}. Thus,
+\[
+x^* : E \to K
+\]
+satisfies
+\[
+x^*(\alpha_1 \circ_E x_1 +_E \dots +_E \alpha_k \circ_E x_k)
+=
+\alpha_1 x^*(x_1) + \dots + \alpha_k x^*(x_k).
+\]
+
+Linear functionals assign scalar values to vectors while preserving linear structure.
+
+\medskip
+
+If $E$ is finite-dimensional with basis $B_E=\{e_1,\dots,e_n\}$, then every $x^*\in E^*$ is uniquely determined by
+\[
+x^*(e_1),\dots,x^*(e_n).
+\]
+These scalars form a row vector
+\[
+[\,x^*(e_1)\;\dots\;x^*(e_n)\,].
+\]
+
+In contrast, vectors in $E$ are represented as column vectors. These two objects live in different spaces: $E$ and $E^*$.
+
+\medskip
+
+Given a matrix
+\[
+A = (\alpha_{ij}) \in M_{m \times n}(K),
+\]
+its \emph{transpose} is the matrix
+\[
+A^T = (\alpha_{ji}) \in M_{n \times m}(K),
+\]
+obtained by interchanging rows and columns.
+
+\medskip
+
+Thus the $i$th row of $A$ becomes the $i$th column of $A^T$,
+and the $j$th column of $A$ becomes the $j$th row of $A^T$.
+
+\medskip
+
+The transpose operation exchanges the roles of rows and columns.
+In particular, if a matrix represents a linear map
+\( \psi : K^n \to K^m \),
+then its transpose has the reversed size and may be viewed,
+purely at the level of arrays, as interchanging the domain and codomain indices.
+
+Column vectors represent elements of a vector space $E$, whereas row vectors represent linear functionals, elements of the dual space $E^*$. These are algebraically different objects, even though they may have the same number of components.
+
+\medskip
+
+In many situations, however, a vector is used to define a linear functional. This requires additional structure (Chapter II).
+
+A column vector represents an element of $K^n$, a row vector represents an element of $(K^n)^*$, and an $m\times n$ matrix represents a linear map
+\[
+K^n \xrightarrow{\;\psi\;} K^m.
+\]
+
+A product such as
+\[
+[\,x^*\,]\,A
+\]
+is defined because it corresponds to the composition
+\[
+K^n \xrightarrow{\;\psi\;} K^m \xrightarrow{\;x^*\;} K
+\]
+
+The dimensions match precisely because the codomain of the first map equals the domain of the second.
+
+\medskip
+
+By contrast, a product of two row vectors would attempt to compose
+\[
+K^n \to K
+\quad\text{with}\quad
+K^n \to K,
+\]
+which is meaningless: the output of the first map does not lie in the domain of the second. The product is therefore undefined by necessity.
+
+\medskip
+
+Matrix dimensions encode compatibility of domains and codomains. One may multiply matrices if and only if the corresponding linear maps can be composed.
+
+\medskip
+
+\textit{Concrete numerical example.}
+
+Let
+\[
+x^*(x,y)=3x+2y
+\]
+be a linear functional on $K^2$. Relative to the canonical basis, it is represented by the row vector
+\[
+[\,3\;\;2\,].
+\]
+
+Let
+\[
+A=
+\begin{bmatrix}
+2 & 3\\
+5 & 4
+\end{bmatrix}
+\]
+be the matrix of a linear transformation
+\(
+\psi:K^2\to K^2.
+\)
+
+The product
+\[
+[\,3\;\;2\,]A
+=
+[\,3\;\;2\,]
+\begin{bmatrix}
+2 & 3\\
+5 & 4
+\end{bmatrix}
+=
+[\,19\;\;17\,]
+\]
+is defined because it represents the composition
+\[
+K^2 \xrightarrow{\;\psi\;} K^2 \xrightarrow{\;x^*\;} K.
+\]
+
+The result is again a row vector, corresponding to the linear functional
+\[
+(x,y)\longmapsto 19x+17y.
+\]
+
+\medskip
+
+By contrast, the product
+\[
+[\,3\;\;2\,]\,[\,a\;\;b\,]
+\]
+is undefined because it would attempt to compose two maps of the form
+\[
+K^2 \to K,
+\]
+which is impossible: the output of the first map is a scalar, not a vector in $K^2$.
+
+\bigskip
+
+\textit{Conceptual summary.} The structures introduced in this chapter---vector spaces, linear transformations, bases, coordinate systems, and dual spaces---are all facets of the same underlying linear framework. Matrices encode linear transformations relative to a chosen basis, column vectors encode states relative to a reference system, and systems of linear equations are simply coordinate expressions of these transformations asking whether a vector lies in the image of a map. Algorithms such as Gaussian elimination, while essential for computation, do not create new structures: they explore the coordinate-level consequences of the abstract linear relationships already present. Together, these concepts illustrate how abstract algebraic definitions give rise to the familiar computational and geometric tools used in science and engineering.
+
+\section*{Notes and Remarks}
+
+\textit{Note (Why linearity?, \cite{oxford}).}
+
+\textit{An elementary reason for the foundational nature of linear algebra
+within mathematics is that, under suitable conditions, functions can be locally approx-
+imated by linear functions. This fact, together with the tendency of natural systems to
+reside near the minimum of their potential energy, explains the prevalence of linearity
+in scientific phenomena.}
+
+\medskip
+
+\textit{For now, we will say informally that a situation exhibits linearity if we can identify a
+numerical output and a numerical input such that the former is proportional to the
+latter.}
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Note: Direct Sums and Decomposition of Vector Spaces \cite{halmos}}
+
+\medskip
+
+Given two vector spaces $U$ and $V$ over the same field $K$,
+their \emph{direct sum} is the vector space
+\[
+U \oplus V
+=
+\{(x,y) \mid x \in U,\; y \in V\},
+\]
+with addition and scalar multiplication defined componentwise.
+
+\medskip
+
+The subspaces
+\[
+\{(x,0) \mid x \in U\}
+\quad\text{and}\quad
+\{(0,y) \mid y \in V\}
+\]
+may be identified with $U$ and $V$, respectively.
+Every element of $U \oplus V$ admits a unique decomposition
+\[
+(x,y) = (x,0) + (0,y),
+\]
+so that $U \oplus V$ is obtained by combining two independent components.
+
+\medskip
+
+More generally, a vector space $W$ is said to be the direct sum of subspaces
+$U$ and $V$ if every $w \in W$ can be written uniquely as
+\[
+w = u + v,
+\qquad
+u \in U,\; v \in V.
+\]
+In this case one writes $W = U \oplus V$.
+
+\medskip
+
+The notion of direct sum expresses a structural principle:
+a space may be decomposed into independent parts whose contributions
+combine additively without interaction.
+
+\medskip
+
+This construction should be distinguished from algebraic extensions.
+For example, the complex numbers $\mathbb{C}$ form a two-dimensional
+vector space over $\mathbb{R}$ and may be identified, as vector spaces,
+with $\mathbb{R} \oplus \mathbb{R}$ via
+\[
+a + ib \;\longleftrightarrow\; (a,b).
+\]
+However, this identification does not preserve multiplication.
+The product of complex numbers couples the two components,
+introducing an interaction that is not present in the direct sum.
+
+\medskip
+
+Thus, while some extensions can be viewed as direct sums at the level of
+vector spaces, additional algebraic structure may introduce relations
+between components that go beyond linear combination.
+
+\medskip
+
+The direct sum provides the fundamental way of assembling independent
+linear components.
+Later constructions, such as the tensor product, will introduce a different
+kind of combination in which components interact multiplicatively rather
+than additively.
+\medskip
+\hrule
+\bigskip
+
+% CORRECTION 6: The Notes are now ordered thematically to provide a clearer
+% reading thread. The order is:
+%   (a) Why linearity? — motivational framing
+%   (b) Direct sums — structural decomposition, extends the chapter's algebra
+%   (c) Linear systems — coordinate-level reinterpretation, bridges to computation
+%   (d) Matrix as a function — foundational definition, anchors the abstract view
+%   (e) Generalized matrix product — algebraic abstraction of multiplication
+%   (f) Polynomials — infinite-dimensional example, shows linearity beyond coordinates
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Note (Systems of linear equations).}
+
+Operationally, a system of linear equations of the form
+\[
+\begin{cases}
+a_{11} x_1 + \dots + a_{1n} x_n = b_1\\
+\vdots\\
+a_{m1} x_1 + \dots + a_{mn} x_n = b_m.
+\end{cases}
+\]
+
+is treated as a collection of equations to be solved for the unknowns
+\(
+x_1,\dots,x_n.
+\)
+
+\medskip
+
+From the abstract point of view, this system is nothing more than the coordinate expression of a linear transformation.
+
+\medskip
+
+Indeed, let
+\[
+\psi : K^n \longrightarrow K^m
+\]
+be the linear transformation whose matrix relative to the canonical bases is
+\[
+A =
+\begin{bmatrix}
+a_{11} & \dots & a_{1n}\\
+\vdots & & \vdots\\
+a_{m1} & \dots & a_{mn}
+\end{bmatrix}.
+\]
+
+\medskip
+
+Writing
+
+\[
+x =
+\begin{bmatrix}
+x_1\\
+\vdots\\
+x_n
+\end{bmatrix}
+\quad\text{and}\quad
+b =
+\begin{bmatrix}
+b_1\\
+\vdots\\
+b_m
+\end{bmatrix},
+\]
+the system above is equivalently expressed as the single equation
+\[
+\psi(x) = b,
+\quad\text{or, in coordinates,}\quad
+A x = b.
+\]
+
+So, a system of linear equations specifies a vector
+\(
+b \in K^m
+\)
+and asks whether it lies in the image of a linear transformation
+\(
+\psi : K^n \to K^m.
+\)
+Questions of existence, uniqueness, or multiplicity of solutions correspond to geometric properties of this map, such as injectivity and surjectivity, and are independent of any particular algorithm used to compute them.
+
+\medskip
+
+Algorithms such as Gaussian elimination are methods for finding a vector
+\(
+x \in K^n
+\)
+\textit{that satisfies}
+\(
+A x = b
+\)
+relative to a chosen reference system (basis). From the abstract perspective, they are simply procedures for exploring the image and kernel of a linear transformation in coordinates. That is, Gaussian elimination exploits the structure of the linear map encoded by the matrix \(A\) to determine whether a solution exists, whether it is unique, and how to express all possible solutions, all while working entirely in the chosen coordinate system.
+
+\medskip
+\hrule
+\bigskip
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Note (Matrix as a function, \cite{iribarren}).}
+
+\medskip
+
+Let $S\neq\varnothing$ be a set and let $m,n\ge 1$.
+An \emph{$m\times n$ matrix with entries in $S$} is a function
+\[
+M:\{1,\dots,m\}\times\{1,\dots,n\}\longrightarrow S.
+\]
+We write $a_{ij}=M(i,j)$ and abbreviate $M$ by $M=(a_{ij})$ (or $M=(a_{ij})_{m\times n}$) when no confusion can arise.
+
+\medskip
+
+\textit{Specialization.}
+When $S=K$ is a field, the set of all $m\times n$ matrices over $K$ is denoted by $M_{m\times n}(K)$.
+
+\medskip
+\hrule
+\bigskip
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Note (Generalized matrix product, \cite{knuth3}).}
+
+There is a useful abstraction of matrix multiplication that makes explicit which algebraic properties are really being used. If $A$ is an $m\times n$ matrix and $B$ is an $n\times s$ matrix, and if $\circ$ and $\bullet$ are binary operations such that $\circ$ is associative, one may define the \emph{generalized matrix product}
+\[
+A\,\genfrac{}{}{0pt}{}{\circ}{\bullet}\,B
+\]
+to be the $m\times s$ matrix $C$ whose entries are
+\[
+C_{ij} = (A_{i1}\bullet B_{1j}) \circ (A_{i2}\bullet B_{2j}) \circ \cdots \circ (A_{in}\bullet B_{nj}),
+\qquad 1\le i\le m,\; 1\le j\le s.
+\]
+The ordinary matrix product is obtained when $\circ$ is $+$ and $\bullet$ is $\cdot$.
+
+\medskip
+\hrule
+\bigskip
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Example (Polynomials as a free linear construction, \cite{knuth2}).}
+
+Let $K$ be a field. Consider the set
+\[
+K[x] = \left\{
+\sum_{k=0}^{n} a_k x^k
+\;\middle|\;
+n \in \mathbb{N},\; a_k \in K
+\right\},
+\]
+whose elements are called \emph{polynomials} in the formal symbol $x$ with coefficients in $K$.
+
+\medskip
+
+The symbol $x$ is not assigned a numerical value; it serves only as a generator of formal expressions.
+Addition and scalar multiplication are defined coefficientwise:
+\[
+\left( \sum_{k=0}^{n} a_k x^k \right)
++_{K[x]}
+\left( \sum_{k=0}^{m} b_k x^k \right)
+=
+\sum_{k=0}^{\max(n,m)} (a_k +_K b_k) x^k,
+\]
+\[
+\alpha \circ
+\left( \sum_{k=0}^{n} a_k x^k \right)
+=
+\sum_{k=0}^{n} (\alpha \cdot a_k) x^k.
+\]
+
+\medskip
+
+With these operations, $K[x]$ becomes a vector space over $K$.
+
+\medskip
+
+The family
+\[
+\{ 1, x, x^2, x^3, \dots \}
+\]
+is linearly independent and generates $K[x]$. Hence it forms a basis of $K[x]$.
+
+\medskip
+
+Every polynomial can therefore be written uniquely as a linear combination
+\[
+u(x)
+=
+a_0 \circ 1
++_{K[x]}
+a_1 \circ x
++_{K[x]}
+\dots
++_{K[x]}
+a_n \circ x^n,
+\qquad a_k \in K.
+\]
+
+\medskip
+
+The vector space $K[x]$ is infinite dimensional, since its basis contains infinitely many elements.
+
+\medskip
+
+Conceptually, $K[x]$ is the vector space freely generated by the formal powers
+\[
+\{ x^k \}_{k \ge 0}.
+\]
+No relations exist among these generators other than those required by the axioms of a vector space.
+
+\medskip
+
+Polynomial multiplication introduces an additional operation on $K[x]$,
+\[
+x^i \cdot x^j = x^{i+j},
+\]
+which is compatible with the linear structure but is not required for the definition of the vector space itself.
+
+\medskip
+
+Thus, polynomials provide a canonical example of a linear structure generated by formal symbols. The linear framework appears independently of geometry, coordinates, or numerical interpretation.
+Multiplication enriches this structure, but linearity is primary.
+
+\medskip
+\hrule
+\bigskip

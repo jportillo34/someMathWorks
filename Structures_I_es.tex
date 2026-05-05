@@ -1,0 +1,911 @@
+\chapter{Transformaciones Lineales, Matrices y Composición}
+
+\[
+\Big\langle
+\big\langle K, +_g, \cdot \big\rangle,\;
+\big\langle E, +_E \big\rangle,\;
+\circ
+\Big\rangle
+\]
+
+La terna anterior define un \emph{espacio vectorial $E$} sobre el \emph{cuerpo $K$} \cite{cohen}. Los elementos de $K$ se llaman \emph{escalares}, y los elementos de $E$ se llaman \emph{vectores}. La operación
+\(
+\circ : K \times E \to E
+\)
+es la multiplicación por escalares, y $+_E$ es la suma de vectores. En lo que sigue, los símbolos $\alpha_1,\dots,\alpha_k$ denotan siempre escalares en $K$, y los símbolos $x_1,\dots,x_k$ denotan siempre vectores en $E$.
+
+\medskip
+
+Informalmente, un espacio vectorial es un conjunto de vectores que pueden sumarse entre sí y escalarse por elementos de un cuerpo.
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Ejemplo (Espacio coordenado $n$-dimensional, \cite{greub}).}
+
+Sea $\Gamma$ un cuerpo. Consideremos el conjunto
+\[
+\Gamma^n = \Gamma \times \dots \times \Gamma
+\]
+de $n$-uplas $(\xi^1,\dots,\xi^n)$, con $\xi^i \in \Gamma$. Definimos la suma por
+
+\[
+(\xi^1,\dots,\xi^n)+(\eta^1,\dots,\eta^n)=(\xi^1+\eta^1,\dots,\xi^n+\eta^n)
+\]
+
+y la multiplicación por escalar por
+
+\[
+\lambda(\xi^1,\dots,\xi^n)=(\lambda\xi^1,\dots,\lambda\xi^n),\quad \lambda \in \Gamma.
+\]
+
+Con estas operaciones, $\Gamma^n$ es un espacio vectorial sobre $\Gamma$, llamado el \emph{$n$-espacio sobre $\Gamma$}. En particular, $\Gamma$ es en sí mismo un espacio vectorial sobre $\Gamma$, donde la multiplicación por escalar coincide con la multiplicación del cuerpo.
+
+\medskip
+\hrule
+\bigskip
+
+Dados vectores $x_1,\dots,x_k \in E$ y escalares $\alpha_1,\dots,\alpha_k \in K$, una expresión de la forma
+\[
+\alpha_1 \circ x_1 +_E \alpha_2 \circ x_2 +_E \dots +_E \alpha_k \circ x_k
+\]
+se llama \emph{combinación lineal}.
+
+\medskip
+
+Un subconjunto $S \subset E$ se llama \emph{sistema de generadores} (o \emph{conjunto generador}) de $E$ si todo vector $x \in E$ puede escribirse como combinación lineal de elementos de $S$ \cite{greub}. Es decir, para todo $x \in E$ existen vectores $s_1,\dots,s_k \in S$ y escalares $\alpha_1,\dots,\alpha_k \in K$ tales que
+\[
+x = \alpha_1 \circ s_1 +_E \dots +_E \alpha_k \circ s_k.
+\]
+
+\medskip
+
+Una familia finita de vectores $\{x_1,\dots,x_k\} \subset E$ se llama \emph{linealmente independiente} si la relación
+\[
+\alpha_1 \circ x_1 +_E \dots +_E \alpha_k \circ x_k = 0
+\]
+implica
+\[
+\alpha_1 = \dots = \alpha_k = 0.
+\]
+Si existe tal relación no trivial (es decir, con al menos un coeficiente $\alpha_i\neq 0$), la familia se llama \emph{linealmente dependiente}.
+
+\medskip
+
+Un conjunto finito de vectores $\{b_1,\dots,b_n\} \subset E$ se llama \emph{base} del espacio vectorial $E$ si es a la vez un sistema de generadores de $E$ y linealmente independiente.
+
+\medskip
+
+Equivalentemente, $\{b_1,\dots,b_n\}$ es una base de $E$ si todo vector $x \in E$ puede escribirse \emph{de manera única} como combinación lineal
+\[
+x = \alpha_1 \circ b_1 +_E \alpha_2 \circ b_2 +_E \dots +_E \alpha_n \circ b_n,
+\quad \alpha_1,\dots,\alpha_n \in K.
+\]
+
+Una base proporciona así un conjunto mínimo y no redundante de bloques constructivos para todo el espacio. Una vez fijada una base, todo vector queda completamente determinado por sus coeficientes respecto a ella, por lo que podemos decir que la base genera el espacio.
+
+\medskip
+
+Si el espacio vectorial $E$ admite una base finita, el número de vectores en cualquier base de $E$ se llama la \emph{dimensión} de $E$ y se denota por $\dim E$.
+
+\bigskip
+\hrule
+\medskip
+
+% CORRECCIÓN 1: La «Observación sobre coordenadas» aparecía originalmente aquí y usaba
+% el término «isomorfismo lineal» antes de definirlo formalmente. La observación se ha
+% trasladado a continuación de la definición de isomorfismo, donde el término está
+% disponible para el lector.
+
+Sean $E$ y $G$ espacios vectoriales sobre el mismo cuerpo $K$. Una función
+\(
+\psi : E \to G
+\)
+se llama \emph{transformación lineal} (también conocida como \textit{aplicación lineal}) si preserva las combinaciones lineales \cite{iribarren}:
+\[
+\psi(\alpha_1 \circ_E x_1 + \dots + \alpha_k \circ_E x_k)
+=
+\alpha_1 \circ_G \psi(x_1) + \dots + \alpha_k \circ_G \psi(x_k).
+\]
+
+Las transformaciones lineales preservan la estructura algebraica de los espacios vectoriales con independencia de cualquier elección de base.
+
+\medskip
+
+\textit{Definición (Isomorfismo).}
+Sean $E$ y $F$ espacios vectoriales sobre el mismo cuerpo $K$.
+Una transformación lineal $\varphi : E \to F$ se llama \emph{isomorfismo}
+si para todo $y \in F$ existe un único $x \in E$ tal que $\varphi(x) = y$,
+y $\varphi(x_1) = \varphi(x_2)$ implica $x_1 = x_2$.
+En este caso, decimos que $E$ y $F$ son \emph{isomorfos}.
+
+\medskip
+
+Un isomorfismo preserva toda la estructura lineal:
+la suma, la multiplicación por escalares, la independencia lineal, la dimensión
+y la validez de las relaciones lineales.
+Por tanto, los espacios vectoriales isomorfos son estructuralmente idénticos.
+
+\bigskip
+\hrule
+\medskip
+
+% CORRECCIÓN 1 (continuación): La observación sobre coordenadas se traslada aquí,
+% tras la definición de isomorfismo.
+
+\textit{Observación (Sobre coordenadas e isomorfismo \cite{halmos}).}
+
+Sea $E$ un espacio vectorial de dimensión finita sobre $K$ con $\dim E = n$.
+Una vez elegida una base $B=\{b_1,\dots,b_n\}$, todo vector $x\in E$
+queda representado de manera única por su columna de coordenadas
+\[
+[x]_B \in K^n.
+\]
+Esta correspondencia define un isomorfismo lineal
+\[
+E \longrightarrow K^n.
+\]
+
+\medskip
+
+Así, desde el punto de vista puramente algebraico, todo espacio vectorial
+$n$-dimensional sobre $K$ es estructuralmente indistinguible de $K^n$.
+
+\medskip
+
+Sin embargo, esta identificación depende de la base elegida.
+Bases distintas producen representaciones en coordenadas distintas.
+Las propiedades intrínsecas del espacio son precisamente aquellas
+que permanecen invariantes bajo tales cambios de sistema de referencia.
+
+\medskip
+
+Por esta razón, tratamos los espacios vectoriales como entidades abstractas,
+independientes de cualquier realización coordenada particular.
+Las coordenadas son herramientas de cálculo; la estructura es el objeto de estudio.
+
+\medskip
+\hrule
+\bigskip
+
+Definimos el \emph{núcleo} de $\psi$ como
+\[
+    \ker(\psi)=\{x\in E:\psi(x)=0\},
+\]
+es decir, el conjunto de vectores de $E$ que la transformación envía al vector cero de $G$. Definimos la \emph{imagen} de $\psi$ como
+\[
+\operatorname{Im}(\psi)=\{\psi(x):x\in E\}\subseteq G,
+\]
+
+es decir, la imagen es el conjunto de valores en $G$ que $\psi$ efectivamente alcanza.
+
+\medskip
+
+Si $E$ es de dimensión finita, entonces
+\[
+\dim E = \dim \ker(\psi) + \dim \operatorname{Im}(\psi),
+\]
+relación conocida como el teorema de la dimensión (o teorema rango-nulidad).
+
+\medskip
+
+Decimos que una transformación lineal $\psi$ es \emph{inyectiva} si $\psi(x)=\psi(y)\Rightarrow x=y$ (equivalentemente, $\ker(\psi)=\{0\}$), y \emph{sobreyectiva} si para todo $g\in G$ existe $x\in E$ tal que $\psi(x)=g$ (equivalentemente, $\operatorname{Im}(\psi)=G$).
+
+\medskip
+
+Sean $B_E=\{e_1,\dots,e_n\}$ y $B_G=\{g_1,\dots,g_m\}$ bases de $E$ y $G$. Cada imagen $\psi(e_i)$ puede escribirse de manera única como
+\(
+\psi(e_i) = \alpha_{1i} \circ g_1 +_G \dots +_G \alpha_{mi} \circ g_m.
+\)
+Los escalares $\alpha_{ji}$ forman una tabla rectangular $m\times n$
+\[
+A =
+\begin{bmatrix}
+\alpha_{11} & \alpha_{12} & \dots & \alpha_{1n} \\
+\alpha_{21} & \alpha_{22} & \dots & \alpha_{2n} \\
+\vdots & \vdots & & \vdots \\
+\alpha_{m1} & \alpha_{m2} & \dots & \alpha_{mn}
+\end{bmatrix},
+\]
+y su forma abreviada
+\[
+A=(\alpha_{ij}),
+\]
+se llama la \emph{matriz de $\psi$ respecto a las bases elegidas}.
+
+\medskip
+
+Sea $A=(\alpha_{ij})$ una matriz $m \times n$ sobre un cuerpo $K$.
+
+Para cada $i=1,\dots,m$, la $i$-ésima fila
+\[
+(\alpha_{i1},\dots,\alpha_{in})
+\]
+se llama \textit{vector fila} de $A$.
+Se considera naturalmente como un elemento de $K^n$.
+
+Para cada $j=1,\dots,n$, la $j$-ésima columna
+\[
+(\alpha_{1j},\dots,\alpha_{mj})^T
+\]
+se llama \textit{vector columna} de $A$.
+Se considera naturalmente como un elemento de $K^m$.
+
+\medskip
+
+Cuando $A$ representa una transformación lineal $\psi:E\to G$
+respecto a bases elegidas,
+la $j$-ésima columna de $A$ es precisamente el vector de coordenadas
+de $\psi(e_j)$ en la base de $G$.
+
+\medskip
+
+Este hecho se sigue directamente de la linealidad.
+Sea $B_E=\{e_1,\dots,e_n\}$ la base elegida de $E$.
+Todo vector $x\in E$ admite una representación única
+\[
+x=\alpha_1 e_1+\cdots+\alpha_n e_n.
+\]
+Como $\psi$ preserva las combinaciones lineales,
+\[
+\psi(x)=\alpha_1\psi(e_1)+\cdots+\alpha_n\psi(e_n).
+\]
+
+Así, la acción de $\psi$ sobre un vector arbitrario queda completamente
+determinada por sus valores sobre los vectores de la base.
+Si las coordenadas de cada $\psi(e_j)$ respecto a la base de $G$
+se disponen como la $j$-ésima columna de una matriz $A$, entonces el vector
+de coordenadas de $\psi(x)$ se obtiene formando la misma combinación lineal
+de esas columnas con coeficientes $\alpha_1,\dots,\alpha_n$.
+En coordenadas,
+\[
+[\psi(x)]_{B_G}=A[x]_{B_E}.
+\]
+Así, una transformación lineal queda completamente determinada por las imágenes
+de los vectores de la base, y la matriz registra precisamente esas imágenes
+en forma coordinada.
+
+\medskip
+
+Las matrices son representaciones concretas de transformaciones lineales una vez elegidas las bases.
+
+\medskip
+
+Las transformaciones lineales también pueden aplicarse sucesivamente.
+Comprender cómo se combinan sus representaciones coordenadas
+conduce de manera natural al producto de matrices.
+
+\medskip
+
+El producto de matrices es la expresión coordenada de la \emph{composición de aplicaciones lineales}.
+
+\medskip
+
+\textit{Derivación (Producto de matrices a partir de la composición).}
+
+\medskip
+
+Sean
+\[
+S : K^p \longrightarrow K^n,
+\qquad
+T : K^n \longrightarrow K^m
+\]
+transformaciones lineales con matrices (respecto a bases elegidas)
+\[
+B \in M_{n\times p}(K),
+\qquad
+A \in M_{m\times n}(K).
+\]
+
+Para un vector $x \in K^p$, el producto matriz--vector representa
+la aplicación de la transformación lineal correspondiente:
+\[
+S(x)=Bx,
+\qquad
+T(y)=Ay.
+\]
+
+La composición $T\circ S : K^p \to K^m$ satisface por tanto
+\[
+(T\circ S)(x)=T(S(x))=A(Bx).
+\]
+
+Dado que una matriz representa de manera única una transformación lineal en coordenadas,
+debe existir una matriz $C$ tal que
+\[
+(T\circ S)(x)=Cx
+\quad \text{para todo } x\in K^p.
+\]
+Por definición, esta matriz es el producto $C=AB$, y queda determinada por la condición
+\[
+(AB)x=A(Bx).
+\]
+Escribiendo esta relación en coordenadas se obtiene que las entradas de $C=AB$
+vienen necesariamente dadas por
+\[
+(AB)_{ij}
+=
+\sum_{k=1}^{n} A_{ik} B_{kj},
+\qquad
+1\le i\le m,\; 1\le j\le p.
+\]
+
+Así, la regla habitual del producto de matrices es la expresión coordenada de la composición de aplicaciones lineales.
+
+\medskip
+
+% CORRECCIÓN 2: La sección de cambio de base reabrió originalmente la justificación
+% del producto matriz-vector después de haberla establecido ya mediante la composición.
+% Se presenta ahora como una aplicación distinta —interpretar los vectores como estados
+% de un sistema— en lugar de una segunda derivación de la misma regla de producto.
+
+En muchos casos prácticos, un vector no representa meramente un elemento abstracto de un
+espacio vectorial, sino el \emph{estado} de un sistema expresado respecto a una base elegida.
+Llamaremos a dicha elección de base un \emph{sistema de referencia}.
+Este enfoque no añade ningún contenido algebraico nuevo, pero motiva una pregunta natural:
+¿qué le ocurre a la representación coordenada de un estado cuando el sistema de referencia cambia?
+
+\medskip
+
+% CORRECCIÓN 3: La introducción de «estado» y «sistema de referencia» incluye ahora
+% una frase de enlace explícita que conecta el lenguaje abstracto usado anteriormente
+% con la terminología aplicada que se introduce aquí.
+
+Sea $E$ un espacio vectorial de dimensión finita y sea
+\[
+B=\{e_1,\dots,e_n\}
+\]
+una base de $E$. Todo vector $x\in E$ puede escribirse de manera única como
+\[
+x = \alpha_1 \circ e_1 +_E \dots +_E \alpha_n \circ e_n.
+\]
+
+Los escalares $\alpha_1,\dots,\alpha_n$ son las \emph{coordenadas} del estado $x$ respecto al sistema de referencia $B$. Escribir estas coordenadas como vector columna,
+
+\[
+[x]_B =
+\begin{bmatrix}
+\alpha_1\\
+\vdots\\
+\alpha_n
+\end{bmatrix},
+\]
+es una conveniencia notacional: codifica la acción de las combinaciones lineales respecto a la base elegida.
+
+\medskip
+
+Supongamos ahora que se elige un segundo sistema de referencia
+\[
+B'=\{e'_1,\dots,e'_n\}
+\]
+para el mismo espacio $E$. El vector $x$ es el mismo objeto abstracto, pero sus coordenadas respecto a $B'$ forman un vector columna distinto $[x]_{B'}$.
+
+\medskip
+
+El paso de $[x]_B$ a $[x]_{B'}$ no es arbitrario. Está determinado por una transformación lineal
+\[
+T : K^n \longrightarrow K^n,
+\]
+cuya matriz depende únicamente de la relación entre las dos bases. Así,
+\[
+[x]_{B'} = A\,[x]_B,
+\]
+donde $A$ es la matriz del cambio de sistema de referencia.
+Esto es una instancia directa del producto matriz--vector $[\psi(x)]_{B_G} = A[x]_{B_E}$
+derivado anteriormente: aquí la «transformación» es precisamente el reetiquetado de coordenadas
+inducido al pasar de $B$ a $B'$.
+
+\medskip
+
+En coordenadas, cada fila de la matriz representa la expresión coordenada de una forma lineal sobre $K^n$ (formalizaremos esta identificación al tratar los espacios duales), y el producto matriz--vector consiste precisamente en aplicar cada una de estas formas al vector de coordenadas. Concretamente, si $A$ es una matriz $m\times n$ y $x$ es un vector columna en $K^n$, entonces la $i$-ésima componente de $Ax$ es el valor de la forma lineal dada por la $i$-ésima fila de $A$ aplicada a $x$; esto está definido únicamente cuando $x$ tiene $n$ componentes, es decir, solo cuando el número de columnas de $A$ es igual al número de filas de $x$.
+
+\medskip
+
+La condición de que el número de columnas de $A$ sea igual al número de componentes de $[x]_B$ no es una convención; expresa el hecho de que el codominio de una aplicación lineal debe coincidir con el dominio de la siguiente.
+
+\medskip
+
+En este sentido, los vectores columna representan estados, las matrices representan transformaciones entre sistemas de referencia, y el producto de matrices representa cambios sucesivos de coordenadas. Las reglas computacionales habituales son, por tanto, consecuencias de la estructura abstracta introducida anteriormente.
+
+\medskip
+
+% CORRECCIÓN 4: Se ha eliminado la frase duplicada sobre sistemas no lineales.
+% Se conserva únicamente la versión más informativa.
+
+Las transformaciones lineales constituyen así la columna vertebral estructural de muchos modelos cuantitativos.
+Incluso en sistemas donde dominan los efectos no lineales, los cálculos se organizan típicamente
+en torno a aplicaciones y composiciones repetidas de aplicaciones lineales. El marco lineal
+proporciona por tanto un lenguaje computacional universal, incluso cuando los fenómenos modelados
+no son en sí mismos lineales.
+
+\medskip
+
+% CORRECCIÓN 5: Se añade un párrafo de enlace que conecta la discusión sobre
+% composición/matrices con el espacio dual, motivando el nuevo concepto a partir
+% de lo que el lector ya ha visto.
+
+La derivación del producto de matrices puso de manifiesto que un vector fila actúa sobre un vector columna para producir un escalar: cada fila de una matriz define una regla que asigna un número a cualquier elemento de $K^n$, y dicha regla es lineal. Esto sugiere que los vectores fila y los vectores columna son objetos de naturaleza fundamentalmente distinta. Precisar esta distinción requiere introducir el \emph{espacio dual}.
+
+\medskip
+
+El conjunto de todas las transformaciones lineales de $E$ en el cuerpo base $K$ se denota por
+\[
+E^* = L(E,K)
+\]
+y se llama el \emph{espacio dual} de $E$. Un elemento $x^* \in E^*$ se llama \emph{forma lineal} (o \emph{funcional lineal}). Así,
+\[
+x^* : E \to K
+\]
+satisface
+\[
+x^*(\alpha_1 \circ_E x_1 +_E \dots +_E \alpha_k \circ_E x_k)
+=
+\alpha_1 x^*(x_1) + \dots + \alpha_k x^*(x_k).
+\]
+
+Las formas lineales asignan valores escalares a los vectores preservando la estructura lineal.
+
+\medskip
+
+Si $E$ es de dimensión finita con base $B_E=\{e_1,\dots,e_n\}$, entonces todo $x^*\in E^*$ queda unívocamente determinado por
+\[
+x^*(e_1),\dots,x^*(e_n).
+\]
+Estos escalares forman un vector fila
+\[
+[\,x^*(e_1)\;\dots\;x^*(e_n)\,].
+\]
+
+En cambio, los vectores de $E$ se representan como vectores columna. Estos dos objetos viven en espacios distintos: $E$ y $E^*$.
+
+\medskip
+
+Dada una matriz
+\[
+A = (\alpha_{ij}) \in M_{m \times n}(K),
+\]
+su \emph{transpuesta} es la matriz
+\[
+A^T = (\alpha_{ji}) \in M_{n \times m}(K),
+\]
+obtenida intercambiando filas y columnas.
+
+\medskip
+
+Así, la $i$-ésima fila de $A$ pasa a ser la $i$-ésima columna de $A^T$,
+y la $j$-ésima columna de $A$ pasa a ser la $j$-ésima fila de $A^T$.
+
+\medskip
+
+La operación de transposición intercambia los roles de filas y columnas.
+En particular, si una matriz representa una aplicación lineal
+\( \psi : K^n \to K^m \),
+entonces su transpuesta tiene tamaño invertido y puede interpretarse,
+a nivel puramente de tablas, como un intercambio de los índices del dominio y el codominio.
+
+Los vectores columna representan elementos de un espacio vectorial $E$, mientras que los vectores fila representan formas lineales, elementos del espacio dual $E^*$. Son objetos algebraicamente distintos, aunque puedan tener el mismo número de componentes.
+
+\medskip
+
+En muchas situaciones, sin embargo, un vector se utiliza para definir una forma lineal. Esto requiere estructura adicional (Capítulo II).
+
+Un vector columna representa un elemento de $K^n$, un vector fila representa un elemento de $(K^n)^*$, y una matriz $m\times n$ representa una aplicación lineal
+\[
+K^n \xrightarrow{\;\psi\;} K^m.
+\]
+
+Un producto de la forma
+\[
+[\,x^*\,]\,A
+\]
+está definido porque corresponde a la composición
+\[
+K^n \xrightarrow{\;\psi\;} K^m \xrightarrow{\;x^*\;} K.
+\]
+
+Las dimensiones encajan precisamente porque el codominio de la primera aplicación coincide con el dominio de la segunda.
+
+\medskip
+
+En cambio, un producto de dos vectores fila intentaría componer
+\[
+K^n \to K
+\quad\text{con}\quad
+K^n \to K,
+\]
+lo que carece de sentido: la salida de la primera aplicación no pertenece al dominio de la segunda. El producto queda por tanto indefinido por necesidad.
+
+\medskip
+
+Las dimensiones de una matriz codifican la compatibilidad de dominios y codominios. Solo puede multiplicarse matrices cuando las aplicaciones lineales correspondientes pueden componerse.
+
+\medskip
+
+\textit{Ejemplo numérico concreto.}
+
+Sea
+\[
+x^*(x,y)=3x+2y
+\]
+una forma lineal sobre $K^2$. Respecto a la base canónica, queda representada por el vector fila
+\[
+[\,3\;\;2\,].
+\]
+
+Sea
+\[
+A=
+\begin{bmatrix}
+2 & 3\\
+5 & 4
+\end{bmatrix}
+\]
+la matriz de una transformación lineal
+\(
+\psi:K^2\to K^2.
+\)
+
+El producto
+\[
+[\,3\;\;2\,]A
+=
+[\,3\;\;2\,]
+\begin{bmatrix}
+2 & 3\\
+5 & 4
+\end{bmatrix}
+=
+[\,19\;\;17\,]
+\]
+está definido porque representa la composición
+\[
+K^2 \xrightarrow{\;\psi\;} K^2 \xrightarrow{\;x^*\;} K.
+\]
+
+El resultado es de nuevo un vector fila, correspondiente a la forma lineal
+\[
+(x,y)\longmapsto 19x+17y.
+\]
+
+\medskip
+
+En cambio, el producto
+\[
+[\,3\;\;2\,]\,[\,a\;\;b\,]
+\]
+no está definido porque intentaría componer dos aplicaciones de la forma
+\[
+K^2 \to K,
+\]
+lo cual es imposible: la salida de la primera aplicación es un escalar, no un vector de $K^2$.
+
+\bigskip
+
+\textit{Resumen conceptual.} Las estructuras introducidas en este capítulo ---espacios vectoriales, transformaciones lineales, bases, sistemas de coordenadas y espacios duales--- son todas facetas del mismo marco lineal subyacente. Las matrices codifican transformaciones lineales respecto a una base elegida, los vectores columna codifican estados respecto a un sistema de referencia, y los sistemas de ecuaciones lineales son simplemente expresiones coordenadas de estas transformaciones que preguntan si un vector pertenece a la imagen de una aplicación. Algoritmos como la eliminación gaussiana, si bien son esenciales para el cálculo, no crean estructuras nuevas: exploran las consecuencias a nivel coordenado de las relaciones lineales abstractas ya presentes. En conjunto, estos conceptos ilustran cómo las definiciones algebraicas abstractas dan lugar a las herramientas computacionales y geométricas habituales utilizadas en ciencias e ingeniería.
+
+\section*{Notas y Observaciones}
+
+\textit{Nota (¿Por qué la linealidad?, \cite{oxford}).}
+
+\textit{Una razón elemental para el carácter fundacional del álgebra lineal dentro de las matemáticas es que, bajo condiciones adecuadas, las funciones pueden aproximarse localmente mediante funciones lineales. Este hecho, junto con la tendencia de los sistemas naturales a situarse cerca del mínimo de su energía potencial, explica la prevalencia de la linealidad en los fenómenos científicos.}
+
+\medskip
+
+\textit{Por ahora, diremos informalmente que una situación exhibe linealidad si podemos identificar una salida numérica y una entrada numérica tales que la primera es proporcional a la segunda.}
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Nota: Sumas directas y descomposición de espacios vectoriales \cite{halmos}}
+
+\medskip
+
+Dados dos espacios vectoriales $U$ y $V$ sobre el mismo cuerpo $K$,
+su \emph{suma directa} es el espacio vectorial
+\[
+U \oplus V
+=
+\{(x,y) \mid x \in U,\; y \in V\},
+\]
+con la suma y la multiplicación por escalar definidas componente a componente.
+
+\medskip
+
+Los subespacios
+\[
+\{(x,0) \mid x \in U\}
+\quad\text{y}\quad
+\{(0,y) \mid y \in V\}
+\]
+pueden identificarse con $U$ y $V$, respectivamente.
+Todo elemento de $U \oplus V$ admite una descomposición única
+\[
+(x,y) = (x,0) + (0,y),
+\]
+de modo que $U \oplus V$ se obtiene combinando dos componentes independientes.
+
+\medskip
+
+Más en general, se dice que un espacio vectorial $W$ es la suma directa de los subespacios
+$U$ y $V$ si todo $w \in W$ puede escribirse de manera única como
+\[
+w = u + v,
+\qquad
+u \in U,\; v \in V.
+\]
+En este caso se escribe $W = U \oplus V$.
+
+\medskip
+
+La noción de suma directa expresa un principio estructural:
+un espacio puede descomponerse en partes independientes cuyas contribuciones
+se combinan aditivamente sin interacción.
+
+\medskip
+
+Esta construcción debe distinguirse de las extensiones algebraicas.
+Por ejemplo, los números complejos $\mathbb{C}$ forman un espacio vectorial
+de dimensión dos sobre $\mathbb{R}$ y pueden identificarse, como espacios vectoriales,
+con $\mathbb{R} \oplus \mathbb{R}$ mediante
+\[
+a + ib \;\longleftrightarrow\; (a,b).
+\]
+Sin embargo, esta identificación no preserva la multiplicación.
+El producto de números complejos acopla las dos componentes,
+introduciendo una interacción que no está presente en la suma directa.
+
+\medskip
+
+Así, aunque algunas extensiones pueden verse como sumas directas al nivel de
+espacios vectoriales, la estructura algebraica adicional puede introducir relaciones
+entre componentes que van más allá de la combinación lineal.
+
+\medskip
+
+La suma directa proporciona la manera fundamental de ensamblar componentes lineales independientes.
+Construcciones posteriores, como el producto tensorial, introducirán un tipo distinto
+de combinación en la que los componentes interactúan de forma multiplicativa en lugar de aditiva.
+
+\medskip
+\hrule
+\bigskip
+
+% CORRECCIÓN 6: Las notas están ahora ordenadas temáticamente para proporcionar un hilo
+% de lectura más claro. El orden es:
+%   (a) ¿Por qué la linealidad? — motivación
+%   (b) Sumas directas — descomposición estructural, extiende el álgebra del capítulo
+%   (c) Sistemas lineales — reinterpretación a nivel coordenado, puente hacia el cálculo
+%   (d) La matriz como función — definición fundacional, ancla la visión abstracta
+%   (e) Producto de matrices generalizado — abstracción algebraica de la multiplicación
+%   (f) Polinomios — ejemplo de dimensión infinita, muestra la linealidad más allá de coordenadas
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Nota (Sistemas de ecuaciones lineales).}
+
+Operacionalmente, un sistema de ecuaciones lineales de la forma
+\[
+\begin{cases}
+a_{11} x_1 + \dots + a_{1n} x_n = b_1\\
+\vdots\\
+a_{m1} x_1 + \dots + a_{mn} x_n = b_m.
+\end{cases}
+\]
+
+se trata como una colección de ecuaciones a resolver en las incógnitas
+\(
+x_1,\dots,x_n.
+\)
+
+\medskip
+
+Desde el punto de vista abstracto, este sistema no es más que la expresión coordenada de una transformación lineal.
+
+\medskip
+
+En efecto, sea
+\[
+\psi : K^n \longrightarrow K^m
+\]
+la transformación lineal cuya matriz respecto a las bases canónicas es
+\[
+A =
+\begin{bmatrix}
+a_{11} & \dots & a_{1n}\\
+\vdots & & \vdots\\
+a_{m1} & \dots & a_{mn}
+\end{bmatrix}.
+\]
+
+\medskip
+
+Escribiendo
+
+\[
+x =
+\begin{bmatrix}
+x_1\\
+\vdots\\
+x_n
+\end{bmatrix}
+\quad\text{y}\quad
+b =
+\begin{bmatrix}
+b_1\\
+\vdots\\
+b_m
+\end{bmatrix},
+\]
+el sistema anterior se expresa de manera equivalente como la ecuación única
+\[
+\psi(x) = b,
+\quad\text{o, en coordenadas,}\quad
+A x = b.
+\]
+
+Así, un sistema de ecuaciones lineales especifica un vector
+\(
+b \in K^m
+\)
+y pregunta si pertenece a la imagen de una transformación lineal
+\(
+\psi : K^n \to K^m.
+\)
+Las cuestiones de existencia, unicidad o multiplicidad de soluciones corresponden a propiedades geométricas de esta aplicación, como la inyectividad y la sobreyectividad, y son independientes de cualquier algoritmo particular utilizado para calcularlas.
+
+\medskip
+
+Algoritmos como la eliminación gaussiana son métodos para encontrar un vector
+\(
+x \in K^n
+\)
+\textit{que satisfaga}
+\(
+A x = b
+\)
+respecto a un sistema de referencia (base) elegido. Desde la perspectiva abstracta, son simplemente procedimientos para explorar la imagen y el núcleo de una transformación lineal en coordenadas. Es decir, la eliminación gaussiana aprovecha la estructura de la aplicación lineal codificada por la matriz \(A\) para determinar si existe solución, si es única y cómo expresar todas las soluciones posibles, operando enteramente en el sistema de coordenadas elegido.
+
+\medskip
+\hrule
+\bigskip
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Nota (La matriz como función, \cite{iribarren}).}
+
+\medskip
+
+Sea $S\neq\varnothing$ un conjunto y sean $m,n\ge 1$.
+Una \emph{matriz $m\times n$ con entradas en $S$} es una función
+\[
+M:\{1,\dots,m\}\times\{1,\dots,n\}\longrightarrow S.
+\]
+Escribimos $a_{ij}=M(i,j)$ y abreviamos $M$ como $M=(a_{ij})$ (o $M=(a_{ij})_{m\times n}$) cuando no hay lugar a confusión.
+
+\medskip
+
+\textit{Caso particular.}
+Cuando $S=K$ es un cuerpo, el conjunto de todas las matrices $m\times n$ sobre $K$ se denota por $M_{m\times n}(K)$.
+
+\medskip
+\hrule
+\bigskip
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Nota (Producto de matrices generalizado, \cite{knuth3}).}
+
+Existe una abstracción útil del producto de matrices que hace explícito qué propiedades algebraicas se utilizan realmente. Si $A$ es una matriz $m\times n$ y $B$ es una matriz $n\times s$, y si $\circ$ y $\bullet$ son operaciones binarias tales que $\circ$ es asociativa, puede definirse el \emph{producto de matrices generalizado}
+\[
+A\,\genfrac{}{}{0pt}{}{\circ}{\bullet}\,B
+\]
+como la matriz $m\times s$ cuyas entradas son
+\[
+C_{ij} = (A_{i1}\bullet B_{1j}) \circ (A_{i2}\bullet B_{2j}) \circ \cdots \circ (A_{in}\bullet B_{nj}),
+\qquad 1\le i\le m,\; 1\le j\le s.
+\]
+El producto matricial ordinario se obtiene cuando $\circ$ es $+$ y $\bullet$ es $\cdot$.
+
+\medskip
+\hrule
+\bigskip
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Ejemplo (Los polinomios como construcción lineal libre, \cite{knuth2}).}
+
+Sea $K$ un cuerpo. Consideremos el conjunto
+\[
+K[x] = \left\{
+\sum_{k=0}^{n} a_k x^k
+\;\middle|\;
+n \in \mathbb{N},\; a_k \in K
+\right\},
+\]
+cuyos elementos se llaman \emph{polinomios} en el símbolo formal $x$ con coeficientes en $K$.
+
+\medskip
+
+El símbolo $x$ no toma ningún valor numérico; sirve únicamente como generador de expresiones formales.
+La suma y la multiplicación por escalar se definen coeficiente a coeficiente:
+\[
+\left( \sum_{k=0}^{n} a_k x^k \right)
++_{K[x]}
+\left( \sum_{k=0}^{m} b_k x^k \right)
+=
+\sum_{k=0}^{\max(n,m)} (a_k +_K b_k) x^k,
+\]
+\[
+\alpha \circ
+\left( \sum_{k=0}^{n} a_k x^k \right)
+=
+\sum_{k=0}^{n} (\alpha \cdot a_k) x^k.
+\]
+
+\medskip
+
+Con estas operaciones, $K[x]$ es un espacio vectorial sobre $K$.
+
+\medskip
+
+La familia
+\[
+\{ 1, x, x^2, x^3, \dots \}
+\]
+es linealmente independiente y genera $K[x]$. Por tanto, forma una base de $K[x]$.
+
+\medskip
+
+Todo polinomio puede escribirse por tanto de manera única como combinación lineal
+\[
+u(x)
+=
+a_0 \circ 1
++_{K[x]}
+a_1 \circ x
++_{K[x]}
+\dots
++_{K[x]}
+a_n \circ x^n,
+\qquad a_k \in K.
+\]
+
+\medskip
+
+El espacio vectorial $K[x]$ es de dimensión infinita, pues su base contiene infinitos elementos.
+
+\medskip
+
+Conceptualmente, $K[x]$ es el espacio vectorial libremente generado por las potencias formales
+\[
+\{ x^k \}_{k \ge 0}.
+\]
+No existen relaciones entre estos generadores más allá de las exigidas por los axiomas de espacio vectorial.
+
+\medskip
+
+La multiplicación de polinomios introduce una operación adicional sobre $K[x]$,
+\[
+x^i \cdot x^j = x^{i+j},
+\]
+que es compatible con la estructura lineal pero no es necesaria para la definición del espacio vectorial en sí.
+
+\medskip
+
+Así, los polinomios proporcionan un ejemplo canónico de estructura lineal generada por símbolos formales. El marco lineal aparece con independencia de la geometría, las coordenadas o cualquier interpretación numérica.
+La multiplicación enriquece esta estructura, pero la linealidad es primaria.
+
+\medskip
+\hrule
+\bigskip

@@ -1,0 +1,987 @@
+\chapter{Tensors as Multilinear Maps}
+
+Linearity expresses that a map respects the algebraic structure of a vector space.
+Many constructions in mathematics, however, depend on functions that take several
+vector arguments simultaneously while remaining linear in each argument when the
+others are held fixed. This leads naturally to the notion of multilinearity.
+
+\medskip
+
+Let \(E_1, E_2, \dots, E_n\) and \(F\) be vector spaces over the same field \(K\).
+
+\begin{definition}[Multilinear map]
+A map
+\[
+T : E_1 \times E_2 \times \cdots \times E_n \to F
+\]
+is called \emph{multilinear} if it is linear in each argument separately.
+That is, for each index \(i \in \{1,\dots,n\}\), and for all vectors
+\[
+x_i, y_i \in E_i, \quad \alpha \in K,
+\]
+we have
+\[
+T(x_1,\dots,x_i +_{E_i} y_i,\dots,x_n)
+=
+T(x_1,\dots,x_i,\dots,x_n)
++_F
+T(x_1,\dots,y_i,\dots,x_n),
+\]
+and
+\[
+T(x_1,\dots,\alpha \circ x_i,\dots,x_n)
+=
+\alpha \circ T(x_1,\dots,x_i,\dots,x_n),
+\]
+with all other arguments held fixed.
+\end{definition}
+
+When \(n=1\), a multilinear map is simply a linear map.
+Thus multilinear maps are not a new kind of object, but a direct generalization
+of linear transformations.
+
+\medskip
+
+Multilinear maps arise naturally in many contexts:
+bilinear products, pairings between vectors and linear functionals,
+and higher-order interactions that cannot be reduced to a single input.
+Their systematic study leads to the concept of tensors.
+
+\medskip
+
+Informally, a tensor is an object designed to encode multilinear behavior
+in an intrinsic and coordinate-free way.
+
+\medskip
+
+There are two equivalent viewpoints that will be used throughout this document.
+The first treats tensors directly as multilinear maps.
+
+\medskip
+
+Let \(E\) be a vector space over \(K\), and let \(E^*\) denote its dual space,
+that is, the vector space of linear maps from \(E\) to \(K\).
+
+\begin{definition}[Tensor as a multilinear map]
+A \emph{tensor of type \((k,\ell)\)} on \(E\) is a multilinear map
+\[
+T : \underbrace{E^* \times \cdots \times E^*}_{k\ \text{times}}
+\times
+\underbrace{E \times \cdots \times E}_{\ell\ \text{times}}
+\;\longrightarrow\; K.
+\]
+\end{definition}
+
+Such a tensor takes \(k\) linear functionals and \(\ell\) vectors as inputs,
+and produces a scalar.
+Linearity is required in each argument separately.
+
+\medskip
+
+This definition makes precise several familiar cases:
+\begin{itemize}
+\item A scalar in \(K\) can be viewed as a tensor of type \((0,0)\).
+\item A vector in \(E\) corresponds to a tensor of type \((0,1)\).
+\item A linear functional in \(E^*\) is a tensor of type \((1,0)\).
+\item A bilinear form on \(E\) is a tensor of type \((0,2)\).
+\item If $E$ is finite-dimensional, a linear map $T : E \to E$ can be identified
+      with a tensor of type $(1,1)$.
+\end{itemize}
+
+Thus vectors and matrices reappear as the lowest-order cases of a single
+unified framework.
+
+\medskip
+
+At this level of abstraction, no coordinates, arrays, or geometric interpretations
+are involved.
+A tensor is defined entirely by how it acts on vectors and linear functionals,
+and by the multilinearity of this action.
+
+% CORRECTION 1: The motivation for the tensor product is now clearly separated
+% from its definition. The previous version mixed motivation and solution in the
+% same block, with the final sentence anticipating the definition about to follow
+% (circular). The motivation is now self-contained: it identifies the limitation
+% of multilinear maps (no natural composition) and poses the question the tensor
+% product will answer, without naming the solution prematurely.
+
+\medskip
+
+The definition above is conceptually clear, but it has a practical limitation.
+Linear maps compose: if $S : E \to F$ and $T : F \to G$ are linear, then
+$T \circ S : E \to G$ is again linear, and its matrix is the product of the
+matrices of $T$ and $S$.
+Multilinear maps do not admit an analogous operation.
+Their outputs and inputs do not naturally match in a way that allows canonical
+composition, and there is no general rule for combining two multilinear maps
+into a third while preserving multilinearity.
+
+\medskip
+
+Multilinear maps do form vector spaces under pointwise operations, so they can
+be added and scaled.
+What is missing is a way to \emph{reduce} multilinearity to linearity: to
+replace a multilinear problem by a linear one on a suitably constructed space.
+This is precisely what the tensor product achieves.
+
+\medskip
+
+Let \(E_1,\dots,E_n\) be vector spaces over the same field \(K\).
+Consider the set of all multilinear maps
+\[
+T : E_1 \times \cdots \times E_n \longrightarrow F
+\]
+into an arbitrary vector space \(F\).
+The tensor product is defined so that every such multilinear map corresponds
+uniquely to a linear map defined on a single vector space.
+
+\medskip
+
+\begin{definition}[Tensor product]
+The \emph{tensor product} of the vector spaces \(E_1,\dots,E_n\) is a vector
+space, denoted
+\[
+E_1 \otimes \cdots \otimes E_n,
+\]
+together with a multilinear map
+\[
+\otimes : E_1 \times \cdots \times E_n \longrightarrow
+E_1 \otimes \cdots \otimes E_n,
+\]
+satisfying the following universal property:
+
+For every vector space \(F\) and every multilinear map
+\[
+T : E_1 \times \cdots \times E_n \longrightarrow F,
+\]
+there exists a unique linear map
+\[
+\widetilde{T} : E_1 \otimes \cdots \otimes E_n \longrightarrow F
+\]
+such that
+\[
+T(x_1,\dots,x_n) = \widetilde{T}(x_1 \otimes \cdots \otimes x_n)
+\]
+for all \(x_i \in E_i\).
+\end{definition}
+
+\medskip
+
+This property characterizes the tensor product completely.
+The elements \(x_1 \otimes \cdots \otimes x_n\) are called \emph{simple tensors}.
+Every element of the tensor product space is a finite linear combination of
+simple tensors.
+
+\medskip
+
+As a consequence, the study of multilinear maps is equivalent to the study of
+linear maps defined on tensor products.
+Specifically,
+\[
+\text{Multilinear maps } E_1 \times \cdots \times E_n \to F
+\quad\longleftrightarrow\quad
+\text{Linear maps } E_1 \otimes \cdots \otimes E_n \to F.
+\]
+
+\medskip
+
+This equivalence is the conceptual foundation of tensor theory.
+It explains why tensors can be manipulated algebraically, composed with linear
+maps, and represented concretely once bases are chosen.
+
+\medskip
+
+Returning to the case of a single vector space \(E\), a tensor of type
+\((k,\ell)\) may equivalently be viewed as a linear map
+\[
+T :
+\underbrace{E^* \otimes \cdots \otimes E^*}_{k}
+\otimes
+\underbrace{E \otimes \cdots \otimes E}_{\ell}
+\;\longrightarrow\; K.
+\]
+
+\medskip
+
+Thus tensors are linear maps defined on tensor products, and their apparent
+complexity arises only when coordinates are introduced.
+
+\medskip
+
+In contrast with the direct sum (Chapter~I), which combines independent
+components additively, the tensor product encodes interactions between
+components through multilinearity.
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Note:} Once bases are chosen, tensor products become finite-dimensional
+vector spaces, and tensors admit coordinate representations as multidimensional
+arrays. These representations depend on the chosen bases and do not define the
+tensor itself.
+
+\medskip
+\hrule
+\bigskip
+
+Let $E$ be a finite-dimensional vector space over $K$, and let
+\[
+B = \{ e_1, \dots, e_n \}
+\]
+be a basis of $E$. Its dual basis
+\[
+B^* = \{ e^1, \dots, e^n \}
+\subset E^*
+\]
+is defined by the relations
+\[
+e^i(e_j) = \delta^i_j,
+\]
+where $\delta^i_j$ is the Kronecker delta.
+
+\medskip
+
+Every vector $x \in E$ admits a unique expansion
+\[
+x = x^i \circ e_i,
+\]
+and every linear functional $\varphi \in E^*$ admits a unique expansion
+\[
+\varphi = \varphi_i \circ e^i.
+\]
+
+The scalars $x^i$ and $\varphi_i$ are the \emph{components} of $x$ and
+$\varphi$ relative to the chosen bases.
+
+\medskip
+
+Let now $T$ be a tensor of type $(k,\ell)$ on $E$, that is,
+\[
+T : \underbrace{E^* \times \cdots \times E^*}_{k}
+\times
+\underbrace{E \times \cdots \times E}_{\ell}
+\longrightarrow K.
+\]
+
+The action of $T$ is completely determined by its values on basis elements:
+\[
+T(e^{i_1}, \dots, e^{i_k}, e_{j_1}, \dots, e_{j_\ell})
+= T^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}.
+\]
+
+These scalars are called the \emph{components of $T$ relative to the basis $B$}.
+They encode the tensor entirely once a basis has been fixed.
+
+\medskip
+
+Given arbitrary arguments
+\[
+(\varphi^1, \dots, \varphi^k, x_1, \dots, x_\ell),
+\]
+multilinearity implies the expansion
+\[
+T(\varphi^1, \dots, \varphi^k, x_1, \dots, x_\ell)
+=
+T^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}
+\,
+\varphi^1_{i_1} \cdots \varphi^k_{i_k}
+\,
+x_1^{j_1} \cdots x_\ell^{j_\ell}.
+\]
+
+Thus index notation is the coordinate expression of multilinearity after a
+basis is chosen.
+
+\medskip
+
+Bilinear maps provide the simplest computational example of multilinearity.
+A bilinear map
+\[
+B : V \times W \to U
+\]
+is linear in each argument separately. Once bases are chosen in the vector
+spaces involved, the map is represented by coefficients $t_{ij}^{\;k}$ such
+that the components of the output vector satisfy
+\begin{equation}
+z^{k} = \sum_{i=1}^{m}\sum_{j=1}^{n} t_{ij}^{\;k}\, x^{i} y^{j}.
+\end{equation}
+
+The collection of coefficients $(t_{ij}^{\;k})$ forms a rank-three tensor.
+This representation shows that familiar computational procedures are coordinate
+expressions of multilinear mappings. For example, the multiplication of complex
+numbers
+\begin{equation}
+(x_1 + i x_2)(y_1 + i y_2)
+= (x_1 y_1 - x_2 y_2)
++ i(x_1 y_2 + x_2 y_1)
+\end{equation}
+can be interpreted as the evaluation of two bilinear forms determined by a
+$2 \times 2 \times 2$ tensor of coefficients.
+
+From this viewpoint, algorithms manipulating numerical arrays are
+implementations of tensorial transformations written in a chosen reference
+system. Computation therefore makes explicit the invariant multilinear
+structure underlying algebraic operations.
+
+\medskip
+
+In particular, a bilinear map
+\[
+B : E \times F \to G
+\]
+between finite-dimensional vector spaces is represented, once bases are chosen,
+by components
+\[
+B^k{}_{ij},
+\]
+so that for vectors $x \in E$ and $y \in F$,
+\[
+(B(x,y))^k = B^k{}_{ij}\, x^i y^j.
+\]
+Thus multidimensional arrays of coefficients appearing in numerical algorithms
+are coordinate representations of tensors encoding multilinear operations.
+
+\medskip
+
+Once a basis has been fixed, the components
+\[
+T^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}
+\]
+can be arranged in a multidimensional array of scalars.
+
+\medskip
+
+Changing the basis of $E$ changes the numerical values of the components
+according to precise transformation rules, while the tensor itself remains
+unchanged.
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Note: Tensors via Transformation Laws}
+
+The definition of a tensor as a multilinear map is intrinsic and
+coordinate-free. An equivalent characterization emphasizes how the components
+of a tensor transform under a change of basis.
+
+\medskip
+
+This viewpoint makes explicit the invariant content that survives changes of
+coordinates, which is precisely what allows tensorial laws to appear in physics
+and in engineering applications independent of the chosen representation.
+
+\medskip
+
+Let $B = \{e_i\}$ and $B' = \{e'_i\}$ be two bases of $E$, related by
+\[
+e'_i = A^j{}_i \, e_j,
+\]
+where $A^j{}_i$ is an invertible change-of-basis matrix.
+The corresponding dual bases satisfy
+\[
+e'^i = (A^{-1})^i{}_j \, e^j.
+\]
+
+\medskip
+
+Let $T$ be a tensor of type $(k,\ell)$ on $E$, with components relative to $B$
+given by
+\[
+T^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}.
+\]
+
+The matrix $A^j{}_i$ expresses the new basis vectors in terms of the old ones,
+as discussed in Chapter~I.
+Accordingly, the transformation rule below describes how the coordinate
+representation of $T$ changes when passing from the basis $B$ to $B'$.
+
+\medskip
+
+The components relative to the new basis $B'$ are given by
+\[
+T'^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}
+=
+A^{i_1}{}_{p_1}
+\cdots
+A^{i_k}{}_{p_k}
+\,
+(A^{-1})^{q_1}{}_{j_1}
+\cdots
+(A^{-1})^{q_\ell}{}_{j_\ell}
+\,
+T^{p_1 \dots p_k}{}_{q_1 \dots q_\ell}.
+\]
+
+\medskip
+
+Contravariant indices (upper indices) transform with the matrix $A$, while
+covariant indices (lower indices) transform with its inverse.
+This transformation rule is not an additional assumption.
+It is a direct consequence of multilinearity and of how vectors and dual vectors
+transform under a change of basis.
+
+\medskip
+
+Conversely, suppose that for each choice of basis one assigns a multidimensional
+array of scalars
+\[
+T^{i_1 \dots i_k}{}_{j_1 \dots j_\ell}
+\]
+in such a way that these arrays are related by the transformation law above
+whenever the basis is changed.
+Then these coordinate collections define a unique multilinear map
+\[
+T :
+\underbrace{E^* \times \cdots \times E^*}_{k}
+\times
+\underbrace{E \times \cdots \times E}_{\ell}
+\longrightarrow K,
+\]
+independent of the chosen basis.
+
+\medskip
+
+Thus the following two viewpoints are equivalent:
+\begin{itemize}
+\item A tensor is a multilinear map.
+\item A tensor is a collection of components that transform according to the
+      tensor transformation law.
+\end{itemize}
+
+The first definition emphasizes intrinsic structure.
+The second emphasizes invariance under change of reference frame.
+Their equivalence explains why tensor theory plays a central role in geometry
+and physics: tensorial equations remain valid in every coordinate system,
+because both sides transform according to the same law.
+
+\medskip
+\hrule
+\bigskip
+
+Thus:
+\begin{itemize}
+\item tensors are abstract multilinear objects;
+\item arrays are basis-dependent representations;
+\item indices record how multilinearity decomposes into coordinates.
+\end{itemize}
+
+This distinction is essential for interpreting computational implementations.
+
+\medskip
+
+Up to this point, tensors have been considered as static multilinear objects.
+We now introduce the operation that allows them to interact algebraically.
+
+% CORRECTION 3: The broken sentence ("operation. we now introduce...") and the
+% repetition of the no-composition remark have both been removed. The transition
+% is now a single clean sentence that opens the contraction section.
+
+\medskip
+
+To combine tensors and produce new multilinear objects, one introduces the
+fundamental operation of tensor contraction, which generalizes matrix
+multiplication and explains the appearance of summation over repeated indices.
+
+\medskip
+
+We denote by
+\[
+\mathcal{T}^{(k,\ell)}(E)
+\]
+the vector space of all tensors of type $(k,\ell)$ on $E$.
+
+\medskip
+
+Let $E$ be a finite-dimensional vector space over $K$.
+Consider a tensor
+\[
+T \in \mathcal{T}^{(k,\ell)}(E)
+\]
+and a tensor
+\[
+S \in \mathcal{T}^{(m,n)}(E).
+\]
+
+Assume that one covariant slot of $T$ and one contravariant slot of $S$ are
+selected.
+Tensor contraction is the operation that pairs these two slots using the
+natural evaluation map
+\[
+E^* \times E \to K.
+\]
+
+\begin{definition}[Tensor contraction]
+Let
+\[
+T \in \mathcal{T}^{(k,\ell)}(E),
+\qquad
+S \in \mathcal{T}^{(m,n)}(E).
+\]
+Choosing one covariant slot of $T$ and one contravariant slot of $S$, their
+contraction is defined by composing these arguments with the natural evaluation
+pairing
+\[
+\langle\cdot,\cdot\rangle : E^* \times E \to K.
+\]
+In coordinates, this operation appears as summation over a basis.
+
+\medskip
+
+The resulting tensor has type
+\[
+(k+m-1,\;\ell+n-1).
+\]
+\end{definition}
+
+\medskip
+
+Contraction reduces the total number of tensor slots by two: one contravariant
+and one covariant slot are paired and eliminated.
+No coordinates are required to define this operation.
+
+\medskip
+
+To express contraction in coordinates, a basis must be chosen.
+The abstract pairing then appears as summation over repeated indices.
+
+\medskip
+
+Fix a basis $\{e_i\}$ of $E$ and its dual basis $\{e^i\}$.
+
+Let
+\[
+T^{i}{}_{j}
+\quad\text{and}\quad
+S^{j}{}_{k}
+\]
+be the components of two tensors of type $(1,1)$.
+
+\medskip
+
+The contraction over the index $j$ produces a new tensor with components
+\[
+R^{i}{}_{k}
+=
+T^{i}{}_{j} \, S^{j}{}_{k}.
+\]
+
+Here the repeated index $j$ indicates summation:
+\[
+R^{i}{}_{k}
+=
+\sum_{j=1}^{n}
+T^{i}{}_{j} \, S^{j}{}_{k}.
+\]
+This summation is not an additional rule.
+It is the coordinate expression of the abstract pairing between $E^*$ and $E$.
+
+\medskip
+
+Let $A : E \to E$ and $B : E \to E$ be linear maps.
+Each can be identified with a tensor of type $(1,1)$.
+Relative to a basis, their components are written as
+\[
+A^{i}{}_{j},
+\qquad
+B^{j}{}_{k}.
+\]
+
+The composition $A \circ B : E \to E$ has components
+\[
+(A \circ B)^{i}{}_{k}
+=
+A^{i}{}_{j} \, B^{j}{}_{k}.
+\]
+
+Thus matrix multiplication is exactly tensor contraction between two $(1,1)$
+tensors, and the familiar summation rule for matrix products is a special case
+of the abstract pairing between $E^*$ and $E$.
+
+\medskip
+
+At the abstract level we have:
+\[
+\text{Tensor contraction}
+\]
+which, after choosing bases, becomes
+\[
+\text{Index summation}
+\quad\longrightarrow\quad
+C^{i}{}_{k} = \sum_j A^{i}{}_{j} B^{j}{}_{k}.
+\]
+
+% CORRECTION 4: The paragraph beginning "It is fundamental to recognize..."
+% has been removed. Its tone was markedly more rhetorical than the surrounding
+% text, it introduced the non-standard term "index demolition", and its content
+% (contraction as the engine of computation) is already conveyed more precisely
+% by the Systolic Arrays note below.
+
+% CORRECTION 2: The discrete grid example (force array) has been moved to here,
+% after contraction is defined. The reader now has the algebraic tools to
+% understand what the indices of the array mean and how they could be contracted.
+% Previously it appeared before contraction, leaving the array without any
+% operational context.
+
+\medskip
+
+In computational and modeling contexts, tensors frequently appear through
+multidimensional arrays whose indices label independent parameters of a problem.
+The following example illustrates how such arrays arise in practice while still
+representing tensorial data.
+
+\medskip
+
+Consider a physical system modeled on a discrete two-dimensional grid.
+At each spatial point $(i,j)$ and at each time step $t$, a force vector
+\[
+F(t,i,j) \in \mathbb{R}^2
+\]
+is measured, with components $(F_x, F_y)$ relative to a fixed spatial frame.
+
+\medskip
+
+Let:
+\begin{itemize}
+\item $t \in \{1,\dots,T\}$ index time,
+\item $(i,j) \in \{1,\dots,N\} \times \{1,\dots,M\}$ index spatial position,
+\item $\alpha \in \{1,2\}$ index force components.
+\end{itemize}
+
+The collected data can be written as an array
+\[
+F_{t i j \alpha},
+\]
+with shape $(T,N,M,2)$.
+
+\medskip
+
+Each index corresponds to an independent modeling choice: time, space, and
+vector components.
+The array stores numerical values relative to chosen coordinate systems.
+Only the component index $\alpha$ corresponds to a genuine vector slot in the
+tensorial sense; the indices $(t,i,j)$ label independent parameters of the
+model.
+Contracting the index $\alpha$ against a linear functional produces, at each
+spacetime point, a scalar measurement of the force along a chosen direction.
+
+\medskip
+
+Abstractly, this data can be interpreted as the coordinate representation of a
+tensor-valued function on a discrete domain.
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Note: Linear Algebra Realized in Hardware --- Systolic Arrays
+\cite{kung}}
+
+\medskip
+
+The interpretation of matrix multiplication as tensor contraction is not only
+a conceptual reformulation.
+It also determines how modern computational hardware is designed.
+
+\medskip
+
+In large numerical computations, the dominant operation is the repeated
+evaluation of inner products,
+\[
+c_i = \sum_{j=1}^{n} a_{ij} b_j,
+\]
+which is the coordinate expression of a linear map applied to a vector.
+Equivalently, it is a contraction between a tensor of type $(1,1)$ and a
+tensor of type $(0,1)$.
+
+\medskip
+
+In the late 1970s, H.~T.~Kung and C.~E.~Leiserson proposed organizing
+computation around this operation through architectures called
+\emph{systolic arrays}.
+Instead of moving data back and forth between memory and a central processor,
+data flows rhythmically through a grid of simple processing elements.
+Each element repeatedly performs a single operation of the form
+\[
+C \leftarrow A B + C,
+\]
+a multiply-accumulate step implementing one contribution to an inner product.
+
+\medskip
+
+Mathematically, each processing element evaluates a partial tensor contraction.
+As data propagates across the array, successive contractions accumulate, and
+the global result emerges from the coordinated action of many local linear
+operations.
+
+\medskip
+
+This organization reflects a structural principle: hardware efficiency is
+achieved when computation mirrors algebraic structure.
+Since linear transformations decompose into sums of products, an architecture
+optimized for multiply-accumulate operations naturally implements linear algebra
+at scale.
+
+\medskip
+
+Modern high-performance computing architectures frequently adopt variants of
+this paradigm, arranging many simple processing elements to evaluate
+multiply-accumulate operations in parallel.
+What appears at the software level as tensor contraction or matrix
+multiplication is therefore executed physically as streams of coordinated inner
+products.
+
+\medskip
+
+From the present viewpoint, this development is not accidental.
+Tensor contraction is the fundamental interaction between multilinear objects,
+and large-scale computation reduces complex algorithms to repeated evaluations
+of this interaction.
+
+\medskip
+
+In this sense, numerical arrays stored in memory, index summations written in
+formulas, and data flowing through silicon circuits are three realizations of
+the same mathematical object: the evaluation of multilinear maps.
+
+\medskip
+\hrule
+\bigskip
+
+The abstract principles developed above appear concretely in classical physics,
+where tensorial quantities describe invariant relations between physical
+observables.
+
+\medskip
+
+\textit{A classical example: the inertia tensor \cite{feynman}}
+
+In classical mechanics, the distribution of mass in a rigid body is encoded by
+a second-order tensor called the \emph{inertia tensor}.
+Relative to a chosen orthonormal basis of $\mathbb{R}^3$, its components are
+given by
+\[
+I_{ij} = \int_{\Omega}
+\big( \delta_{ij} \|x\|^2 - x_i x_j \big)\, dm,
+\]
+where $\Omega$ is the body and $x$ is the position vector.
+
+\medskip
+
+The inertia tensor defines a linear relation between angular velocity $\omega$
+and angular momentum $L$:
+\[
+L_i = I_{ij} \, \omega^j.
+\]
+
+\medskip
+
+Under a change of basis determined by an invertible matrix $A$, its components
+transform according to
+\[
+I'_{ij}
+=
+A^{p}{}_{i} \,
+A^{q}{}_{j} \,
+I_{pq},
+\]
+which is precisely the transformation law of a tensor of type $(0,2)$.
+
+\medskip
+
+Thus, although the numerical entries of $I_{ij}$ depend on the chosen reference
+frame, the geometric object it represents does not.
+The physical content---resistance to rotational acceleration---is invariant
+under change of coordinates.
+
+\medskip
+
+Tensor theory therefore extends the central principle introduced in Chapter~I:
+mathematical structure is identified not by its numerical representation,
+but by the invariance of its defining relations under admissible
+transformations.
+
+% CORRECTION 5 & 6: The Notes are now reordered to group applied examples
+% together and separate them from the speculative outlook.
+% Order: Outlook (future hardware) -> chi-square remark (bridge back to Ch. II)
+% -> OLAP cubes (data analysis application) -> Systolic arrays (hardware).
+% The redundant introductory paragraph that preceded the Systolic Arrays note
+% in the main text has been removed; the note's own opening now suffices.
+
+\section*{Notes and Remarks}
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Outlook: Computation Beyond Electronics \cite{Xu}}
+
+\medskip
+
+Recent developments in computing architectures explore physical substrates
+beyond traditional electronic circuits, including optical and photonic systems
+in which information is processed through interference, diffraction, and
+propagation of light.
+
+\medskip
+
+Despite their physical differences, such systems are designed to implement the
+same fundamental algebraic operations encountered throughout this chapter.
+In particular, the dominant computational task remains the evaluation of
+expressions of the form
+\[
+C^{i}{}_{k} = A^{i}{}_{j} B^{j}{}_{k},
+\]
+that is, tensor contraction.
+
+\medskip
+
+In these emerging architectures, the interaction of physical signals naturally
+realizes multiply-accumulate operations in parallel, so that the evaluation of
+multilinear maps is performed directly by the underlying physical process rather
+than by sequential electronic instructions.
+
+\medskip
+
+A non-trivial constraint, however, arises from the physical encoding of
+information.
+Non-coherent optical systems represent values as light intensities, which are
+intrinsically non-negative; they therefore operate within the restricted
+domain~$\mathbb{R}^+$ rather than the full real line.
+Since tensor contractions require weights and activations that range over all
+of~$\mathbb{R}$, such systems are algebraically incomplete for general
+computation.
+Coherent architectures address this limitation by encoding values as optical
+field \emph{amplitudes}---quantities that carry sign---and recovering the
+signed output via interference at detection.
+The full group $(\mathbb{R},+)$ is thereby made available, and tensor
+contractions of arbitrary sign are realizable in hardware.
+
+\medskip
+
+From this perspective, advances in hardware do not alter the mathematical
+structure of computation.
+They provide new physical realizations of the same invariant operations: linear
+transformations and tensor contractions, now extended to their natural domain.
+The algebraic completeness required here---the passage from~$\mathbb{R}^+$
+to~$\mathbb{R}$---is precisely the structural distinction between a
+multiplicative and an additive group, whose correspondence is the subject of
+Chapter~IV.
+
+\medskip
+
+Thus, independently of whether computation is carried out by electronic,
+optical, or other physical means, the algebraic framework developed here
+remains unchanged.
+
+\medskip
+\hrule
+\bigskip
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Remark: Bridge to Chapter~II --- the chi-square statistic as a
+$(0,2)$ tensor}
+
+\medskip
+
+The chi-square statistic encountered in Chapter~II provides an earlier example
+of a tensor of type $(0,2)$.
+Recall that the expression
+\[
+V
+=
+\sum_{i=1}^{n}
+\frac{(Y_i - np_i)^2}{np_i}
+\]
+was identified as the squared norm induced by a symmetric positive-definite
+bilinear form $B$ on $\mathbb{R}^n$, whose matrix in the standard basis is
+diagonal with entries $(np_i)^{-1}$.
+From the present point of view, $B$ is precisely a tensor of type $(0,2)$: a
+multilinear map
+\[
+B : \mathbb{R}^n \times \mathbb{R}^n \longrightarrow \mathbb{R}
+\]
+that is symmetric and positive-definite.
+Its coordinate representation changes with the basis, but the geometric
+object it defines---the ellipsoidal level sets of $V$---does not.
+Thus the statistical quantity $V$, the quadratic form of Chapter~II, and the
+$(0,2)$ tensor of the present chapter are three descriptions of the same
+invariant structure.
+
+\medskip
+\hrule
+\bigskip
+
+\bigskip
+\hrule
+\medskip
+
+\textit{Note: OLAP Cubes and Tensor Contraction}
+
+\medskip
+
+In large-scale data analysis, observations are frequently organized along
+multiple independent categorical dimensions such as time, location, system
+component, or measurement type.
+The resulting structure is commonly called an \emph{OLAP cube} (Online
+Analytical Processing cube).
+
+\medskip
+
+Mathematically, such an object assigns numerical values to elements of a
+Cartesian product
+\[
+D_1 \times D_2 \times \cdots \times D_n,
+\]
+where each set $D_i$ represents one observational dimension.
+After enumerating these dimensions, the data can be written as a
+multidimensional array
+\[
+F_{i_1 i_2 \dots i_n},
+\]
+which is precisely the coordinate representation of a tensor indexed by $n$
+independent parameters.
+
+\medskip
+
+In practice, only a small subset of all possible index combinations is observed,
+so the array is typically sparse.
+This again reflects a distinction emphasized throughout this chapter: arrays
+depend on chosen coordinates and storage conventions, while the underlying
+multilinear structure is independent of representation.
+
+\medskip
+
+Analytical queries often aggregate data along selected dimensions.
+For instance, combining observations while ignoring certain indices produces
+quantities of the form
+\[
+G_{i_1 \dots i_k}
+=
+\sum_{j_1,\dots,j_m}
+F_{i_1 \dots i_k j_1 \dots j_m}.
+\]
+From the tensorial viewpoint, this operation is a contraction: indices
+corresponding to aggregated dimensions are summed over, reducing the order
+of the tensor.
+
+\medskip
+
+Thus operations known operationally as filtering, grouping, or aggregation
+correspond mathematically to projections of a high-dimensional tensor onto
+lower-dimensional subtensors.
+The OLAP cube therefore provides a concrete realization of tensorial structure
+arising in modern data analysis.
+
+\medskip
+
+This example reinforces a recurring theme: tensor contraction appears wherever
+multidimensional relations are summarized through systematic aggregation.
+
+\medskip
+\hrule
+\bigskip

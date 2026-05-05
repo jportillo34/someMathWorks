@@ -1,0 +1,273 @@
+\documentclass[12pt,openany]{book}
+
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage[spanish]{babel}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definición}[chapter]
+
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Transformaciones Lineales, Geométricas y Estructurales: Una Perspectiva Axiomática y Libre de Coordenadas},
+  pdfauthor={Jos\'e Portillo},
+  pdfsubject={Álgebra lineal, geometría, tensores y estructura logarítmica},
+  pdfkeywords={transformaciones lineales, productos internos, tensores, producto tensorial, logaritmos}
+}
+
+\begin{document}
+
+\pagestyle{plain}
+
+\frontmatter
+
+\begin{titlepage}
+\thispagestyle{empty}
+
+\vspace*{2.2cm}
+
+{\Large\bfseries
+Transformaciones Lineales, Geométricas y Estructurales\par}
+\vspace{0.4cm}
+
+\vspace{1.4cm}
+{\Large Jos\'e Portillo\par}
+
+\vspace{1.8cm}
+\rule{\textwidth}{0.6pt}
+\vspace{0.35cm}
+
+{\small
+\textbf{Fecha de publicación:} 15 de febrero de 2026\par
+\textbf{Versión:} 0.4\par
+}
+
+\vfill
+
+\end{titlepage}
+
+
+\thispagestyle{empty}
+\null\vfill
+\begin{center}
+A la memoria de\par
+Mercelena Portillo Holskin,\par
+Eldon C. Hall,\par
+Hugh Blair-Smith\par
+\vspace{1cm}
+A mi familia
+\end{center}
+\vfill\null
+\clearpage
+
+\tableofcontents
+
+\chapter*{Prefacio}
+\addcontentsline{toc}{chapter}{Prefacio}
+
+Todo algoritmo, por sofisticado que sea, se reduce a una
+secuencia finita de operaciones elementales: sumas, multiplicaciones,
+comparaciones.
+Todo sistema físico que realiza cómputo --- ya sea construido con válvulas de
+vacío, transistores, guías de onda ópticas o cualquier sustrato aún por
+concebir --- implementa esas mismas operaciones a través de medios físicos
+distintos.
+Lo que persiste (subyace) a través de todos esos cambios de medio y de representación es
+una capa de estructura matemática.
+Esta monografía se ocupa de esa capa que permanece invariante.
+
+\medskip
+
+La pregunta que organiza la exposición no es, por tanto, \emph{cómo} se lleva
+a cabo un cómputo dado, sino \emph{qué} se está computando --- y qué
+propiedades estructurales posee ese objeto con independencia del sistema de
+coordenadas, la base o el hardware en que acontezca estar expresado.
+Esta monografía nació como un intento de comprender qué permanece invariante
+cuando se eliminan las fórmulas, las coordenadas y las representaciones.
+
+\medskip
+
+A lo largo del texto se establecerá de forma recurrente una distinción entre
+una teoría axiomática y un modelo concreto de esa teoría.
+En un tratamiento axiomático riguroso de la geometría euclidiana, objetos como
+\textit{punto}, \textit{recta} y \textit{plano} se toman como términos
+primitivos (no definidos), y los axiomas especifican únicamente las relaciones
+que deben satisfacer.
+Un sistema de coordenadas cartesianas no redefine estos primitivos; más bien,
+proporciona un \emph{modelo} en el que los puntos se representan como tuplas
+en~$\mathbb{R}^n$, las rectas como conjuntos solución de ecuaciones lineales,
+y la incidencia se convierte en pertenencia a un conjunto~\cite{iribarren2}.
+Como se afirma en~\cite{wilder}, esto es \textit{la asignación de
+significados}.
+Esta perspectiva sitúa las fórmulas coordenadas como representaciones de la
+estructura, y no como la estructura misma.
+La misma distinción atraviesa todos los capítulos de este texto.
+
+\medskip
+
+Los espacios vectoriales se introducen como conjuntos abstractos dotados de
+adición y multiplicación por escalar.
+Las transformaciones lineales se definen como las aplicaciones que preservan
+dicha estructura.
+
+\medskip
+
+Al introducir formas bilineales y, en última instancia, productos internos, se
+permite que los vectores interactúen de un modo que produce escalares.
+De esta única interacción emergen normas, ortogonalidad, distancias y objetos
+geométricos clásicos como bolas, esferas y elipsoides.
+
+\medskip
+
+Muchas de las construcciones encontradas anteriormente --- formas bilineales,
+productos internos, multiplicación de matrices --- comparten un rasgo común:
+son lineales en cada argumento por separado.
+Esta observación conduce de forma natural a las aplicaciones multilineales y a
+los tensores.
+
+\medskip
+
+Los tensores se tratan como objetos multilineales abstractos definidos sin
+coordenadas.
+El producto tensorial se introduce mediante su propiedad universal, que explica
+cómo los problemas multilineales se reducen canónicamente a problemas lineales.
+La notación indicial, los arreglos numéricos y las implementaciones
+computacionales se presentan explícitamente como representaciones.
+
+\medskip
+
+El texto se organiza en torno a cuatro temas estructurales sucesivos:
+estructura lineal, estructura geométrica y topológica, estructura multilineal
+y estructura logarítmica.
+Cada tema es un refinamiento de la misma idea organizadora: la estructura se
+revela a través de la invariancia bajo transformaciones.
+El tema logarítmico ilustra, en particular, que este principio no está
+confinado al ámbito lineal --- el logaritmo es un isomorfismo global entre
+estructuras multiplicativas y aditivas, y como tal pertenece al mismo marco
+invariante que los vectores y los tensores.
+
+\medskip
+
+Se asume que el lector posee familiaridad previa con teoría de conjuntos
+básica~\cite{wilder}\cite{cohen}\cite{apostol}, relaciones, funciones
+\cite{apostol}, $n$-tuplas~\cite{iribarren}\cite{cohen} y álgebra
+elemental~\cite{iribarren}.
+Se asume asimismo conocimiento básico de cálculo~\cite{apostol}.
+Los reportes~\cite{kolecki} y~\cite{kolecki2} cubren el material fundacional
+sobre tensores.
+El resto del material introductorio necesario se encuentra distribuido a lo
+largo de la bibliografía.
+
+\medskip
+
+Los temas tratados en esta monografía forman parte de la bibliografía
+conocida sobre álgebra lineal y álgebra abstracta.
+Lo que motivó su escritura fue la percepción de que una misma idea organizadora --- la
+preservación de estructura bajo transformación --- reaparece de forma
+recurrente tanto en la ciencia pura como en la aplicada.
+Recoger esa unidad en un solo volumen es el propósito de esta obra.
+A lo largo del texto se emplea la palabra \textit{invariante} para expresar
+esta idea en sentido amplio: aquello que permanece cuando cambian las
+coordenadas, las representaciones o el sustrato físico.
+El lector familiarizado con el álgebra advertirá que el término posee también
+significados técnicos más precisos --- subespacios invariantes, invariantes de
+similaridad, invariantes topológicos --- que no deben confundirse con este uso
+de carácter estructural y transversal.
+
+\medskip
+
+En la edición, el código \LaTeX{} y el refinamiento estilístico se empleó un
+modelo de lenguaje de inteligencia artificial.
+
+\medskip
+
+Esta monografía presenta la estructura abstracta que subyace a todo algoritmo
+y sistema de cómputo autónomo, y que por tanto permanece invariante ante
+cualquier cambio en el estado de la tecnología.
+Existe una contraparte de orientación más física y centrada en el hardware,
+organizada en torno a un computador de los años sesenta --- the Apollo Guidance Computer --- que es más específica a un momento en la historia.
+Para el contexto completo, véase:
+
+\medskip
+
+{\small
+\url{https://jportillo34.github.io/ApolloGuidanceComputer/}
+}
+
+\clearpage
+
+\makeatletter
+\@mainmattertrue
+\makeatother
+\pagenumbering{arabic}
+
+\include{Structures_I_es}
+\include{Structures_II_es}
+\include{Structures_III_es}
+\include{Structures_IV_es}
+
+\backmatter
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliografía}
+
+\begin{thebibliography}{99}
+
+\bibitem{iribarren}
+Iribarren Ignacio L., \textit{Álgebra Lineal}, Editorial Equinoccio, 2009.
+
+\bibitem{halmos}
+Halmos, Paul R., \textit{Finite-Dimensional Vector Spaces}, Springer-Verlag, 1987.
+
+\bibitem{iribarren2}
+Iribarren, Ignacio L., \textit{Topología de Espacios Métricos}, Editorial Limusa-Wiley, 1973.
+
+\bibitem{cohen}
+Cohen, Leon and Ehrlich, Gertrude, \textit{The Structure of the Real Number System}, D. Van Nostrand Company, 1963.
+
+\bibitem{wilder}
+Wilder, Raymond L., \textit{Introduction to The Foundations of Mathematics}, Dover Publications, Inc., 2012.
+
+\bibitem{greub}
+Greub, Werner, \textit{Linear Algebra}, Springer-Verlag, 1975.
+
+\bibitem{oxford}
+Lukas, Andre, \textit{The Oxford Linear Algebra for Scientists}, Oxford University Press, 2022.
+
+\bibitem{apostol}
+Apostol, Tom M., \textit{Calculus Volume I}, John Wiley \& Sons Inc., 1967.
+
+\bibitem{knuth}
+Knuth, Donald E., \textit{The Art of Computer Programming Volume I: Fundamental Algorithms}, Addison-Wesley, 1997.
+
+\bibitem{knuth2}
+Knuth, Donald E., \textit{The Art of Computer Programming Volume II: Seminumerical Algorithms}, Addison-Wesley, 1981.
+
+\bibitem{knuth3}
+Knuth, Donald E., \textit{The Art of Computer Programming Volume I, Fascicle 1: MMIX—A RISC Computer for the New Millennium}, Addison-Wesley, 2005.
+
+\bibitem{feynman}
+Feynman Richard P., Leighton Robert, Sands Matthew, \textit{The Feynman Lectures on Physics, Volume II}, California Institute of Technology, 2010.
+
+\bibitem{kolecki}
+Kolecki, Joseph C., \textit{An Introduction to Tensors for Students of Physics and Engineering}, NASA/TM-2002-211716, 2002.
+
+\bibitem{kolecki2}
+Kolecki, Joseph C., \textit{Foundations of Tensor Analysis for Students of Physics and Engineering With an Introduction
+to the Theory of Relativity}, NASA/TP—2005-213115, 2005.
+
+\bibitem{kung}
+Kung, H. T., Liserson, Charles L., \textit{Introduction to VLSI Systems - Algorithms for VLSI Processor Arrays}, ed. C. Mead and L. Conway, Addison-Wesley, Reading, MA, 1980.
+
+\bibitem{Xu}
+Shaofu Xu, Jing Wang, Haowen Shu, Zhike Zhang, Sicheng Yi, Bowen Bai, XingjunWang, Jianguo Liu, Weiwen Zou, \textit{Optical coherent dot-product chip for sophisticated deep learning regression}, Nature - Light: Science \& Applications, 2021.
+
+\end{thebibliography}
+
+\end{document}

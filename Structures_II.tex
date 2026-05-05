@@ -1,0 +1,1110 @@
+\chapter{Geometry from Linear Structure}
+
+In Chapter I, vector spaces were introduced as purely algebraic objects.
+A vector was an abstract element of a set equipped with addition and scalar multiplication,
+and linear transformations were functions preserving this structure.
+No notion of length, angle, distance, or orthogonality was assumed or required.
+
+\medskip
+
+Algebra alone allows us to decide whether vectors are independent,
+whether a set spans a space,
+or whether a linear transformation is injective or surjective.
+However, it does not allow us to ask geometric questions.
+In many situations, it is not enough to know \emph{which} vectors are possible;
+we also need to know how \emph{large} they are, how \emph{close} they are to one
+another, or how \emph{aligned} they are.
+These notions are expressed through length, distance, and angle.
+Without additional structure, the language of vector spaces does not distinguish
+between ``larger'' and ``smaller,'' nor does it allow one to speak of
+perpendicularity or of the ``best approximation'' of one vector by others
+(as in projections and least squares).
+There is no intrinsic way, within a bare vector space, to compare the size of
+two vectors or to determine whether they point in perpendicular directions.
+
+\medskip
+
+Geometry begins only when additional structure is imposed.
+
+\medskip
+
+It is useful now to recall how geometric space is commonly represented in
+coordinates.
+Given sets $A_1,\dots,A_n$, their \emph{Cartesian product}
+(also known as \emph{Product Set}) is
+\[
+A_1\times\cdots\times A_n = \{(x_1,\dots,x_n)\mid x_i\in A_i\}.
+\]
+In particular, the coordinate space $\mathbb{R}^n$ is the Cartesian product of
+$n$ copies of $\mathbb{R}$.
+This construction by itself is not yet geometry: it provides a convenient
+\emph{model} in which ``points'' are represented by tuples of real numbers.
+A geometry emerges only after we specify an additional rule that allows us to
+measure and compare such tuples.
+
+\medskip
+
+A central theme of this document is that geometry is not a replacement for
+linear structure, but an enrichment of it.
+The vector spaces introduced earlier remain unchanged;
+what changes is that they are now equipped with a rule that allows vectors to
+interact in a way that produces scalar quantities.
+
+\medskip
+
+Informally, this rule takes two vectors and returns a scalar.
+From this single operation, notions such as length, angle, and distance emerge
+naturally.
+
+\medskip
+
+To make this interaction precise, we introduce the notion of a bilinear map.
+
+\medskip
+
+Let $E$ and $G$ be vector spaces over the same field $K$.
+A mapping
+\[
+B : E \times G \longrightarrow K
+\]
+is called \emph{bilinear} if it is linear in each argument separately.
+That is, for fixed $y \in G$, the map
+\[
+x \longmapsto B(x,y)
+\]
+is a linear functional on $E$, and for fixed $x \in E$, the map
+\[
+y \longmapsto B(x,y)
+\]
+is a linear functional on $G$.
+
+\medskip
+
+Explicitly, for all $x_1,x_2 \in E$, $y_1,y_2 \in G$, and all scalars
+$\alpha \in K$,
+\[
+B(x_1 + x_2, y) = B(x_1, y) + B(x_2, y), \qquad
+B(\alpha x, y) = \alpha B(x, y),
+\]
+\[
+B(x, y_1 + y_2) = B(x, y_1) + B(x, y_2), \qquad
+B(x, \alpha y) = \alpha B(x, y).
+\]
+
+\medskip
+
+When $E = G$, such a mapping is called a \emph{bilinear form} on $E$.
+
+\medskip
+
+At this level, no geometric interpretation is assumed.
+A bilinear form is merely a rule that assigns a scalar to an ordered pair of
+vectors, subject to linearity in each argument.
+It need not be symmetric, positive, or related to any notion of length or angle.
+
+\medskip
+
+Nevertheless, bilinear forms play a fundamental structural role.
+They provide a systematic way to associate vectors with linear functionals
+and to construct scalar quantities from pairs of vectors.
+
+\medskip
+
+Only after additional conditions are imposed on a bilinear form do familiar
+geometric notions emerge.
+These special cases will be introduced shortly.
+
+% CORRECTION 3: The restriction to R is now introduced here, immediately after
+% bilinear forms and before any mention of positivity or inner products.
+% Previously it appeared much later, after the inner product had already been
+% implicitly used.
+
+\medskip
+
+Up to this point, the scalar field $K$ has been arbitrary.
+Pure linear structure does not require the ability to compare scalars.
+Geometry, however, depends on positivity: expressions such as
+$\langle x,x\rangle > 0$ and inequalities of the form $r>0$
+presuppose an order relation.
+For this reason, we now restrict attention to the real number system
+\[
+\Big\langle \mathbb{R}, +, \cdot, \le \Big\rangle,
+\]
+viewed as an ordered field.
+It is precisely the order on $\mathbb{R}$ that allows lengths, distances, and
+orthogonality to acquire geometric meaning.
+
+\medskip
+
+We now specialize the previously introduced bilinear forms.
+
+\medskip
+
+Let $E$ be a vector space over $\mathbb{R}$.
+A \emph{bilinear form} on $E$ is a function
+\[
+B : E \times E \longrightarrow \mathbb{R}
+\]
+that is linear in each argument separately.
+That is, for all $x,x',y,y' \in E$ and all $\lambda \in \mathbb{R}$,
+\[
+B(x+x',y)=B(x,y)+B(x',y), \qquad
+B(\lambda x,y)=\lambda B(x,y),
+\]
+and similarly in the second argument.
+
+\medskip
+
+Bilinear forms arise naturally from linear transformations.
+If
+\[
+\psi : E \longrightarrow E^*
+\]
+is a linear mapping, then the formula
+\[
+B(x,y) = \psi(x)(y)
+\]
+defines a bilinear form on $E$.
+Conversely, every bilinear form determines such a mapping.
+Therefore, bilinear forms encode a controlled way in which vectors may interact
+to produce scalars.
+
+\medskip
+
+At this level, no geometry is present.
+A bilinear form may be degenerate, asymmetric, or indefinite.
+It allows vectors to interact, but it does not yet measure anything.
+
+\medskip
+
+Geometry appears when the bilinear form satisfies additional constraints.
+
+% CORRECTION 1 & 2: The inner product is now defined before any coordinate
+% expressions involving it. The section on the transpose, which previously
+% interrupted the path from bilinear forms to the inner product, has been
+% relocated to after the inner product is established. The coordinate expression
+% of the inner product follows the definition, not precedes it.
+
+\medskip
+
+An \emph{inner product} on a vector space $E$ over $\mathbb{R}$
+is a bilinear form
+\[
+\langle \cdot,\cdot \rangle : E \times E \longrightarrow \mathbb{R}
+\]
+that is symmetric, positive, and non-degenerate.
+These properties ensure that
+\[
+\langle x,x \rangle > 0 \quad \text{for all } x \neq 0.
+\]
+
+\medskip
+
+Once such a rule is fixed, vectors acquire measurable properties.
+Two vectors may be declared orthogonal.
+A vector may be assigned a length.
+The distance between two points may be defined in terms of the vectors
+connecting them.
+None of these concepts exist prior to the introduction of this additional
+structure.
+
+\medskip
+
+As in Chapter I, coordinates play no fundamental role.
+Geometric quantities must be independent of any particular reference system.
+A formula that changes when the basis is changed describes a representation,
+not a geometric object.
+
+\medskip
+
+Only after a basis is chosen do familiar coordinate expressions appear.
+Sums of squares, dot products, and quadratic equations arise as coordinate-level
+manifestations of the underlying structure, not as definitions of it.
+
+\medskip
+
+\textit{Coordinate expression of the inner product.}
+
+Let $(E,\langle\cdot,\cdot\rangle)$ be a finite-dimensional inner product space
+and let $\{e_1,\dots,e_n\}$ be an orthonormal basis.
+Every vector $x\in E$ can be written uniquely as
+\[
+x=\sum_{i=1}^n x_i e_i,
+\qquad
+y=\sum_{i=1}^n y_i e_i.
+\]
+
+Using bilinearity and the orthonormality condition
+$\langle e_i,e_j\rangle=\delta_{ij}$, we obtain
+\[
+\langle x,y\rangle
+=
+\sum_{i=1}^n x_i y_i.
+\]
+
+Thus, in an orthonormal basis the abstract inner product is represented by the
+familiar \emph{dot product} of coordinate vectors in $\mathbb{R}^n$.
+
+\medskip
+
+This observation explains the role of matrix multiplication.
+If a linear transformation $\psi:E\to G$ is represented by a matrix
+$A=(a_{ij})$ and a vector $x$ has coordinate vector $x=(x_1,\dots,x_n)^T$,
+then the $i$-th component of the product $Ax$ is
+\[
+(Ax)_i=\sum_{j=1}^n a_{ij}x_j.
+\]
+
+Each component is therefore the dot product of the $i$-th row of $A$
+with the vector $x$.
+Matrix multiplication can thus be understood as the systematic evaluation of
+inner products between rows of one matrix and columns of another.
+
+\medskip
+
+In this sense, the familiar algebraic rule for multiplying matrices is not an
+arbitrary computational convention: it admits a natural geometric interpretation
+as the coordinate expression of interactions measured by an inner product.
+
+\medskip
+
+This point of view explains why objects such as circles, spheres, and ellipsoids
+can be described by algebraic equations, yet retain a geometric meaning that is
+invariant under changes of coordinates.
+The equations depend on the chosen basis; the geometry does not.
+
+\medskip
+
+The goal is therefore to show how geometry emerges from linear structure once a
+suitable interaction between vectors is specified.
+
+\medskip
+
+% CORRECTION 2 (continued): The section on the transpose and dual transformation
+% is now placed here, after the inner product is defined. This preserves the
+% algebraic derivation of the transpose as intrinsic (no inner product needed)
+% while allowing the remark about duality becoming internal to appear naturally
+% in the context of an established inner product.
+
+Although geometry has begun to emerge through bilinear interaction, the
+underlying algebraic mechanism remains the linear transformation.
+To understand how geometric structure interacts with linear maps, we examine a
+construction naturally associated with every linear transformation.
+
+\medskip
+
+The central object of this work is the linear transformation. Before introducing
+geometric notions such as length, angle, and distance, we make explicit a
+fundamental construction associated with every linear transformation: its
+transpose.
+
+\medskip
+
+Let $E$ and $G$ be vector spaces over the same field $K$, and let
+\[
+\psi : E \longrightarrow G
+\]
+be a linear transformation. Recall that the dual spaces $E^*$ and $G^*$ consist
+of all linear functionals on $E$ and $G$, respectively.
+
+\medskip
+
+For each $g^* \in G^*$, the composition
+\[
+g^* \circ \psi : E \longrightarrow K
+\]
+is a linear functional on $E$. This defines a mapping
+\[
+\psi^* : G^* \longrightarrow E^*,
+\qquad
+\psi^*(g^*) = g^* \circ \psi.
+\]
+
+\medskip
+
+The mapping $\psi^*$ is linear and is called the \emph{transpose}
+(or dual transformation) of $\psi$. The direction of the arrow is reversed:
+\[
+E \xrightarrow{\;\psi\;} G
+\quad\Longrightarrow\quad
+G^* \xrightarrow{\;\psi^*\;} E^*.
+\]
+
+\medskip
+
+This construction is intrinsic: it depends only on the linear transformation
+$\psi$ and does not require any choice of basis, coordinates, or inner product.
+
+\medskip
+
+When bases are chosen for $E$ and $G$, and the corresponding dual bases are
+chosen for $E^*$ and $G^*$, the linear transformation $\psi$ is represented by
+a matrix $A$, and the dual transformation $\psi^*$ is represented by the
+transposed matrix $A^T$.
+Thus, the familiar matrix transpose is the coordinate expression of the intrinsic
+dual transformation $\psi^*$.
+
+\medskip
+
+The inner product does more than assign lengths.
+It establishes a canonical identification between the vector space and its dual.
+
+\medskip
+
+For each vector $x \in E$, define the mapping
+\[
+\Phi(x) : E \longrightarrow \mathbb{R},
+\qquad
+\Phi(x)(y) = \langle x,y \rangle.
+\]
+
+By bilinearity, $\Phi(x)$ is a linear functional on $E$.
+Thus, we obtain a mapping
+\[
+\Phi : E \longrightarrow E^*.
+\]
+
+\medskip
+
+If the inner product is non-degenerate, this mapping is injective.
+In finite dimensions, since $\dim E = \dim E^*$, it is therefore an isomorphism.
+
+\medskip
+
+Hence, once an inner product is fixed, every vector determines a unique linear
+functional, and every linear functional arises from a unique vector.
+The distinction between $E$ and $E^*$ disappears at the structural level.
+
+\medskip
+
+It is precisely this identification that allows the transpose of a linear
+transformation to be regarded as an operator on $E$ itself.
+When geometry is introduced, duality becomes internal.
+
+\medskip
+
+Once an inner product is fixed, vectors acquire length.
+The norm of a vector $x \in E$ is defined by
+\[
+\|x\| = \sqrt{\langle x,x \rangle}.
+\]
+
+\medskip
+
+So, the vector space $E$ introduced in Chapter I is now equipped with additional
+geometric structure:
+\[
+\Big\langle
+\langle \mathbb{R},+,\cdot\rangle,\;
+\langle E,+\rangle,\;
+\circ,\;
+\langle\cdot,\cdot\rangle
+\Big\rangle.
+\]
+
+The inner product is not required for linearity itself, but it allows the
+introduction of geometric notions such as length, angle, orthogonality, and
+adjoint transformations.
+
+\medskip
+
+\textit{Algebraic expansion of the norm.}
+
+For any vectors $x,y \in E$, the square of the norm of their sum satisfies
+\[
+\|x+y\|^2
+=
+\langle x+y, x+y \rangle.
+\]
+By bilinearity and symmetry of the inner product,
+\[
+\langle x+y, x+y \rangle
+=
+\langle x,x \rangle
++
+\langle x,y \rangle
++
+\langle y,x \rangle
++
+\langle y,y \rangle
+=
+\|x\|^2
++
+2\langle x,y \rangle
++
+\|y\|^2.
+\]
+
+Thus,
+\[
+\|x+y\|^2
+=
+\|x\|^2
++
+\|y\|^2
++
+2\langle x,y \rangle.
+\]
+
+This identity holds in every inner product space.
+It expresses how the interaction term $\langle x,y \rangle$ measures the
+deviation from pure additivity of squared lengths.
+
+\medskip
+
+The inner product also satisfies the inequality
+\[
+|\langle x,y \rangle|
+\le
+\|x\|\,\|y\|,
+\]
+known as the \emph{Cauchy--Schwarz inequality}.
+As a consequence,
+\[
+\|x+y\|^2
+\le
+\|x\|^2
++
+\|y\|^2
++
+2\|x\|\,\|y\|
+=
+(\|x\|+\|y\|)^2.
+\]
+
+Taking square roots yields the \emph{triangle inequality}
+\[
+\|x+y\|
+\le
+\|x\|
++
+\|y\|.
+\]
+
+\medskip
+
+The \textit{Pythagorean identity} arises as the special case
+$\langle x,y \rangle = 0$,
+in which the interaction term vanishes and
+\[
+\|x+y\|^2
+=
+\|x\|^2
++
+\|y\|^2.
+\]
+
+\medskip
+
+Orthogonality also becomes meaningful.
+Two vectors $x,y \in E$ are said to be orthogonal if
+\[
+\langle x,y \rangle = 0.
+\]
+
+\medskip
+
+The order of the vectors is irrelevant.
+Symmetry of the inner product implies
+\[
+\langle x,y \rangle = \langle y,x \rangle,
+\]
+so orthogonality is a mutual relation.
+
+\medskip
+
+The zero vector is orthogonal to every vector in $E$.
+Indeed, for any $v \in E$,
+\[
+\langle 0,v \rangle
+=
+\langle 0\cdot v, v \rangle
+=
+0\langle v,v \rangle
+=
+0.
+\]
+Moreover, the zero vector is the only vector with this property.
+
+\medskip
+
+Thus, orthogonality is precisely the condition under which the interaction term
+vanishes.
+In that case,
+\[
+\|x+y\|^2 = \|x\|^2 + \|y\|^2.
+\]
+Squared lengths become additive exactly when the vectors do not interact.
+
+\medskip
+
+% CORRECTION 4: The interlude on eigenvectors has been moved to here, after
+% the norm, orthogonality, and the adjoint have been established. Previously
+% it appeared between the Pythagorean identity and the section on distance,
+% interrupting the chain norm -> distance -> topology at its most critical point.
+
+\textit{Interlude: Invariant Directions}
+
+Up to this point, linear transformations have been treated algebraically:
+a map $\psi : E \to E$ sends vectors to vectors while preserving linear
+structure.
+No geometric meaning has yet been attached to this action.
+
+\medskip
+
+Once an inner product is introduced, however, the action of a linear
+transformation can be examined geometrically.
+Given a vector $x \in E$, the image $\psi(x)$ may differ from $x$ in two
+independent ways: its length may change, and its direction may change.
+
+\medskip
+
+For a generic vector, both effects occur simultaneously.
+Most vectors are stretched and rotated.
+
+\medskip
+
+A remarkable phenomenon occurs when there exists a nonzero vector $x \in E$
+such that
+\[
+\psi(x) = \lambda x
+\]
+for some scalar $\lambda$.
+In this case, the transformation acts on $x$ by pure scaling.
+The direction of $x$ is preserved.
+
+\medskip
+
+Such a vector is called an \emph{eigenvector} of $\psi$, and the scalar
+$\lambda$ is its corresponding \emph{eigenvalue}.
+Eigenvectors identify directions in the space that are geometrically invariant
+under the transformation.
+
+\medskip
+
+This invariance is an intrinsic property of the linear transformation itself.
+Changing the basis may alter the representation of $\psi$, but it cannot
+destroy or create eigenvectors.
+
+\medskip
+
+Under the identification $E \cong E^*$ induced by the inner product, the
+transpose $\psi^*$ corresponds to a linear operator on $E$, called the
+\emph{adjoint} of $\psi$.
+
+\medskip
+
+When a linear transformation arises from a symmetric bilinear form (or
+equivalently, from a self-adjoint operator), its eigenvectors corresponding
+to distinct eigenvalues are orthogonal.
+These directions define a preferred coordinate system dictated by the geometry,
+not by arbitrary choice.
+
+\medskip
+
+It is in this sense that eigenvectors serve as the principal axes of the
+ellipsoids associated with quadratic forms.
+Diagonalization is the act of aligning coordinates with the invariant directions
+already present in the structure.
+
+\medskip
+
+% CORRECTION 4 (continued): With eigenvectors established here, the section on
+% distance and topology now follows without interruption.
+
+\textit{Distance and the emergence of geometry.}
+
+Once an inner product is available on a vector space $E$, it determines a norm,
+and from the norm we obtain a notion of distance between vectors,
+\[
+d(x,y)=\|x-y\|.
+\]
+
+At this point, no new structure is introduced: distance is merely a
+reformulation of algebraic data already present.
+
+\medskip
+
+This distance allows us to describe proximity. For a vector $x \in E$ and a
+real number $r > 0$, we consider the set
+\[
+B(x,r) = \{\, y \in E \mid d(x,y) < r \,\}.
+\]
+Such a set is called an \textit{open ball} centered at $x$ with radius $r$.
+Geometrically, it consists of all vectors that lie closer to $x$ than the
+prescribed threshold.
+
+\medskip
+
+The strict inequality is essential. It guarantees that every point inside the
+ball admits further nearby points, so that no boundary is included.
+This ``breathing room'' is what ultimately allows us to speak of continuity and
+deformation.
+
+\medskip
+
+The collection of all open balls determines which subsets of $E$ should be
+called open: a set is open if, around each of its points, it contains some open
+ball.
+In this way, distance generates a notion of openness without any additional
+axioms.
+
+% CORRECTION 5: A transitional sentence now prepares the reader for the
+% axiomatic definition of a topological space, connecting it to the geometric
+% intuition built just above rather than introducing the axioms abruptly.
+
+\medskip
+
+This notion of openness can be captured by a small set of axioms that
+preserve its essential properties while allowing the concept to be extended
+far beyond the metric setting.
+The resulting structure is what is known as a \textit{topology} on $E$.
+
+\medskip
+
+A \textit{topological space} is an ordered pair $(X, \tau)$, where $X$ is a
+set and $\tau$ is a collection of subsets of $X$.
+For $\tau$ to be a \textit{topology}, it must satisfy the following axioms:
+
+\begin{enumerate}
+    \item $\emptyset \in \tau$ and $X \in \tau$.
+    \item The union of any collection of sets in $\tau$ is also in $\tau$.
+    \item The intersection of any \textit{finite} number of sets in $\tau$ is
+    also in $\tau$.
+\end{enumerate}
+
+The elements of $\tau$ are called \textit{open sets}.
+
+\medskip
+
+Thus, topology does not appear here as an independent theory, but as a
+structural consequence of the metric induced by the inner product.
+Geometry gives rise to distance, distance gives rise to neighborhoods, and
+neighborhoods give rise to topological structure.
+
+\medskip
+
+\textit{Geometric interpretation.}
+
+In $\mathbb{R}^n$ equipped with its standard inner product, open balls
+correspond to the familiar spheres of Euclidean geometry.
+More general norms deform these balls into ellipsoidal shapes, reflecting
+anisotropic scaling along different directions of the space.
+In all cases, each point
+\[
+x = (x_1,\dots,x_n)
+\]
+is a vector of the ambient vector space, and the geometric objects considered
+are subsets of that space defined by distance relations among its vectors.
+
+\medskip
+
+Once objects have been represented as vectors in this way, the geometric
+structures introduced above---norms, distances, balls, and ellipsoids---become
+tools for organizing and comparing them.
+
+\medskip
+
+Their relative positions, measured by a chosen metric, encode similarity.
+This metric need not be Euclidean: in practice it may be designed to reflect
+domain-specific invariances or even learned from data.
+Neighborhoods of meaning are then described by open balls, and learning can be
+interpreted as the discovery of a geometric and topological organization
+underlying the data.
+
+\medskip
+
+Once a norm has been introduced, certain geometric sets arise as direct
+consequences of the structure and require no additional assumptions.
+
+\medskip
+
+Let $(E,\langle\cdot,\cdot\rangle)$ be an inner product space and let
+$\|x\|=\sqrt{\langle x,x\rangle}$ be the associated norm.
+For a fixed vector $x_0\in E$ and a scalar $r>0$, the \emph{closed ball}
+of radius $r$ centered at $x_0$ is defined by
+\[
+B_r(x_0)=\{\,x\in E \mid \|x-x_0\|\le r\,\}.
+\]
+
+The corresponding \emph{sphere} is the boundary of this set,
+\[
+S_r(x_0)=\{\,x\in E \mid \|x-x_0\|= r\,\}.
+\]
+
+\textit{Remark (Coordinate description in $\mathbb{R}^n$):}
+When $E=\mathbb{R}^n$ is equipped with its standard inner product and we use
+the standard coordinates $x=(x_1,\dots,x_n)$, the same intrinsic definitions
+take the familiar ``sum of squares'' form.
+For a ball centered at the origin,
+\[
+B_r(0)=\left\{x\in\mathbb{R}^n\;\middle|\;x_1^2+\cdots+x_n^2\le r^2\right\},
+\]
+and its boundary sphere is
+\[
+S_r(0)=\left\{x\in\mathbb{R}^n\;\middle|\;x_1^2+\cdots+x_n^2=r^2\right\}.
+\]
+This is simply the coordinate expression of
+$\|x\|=\sqrt{x_1^2+\cdots+x_n^2}$.
+
+\medskip
+
+These definitions are intrinsic and do not depend on any choice of coordinates
+or basis.
+
+\medskip
+
+\textit{Remark (Symmetry):}
+In the Euclidean case $E=\mathbb{R}^n$ with its standard inner product, the
+ball is invariant under orthogonal transformations.
+If $Q\in O(n)$, then $\|Qx\|=\|x\|$, and hence
+\[
+Q\bigl(B_r(0)\bigr)=B_r(0).
+\]
+More generally, any isometry of an inner product space carries balls to balls.
+
+\medskip
+
+\textit{Remark (Slicing in $\mathbb{R}^n$):}
+In $\mathbb{R}^n$, fixing the last coordinate $x_n=t$ shows that the
+cross-section of a radius-$r$ ball by the hyperplane $x_n=t$ is an
+$(n-1)$-dimensional ball of radius $\sqrt{r^2-t^2}$.
+This observation is the geometric content behind the common
+``integrate by slices'' approach to $n$-dimensional volume.
+
+\medskip
+
+\textit{Remark (Volume of Euclidean balls):}
+In $\mathbb{R}^n$, the $n$-dimensional volume of a Euclidean ball scales as a
+constant times $r^n$:
+\[
+\operatorname{Vol}_n\bigl(B_r(0)\bigr)=\omega_n\,r^n,
+\]
+where $\omega_n=\operatorname{Vol}_n\bigl(B_1(0)\bigr)$ is the volume of the
+unit ball. A closed form is
+\[
+\omega_n=\frac{\pi^{n/2}}{\Gamma\!\left(\frac{n}{2}+1\right)}.
+\]
+In particular, $\omega_1=2$, $\omega_2=\pi$, and $\omega_3=\frac{4\pi}{3}$.
+
+\medskip
+
+\textit{Remark (A high-dimensional effect):}
+Although $B_1(0)\subset \mathbb{R}^n$ always contains many points, its
+$n$-dimensional volume satisfies $\omega_n\to 0$ as $n\to\infty$.
+This illustrates a basic phenomenon of high-dimensional geometry: sets that
+look large in low dimensions can occupy a vanishing fraction of ambient volume
+as the dimension increases.
+
+\medskip
+
+More generally, let $B:E\times E\to \mathbb{R}$ be a symmetric
+positive-definite bilinear form. The set
+\[
+\mathcal{E}=\{\,x\in E \mid B(x-x_0,x-x_0)\le r^2\,\}
+\]
+is called an \emph{ellipsoid}.
+Thus, an ellipsoid is the unit ball associated with a bilinear form, or
+equivalently, with a modified inner product on $E$.
+
+\medskip
+
+When the bilinear form $B$ is symmetric and positive-definite, there exists a
+unique self-adjoint linear operator $A:E\to E$ such that
+\[
+B(x,y)=\langle Ax,y\rangle
+\]
+for all $x,y\in E$.
+
+\medskip
+
+The operator $A$ encodes the geometry of the ellipsoid.
+Since $A$ is self-adjoint on a finite-dimensional inner product space, it
+admits an orthonormal basis of eigenvectors.
+If $\{e_1,\dots,e_n\}$ is such a basis and $A e_i=\lambda_i e_i$ with
+$\lambda_i>0$, then the defining inequality
+\[
+B(x-x_0,x-x_0)\le r^2
+\]
+becomes
+\[
+\sum_{i=1}^n \lambda_i\, \xi_i^2 \le r^2,
+\]
+where $\xi_i=\langle x-x_0,e_i\rangle$ are the coordinates in this
+eigenbasis.
+
+% CORRECTION 6: The observation that diagonalization "reveals invariant
+% directions already present" appeared twice in close succession. The first
+% occurrence (here, in the ellipsoid derivation) is retained as it concludes
+% the algebraic argument. The redundant restatement that appeared a few lines
+% later, just before the coordinate formula, has been removed.
+
+\medskip
+
+Thus, the principal axes of the ellipsoid are precisely the eigenvectors of
+$A$, and the eigenvalues determine the scaling along those directions.
+Diagonalization does not create the axes; it merely reveals the invariant
+directions already present in the structure.
+
+\medskip
+
+Accordingly, when a basis is chosen in which the bilinear form is diagonal,
+this invariant definition reduces to a familiar coordinate expression.
+In $\mathbb{R}^n$, one obtains
+\[
+\mathcal{E}
+=
+\left\{
+(x_1,\dots,x_n)\in\mathbb{R}^n
+\;\middle|\;
+\sum_{i=1}^n \frac{(x_i-a_i)^2}{h_i^2} \le r^2
+\right\}.
+\]
+
+Written componentwise, this inequality reads
+\[
+\left(\frac{x_1-a_1}{h_1}\right)^2
++
+\left(\frac{x_2-a_2}{h_2}\right)^2
++
+\cdots
++
+\left(\frac{x_n-a_n}{h_n}\right)^2
+\le r^2.
+\]
+
+The equation depends on the chosen coordinates; the ellipsoid itself does not.
+
+\medskip
+
+\emph{Remark (Degenerate cases).}
+The geometric nature of the set defined above depends on the coefficients
+$h_1,\dots,h_n$.
+If $h_1=\cdots=h_n$, the ellipsoid reduces to an $n$-dimensional sphere.
+If one or more of the parameters $h_i$ vanish, the defining quadratic form
+becomes degenerate and the ellipsoid collapses into a lower-dimensional
+object: a disk, a line segment, or, in the extreme case, a single point.
+
+\medskip
+
+From the structural point of view, these degenerations correspond to a loss of
+rank in the associated quadratic or bilinear form.
+Thus, changes in the algebraic structure translate directly into changes in
+geometric dimension.
+
+\medskip
+
+\emph{Remark.}
+Throughout this discussion, the ambient space $E=\mathbb{R}^n$ is a vector
+space in the sense of Chapter I.
+Each element
+\[
+x=(x_1,\dots,x_n)
+\]
+is therefore a vector of $E$.
+
+\medskip
+
+However, the sets defined by these expressions are \emph{subsets} of $E$
+selected by quadratic constraints.
+They are not vector spaces themselves, since they are not closed under
+addition or scalar multiplication.
+
+\bigskip
+
+\textit{Conceptual summary.}
+Vector spaces provide the stage.
+Linear transformations describe allowable changes of state.
+Geometry enters only when vectors are permitted to interact through a
+structured bilinear rule that produces scalars.
+From this interaction, lengths, angles, distances, and geometric shapes emerge.
+The transition from algebra to geometry is therefore not a leap, but a
+controlled enrichment of structure.
+The book \cite{iribarren2} is a wonderful reference on the topology of metric
+spaces.
+
+\section*{Notes and Remarks}
+
+\textit{Outlook.}
+
+In contemporary applications such as representation learning, elements of a
+set (words, images, or signals) are mapped into high-dimensional vector spaces,
+where geometric relations encode similarity and structural information.
+These constructions provide concrete realizations of abstract linear-algebraic
+ideas.
+
+\medskip
+
+Modern computational systems offer another illustrative example.
+Platforms devoted to \emph{observability}---that is, the systematic measurement
+of the internal state of a running system---collect large families of numerical
+quantities such as latency, throughput, memory consumption, error rates, and
+resource utilization.
+
+\medskip
+
+At a fixed instant of time, these measurements may be assembled into a vector
+\[
+x(t) = (x_1(t),\dots,x_n(t)) \in \mathbb{R}^n,
+\]
+whose coordinates represent observable characteristics of the system.
+As time evolves, the system determines a trajectory in this ambient linear
+space, so that monitoring and analysis may be interpreted geometrically as
+the study of paths in a finite-dimensional vector space.
+
+\medskip
+
+Operational considerations typically impose bounds on each observable,
+expressed by inequalities of the form
+\[
+a_i \le x_i \le b_i,
+\]
+reflecting physical limitations or acceptable operating ranges.
+Geometrically, these constraints define a Cartesian product of intervals,
+namely an $n$-dimensional hyperrectangle (or, after normalization, a
+hypercube).
+Normal system behavior may therefore be viewed as confined to a bounded region
+of the ambient space, while anomalous behavior corresponds to trajectories
+departing from this region.
+
+\medskip
+
+It should be emphasized that this construction is an idealized mathematical
+model: in practical systems the collection of observables may vary over time,
+so the dimension $n$ is best regarded as fixed only locally or within a chosen
+representation.
+Nevertheless, the linear-space framework provides a natural language for
+describing states, constraints, and evolution.
+
+\medskip
+
+In this way, observability systems illustrate a recurring theme of linear
+algebra: a flat ambient space serves as a universal stage upon which meaningful
+phenomena are characterized by geometrically defined subsets.
+Norm constraints give rise to spheres, anisotropic scalings produce ellipsoids,
+and coordinate-wise bounds define hyperrectangles.
+Despite their differing geometric appearances, all arise as structured subsets
+embedded within the same linear ambient space.
+
+\bigskip
+\hrule
+\medskip
+
+% CORRECTION 7: The historical remark on Lambert has been moved to immediately
+% after the Interlude on Invariant Directions in the Notes section, where its
+% connection to eigenvectors and angle preservation is contextually immediate.
+% Previously it appeared later in the notes, separated from the discussion that
+% motivated it.
+
+\textit{Historical remark (Angles and invariance).}
+
+Before eigenvectors were understood as invariant directions, their detection
+was often indirect.
+In two dimensions, determining whether a transformation preserves a direction
+reduces to detecting whether it preserves an angle.
+
+\medskip
+
+This problem led naturally to the computation of arctangents.
+In the eighteenth century, J.H.~Lambert introduced the continued fraction
+\[
+\arctan(z)
+=
+\cfrac{z}{1 + \cfrac{z^2}{3 + \cfrac{4z^2}{5 + \cfrac{9z^2}{7 + \cdots}}}},
+\]
+as part of his work on orbital mechanics and rotational phenomena.
+
+\medskip
+
+From the modern point of view, this analytic effort reflects a geometric
+question: does a linear transformation rotate a direction, or does it merely
+scale it?
+Eigenvectors provide the structural answer to this question, rendering angle
+computation auxiliary rather than fundamental.
+
+\medskip
+\hrule
+\bigskip
+
+\textit{Remark (Quadratic forms and the chi-square statistic).}
+Expressions of the form defining ellipsoids appear naturally in contexts that
+are not, at first sight, geometric.
+A notable example arises in the theory of random number testing, where one
+encounters the quantity
+\[
+V
+=
+\frac{(Y_1 - np_1)^2}{np_1}
++
+\frac{(Y_2 - np_2)^2}{np_2}
++
+\cdots
++
+\frac{(Y_n - np_n)^2}{np_n},
+\]
+known in statistics as the \emph{chi-square statistic} associated with the
+observed quantities $Y_1,\dots,Y_n$ and reference values $np_1,\dots,np_n$.
+
+\medskip
+
+From the present point of view, this expression is simply a quadratic form on
+$\mathbb{R}^n$.
+It measures the squared length of the deviation vector
+\[
+(Y_1 - np_1,\dots,Y_n - np_n)
+\]
+with respect to a symmetric positive-definite bilinear form whose matrix, in
+the standard basis, is diagonal with entries
+$(np_1)^{-1},\dots,(np_n)^{-1}$.
+
+\medskip
+
+Consequently, the sets defined by inequalities of the form
+\[
+V \le c
+\]
+are ellipsoids centered at the point $(np_1,\dots,np_n)$.
+The denominators $np_i$ determine the anisotropic scaling along the coordinate
+directions, exactly as in the general ellipsoid
+\[
+\sum_{i=1}^n \frac{(x_i-a_i)^2}{h_i^2} \le r^2.
+\]
+
+\medskip
+
+Thus, before any probabilistic interpretation is imposed, the chi-square
+expression is already a geometric object: it is the squared norm induced by a
+particular inner product on $\mathbb{R}^n$.
+Statistical theory makes use of this geometry, but does not create it.
+
+\medskip
+
+\textit{Remark (The ambient vector space and constrained regions).}
+The vector space $E$ itself is the \emph{ambient space} in which all vectors
+live.
+In coordinates, when a basis is chosen, this space appears as $\mathbb{R}^n$,
+a flat linear environment in which vectors may be freely added and scaled.
+
+\medskip
+
+Geometric objects such as balls, spheres, and ellipsoids do not replace this
+ambient space; rather, they are subsets of it defined by constraints on the
+norm or on a quadratic form.
+For example, the sphere
+\[
+S_r(x_0)=\{x\in E \mid \|x-x_0\|=r\}
+\]
+selects vectors whose distance from $x_0$ is fixed, while an ellipsoid selects
+vectors whose coordinates satisfy an anisotropic quadratic inequality.
+
+\medskip
+
+In many modern applications (AI Deep Learning for instance), algorithms operate
+on vectors in a high-dimensional ambient space while imposing such constraints
+during computation.
+Normalization steps may restrict vectors to spheres, regularization procedures
+may confine parameters to ellipsoidal regions, and optimization methods search
+for solutions within neighborhoods described by balls.
+The ambient vector space provides the linear universe in which vectors exist,
+while these geometric subsets describe regions selected by the rules or
+constraints of the problem.

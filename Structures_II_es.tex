@@ -1,0 +1,1132 @@
+\chapter{Geometría a partir de la Estructura Lineal}
+
+En el Capítulo I, los espacios vectoriales se introdujeron como objetos puramente algebraicos.
+Un vector era un elemento abstracto de un conjunto dotado de suma y multiplicación por escalares,
+y las transformaciones lineales eran funciones que preservaban dicha estructura.
+No se asumió ni se requirió ninguna noción de longitud, ángulo, distancia u ortogonalidad.
+
+\medskip
+
+El álgebra por sí sola nos permite decidir si los vectores son independientes,
+si un conjunto genera un espacio,
+o si una transformación lineal es inyectiva o sobreyectiva.
+Sin embargo, no permite formular preguntas geométricas.
+En muchas situaciones, no basta con saber \emph{qué} vectores son posibles;
+también necesitamos saber cuán \emph{grandes} son, cuán \emph{próximos} están entre sí,
+o cuán \emph{alineados} se encuentran.
+Estas nociones se expresan mediante longitud, distancia y ángulo.
+Sin estructura adicional, el lenguaje de los espacios vectoriales no distingue
+entre «mayor» y «menor», ni permite hablar de perpendicularidad o de la
+«mejor aproximación» de un vector mediante otros
+(como en las proyecciones y los mínimos cuadrados).
+No existe ninguna manera intrínseca, dentro de un espacio vectorial desnudo,
+de comparar el tamaño de dos vectores o de determinar si apuntan en direcciones
+perpendiculares.
+
+\medskip
+
+La geometría comienza únicamente cuando se impone estructura adicional.
+
+\medskip
+
+Conviene recordar ahora cómo se representa habitualmente el espacio geométrico
+en coordenadas.
+Dados conjuntos $A_1,\dots,A_n$, su \emph{producto cartesiano}
+(también llamado \emph{producto de conjuntos}) es
+\[
+A_1\times\cdots\times A_n = \{(x_1,\dots,x_n)\mid x_i\in A_i\}.
+\]
+En particular, el espacio coordenado $\mathbb{R}^n$ es el producto cartesiano de
+$n$ copias de $\mathbb{R}$.
+Esta construcción por sí sola no es todavía geometría: proporciona un
+\emph{modelo} conveniente en el que los «puntos» se representan mediante
+$n$-uplas de números reales.
+La geometría emerge únicamente después de especificar una regla adicional que
+nos permita medir y comparar dichas $n$-uplas.
+
+\medskip
+
+Un tema central de este documento es que la geometría no reemplaza a la
+estructura lineal, sino que la enriquece.
+Los espacios vectoriales introducidos anteriormente permanecen inalterados;
+lo que cambia es que se equipan ahora con una regla que permite a los vectores
+interactuar de un modo que produce cantidades escalares.
+
+\medskip
+
+Informalmente, esta regla toma dos vectores y devuelve un escalar.
+A partir de esta única operación emergen de manera natural nociones como
+longitud, ángulo y distancia.
+
+\medskip
+
+Para precisar esta interacción, introducimos la noción de aplicación bilineal.
+
+\medskip
+
+Sean $E$ y $G$ espacios vectoriales sobre el mismo cuerpo $K$.
+Una aplicación
+\[
+B : E \times G \longrightarrow K
+\]
+se llama \emph{bilineal} si es lineal en cada argumento por separado.
+Es decir, para $y \in G$ fijo, la aplicación
+\[
+x \longmapsto B(x,y)
+\]
+es una forma lineal sobre $E$, y para $x \in E$ fijo, la aplicación
+\[
+y \longmapsto B(x,y)
+\]
+es una forma lineal sobre $G$.
+
+\medskip
+
+Explícitamente, para todo $x_1,x_2 \in E$, $y_1,y_2 \in G$, y todo escalar
+$\alpha \in K$,
+\[
+B(x_1 + x_2, y) = B(x_1, y) + B(x_2, y), \qquad
+B(\alpha x, y) = \alpha B(x, y),
+\]
+\[
+B(x, y_1 + y_2) = B(x, y_1) + B(x, y_2), \qquad
+B(x, \alpha y) = \alpha B(x, y).
+\]
+
+\medskip
+
+Cuando $E = G$, dicha aplicación se llama \emph{forma bilineal} sobre $E$.
+
+\medskip
+
+A este nivel no se asume ninguna interpretación geométrica.
+Una forma bilineal es simplemente una regla que asigna un escalar a un par
+ordenado de vectores, sujeta a la linealidad en cada argumento.
+No tiene por qué ser simétrica, positiva, ni estar relacionada con ninguna
+noción de longitud o ángulo.
+
+\medskip
+
+No obstante, las formas bilineales desempeñan un papel estructural fundamental.
+Proporcionan una manera sistemática de asociar vectores con formas lineales
+y de construir cantidades escalares a partir de pares de vectores.
+
+\medskip
+
+Las nociones geométricas familiares emergen únicamente después de imponer
+condiciones adicionales sobre la forma bilineal.
+Estos casos especiales se introducirán en breve.
+
+% CORRECCIÓN 3: La restricción a R se introduce ahora aquí, inmediatamente después
+% de las formas bilineales y antes de cualquier mención a positividad o productos
+% internos. Anteriormente aparecía mucho más tarde, después de que el producto
+% interno ya se había usado implícitamente.
+
+\medskip
+
+Hasta este punto, el cuerpo escalar $K$ ha sido arbitrario.
+La estructura lineal pura no requiere la capacidad de comparar escalares.
+La geometría, sin embargo, depende de la positividad: expresiones como
+$\langle x,x\rangle > 0$ y desigualdades de la forma $r>0$
+presuponen una relación de orden.
+Por esta razón, restringimos ahora la atención al sistema de los números reales
+\[
+\Big\langle \mathbb{R}, +, \cdot, \le \Big\rangle,
+\]
+visto como cuerpo ordenado.
+Es precisamente el orden en $\mathbb{R}$ el que permite que las longitudes,
+las distancias y la ortogonalidad adquieran significado geométrico.
+
+\medskip
+
+Especializamos ahora las formas bilineales introducidas anteriormente.
+
+\medskip
+
+Sea $E$ un espacio vectorial sobre $\mathbb{R}$.
+Una \emph{forma bilineal} sobre $E$ es una función
+\[
+B : E \times E \longrightarrow \mathbb{R}
+\]
+que es lineal en cada argumento por separado.
+Es decir, para todo $x,x',y,y' \in E$ y todo $\lambda \in \mathbb{R}$,
+\[
+B(x+x',y)=B(x,y)+B(x',y), \qquad
+B(\lambda x,y)=\lambda B(x,y),
+\]
+y análogamente en el segundo argumento.
+
+\medskip
+
+Las formas bilineales surgen de manera natural a partir de las transformaciones lineales.
+Si
+\[
+\psi : E \longrightarrow E^*
+\]
+es una aplicación lineal, entonces la fórmula
+\[
+B(x,y) = \psi(x)(y)
+\]
+define una forma bilineal sobre $E$.
+Recíprocamente, toda forma bilineal determina tal aplicación.
+Por tanto, las formas bilineales codifican una manera controlada en que los
+vectores pueden interactuar para producir escalares.
+
+\medskip
+
+A este nivel no está presente ninguna geometría.
+Una forma bilineal puede ser degenerada, asimétrica o indefinida.
+Permite que los vectores interactúen, pero todavía no mide nada.
+
+\medskip
+
+La geometría aparece cuando la forma bilineal satisface restricciones adicionales.
+
+% CORRECCIÓN 1 y 2: El producto interno se define ahora antes de cualquier
+% expresión coordenada que lo involucre. La sección sobre la transpuesta, que
+% anteriormente interrumpía el camino de las formas bilineales al producto interno,
+% ha sido reubicada después de que el producto interno esté establecido. La
+% expresión coordenada del producto interno sigue a la definición, no la precede.
+
+\medskip
+
+Un \emph{producto interno} sobre un espacio vectorial $E$ sobre $\mathbb{R}$
+es una forma bilineal
+\[
+\langle \cdot,\cdot \rangle : E \times E \longrightarrow \mathbb{R}
+\]
+que es simétrica, positiva y no degenerada.
+Estas propiedades garantizan que
+\[
+\langle x,x \rangle > 0 \quad \text{para todo } x \neq 0.
+\]
+
+\medskip
+
+Una vez fijada dicha regla, los vectores adquieren propiedades medibles.
+Dos vectores pueden declararse ortogonales.
+A un vector se le puede asignar una longitud.
+La distancia entre dos puntos puede definirse en términos de los vectores que
+los unen.
+Ninguno de estos conceptos existe antes de la introducción de esta estructura adicional.
+
+\medskip
+
+Como en el Capítulo I, las coordenadas no desempeñan ningún papel fundamental.
+Las cantidades geométricas deben ser independientes de cualquier sistema de
+referencia particular.
+Una fórmula que cambia al cambiar la base describe una representación,
+no un objeto geométrico.
+
+\medskip
+
+Solo después de elegir una base aparecen las expresiones coordenadas familiares.
+Las sumas de cuadrados, los productos escalares y las ecuaciones cuadráticas
+surgen como manifestaciones a nivel coordenado de la estructura subyacente,
+no como definiciones de ella.
+
+\medskip
+
+\textit{Expresión coordenada del producto interno.}
+
+Sea $(E,\langle\cdot,\cdot\rangle)$ un espacio con producto interno de dimensión
+finita y sea $\{e_1,\dots,e_n\}$ una base ortonormal.
+Todo vector $x\in E$ puede escribirse de manera única como
+\[
+x=\sum_{i=1}^n x_i e_i,
+\qquad
+y=\sum_{i=1}^n y_i e_i.
+\]
+
+Usando la bilinealidad y la condición de ortonormalidad
+$\langle e_i,e_j\rangle=\delta_{ij}$, obtenemos
+\[
+\langle x,y\rangle
+=
+\sum_{i=1}^n x_i y_i.
+\]
+
+Así, en una base ortonormal el producto interno abstracto queda representado
+por el familiar \emph{producto escalar} de vectores coordenados en $\mathbb{R}^n$.
+
+\medskip
+
+Esta observación explica el papel del producto de matrices.
+Si una transformación lineal $\psi:E\to G$ está representada por una matriz
+$A=(a_{ij})$ y un vector $x$ tiene vector coordenado $x=(x_1,\dots,x_n)^T$,
+entonces la $i$-ésima componente del producto $Ax$ es
+\[
+(Ax)_i=\sum_{j=1}^n a_{ij}x_j.
+\]
+
+Cada componente es por tanto el producto escalar de la $i$-ésima fila de $A$
+con el vector $x$.
+El producto de matrices puede así entenderse como la evaluación sistemática de
+productos internos entre filas de una matriz y columnas de otra.
+
+\medskip
+
+En este sentido, la regla algebraica familiar para multiplicar matrices no es
+una convención computacional arbitraria: admite una interpretación geométrica
+natural como expresión coordenada de interacciones medidas por un producto interno.
+
+\medskip
+
+Este punto de vista explica por qué objetos como circunferencias, esferas y
+elipsoides pueden describirse mediante ecuaciones algebraicas y, sin embargo,
+conservan un significado geométrico invariante bajo cambios de coordenadas.
+Las ecuaciones dependen de la base elegida; la geometría no.
+
+\medskip
+
+El objetivo es por tanto mostrar cómo la geometría emerge de la estructura
+lineal una vez que se especifica una interacción adecuada entre los vectores.
+
+\medskip
+
+% CORRECCIÓN 2 (continuación): La sección sobre la transpuesta y la transformación
+% dual se ubica ahora aquí, después de definir el producto interno. Esto preserva
+% la derivación algebraica de la transpuesta como intrínseca (sin necesidad de
+% producto interno), a la vez que permite que la observación sobre la dualidad
+% interna aparezca de manera natural en el contexto de un producto interno ya establecido.
+
+Aunque la geometría ha comenzado a emerger a través de la interacción bilineal,
+el mecanismo algebraico subyacente sigue siendo la transformación lineal.
+Para comprender cómo interactúa la estructura geométrica con las aplicaciones
+lineales, examinamos una construcción asociada de manera natural a toda
+transformación lineal.
+
+\medskip
+
+El objeto central de este trabajo es la transformación lineal. Antes de
+introducir nociones geométricas como longitud, ángulo y distancia, hacemos
+explícita una construcción fundamental asociada a toda transformación lineal:
+su transpuesta.
+
+\medskip
+
+Sean $E$ y $G$ espacios vectoriales sobre el mismo cuerpo $K$, y sea
+\[
+\psi : E \longrightarrow G
+\]
+una transformación lineal. Recordemos que los espacios duales $E^*$ y $G^*$
+consisten en todas las formas lineales sobre $E$ y $G$, respectivamente.
+
+\medskip
+
+Para cada $g^* \in G^*$, la composición
+\[
+g^* \circ \psi : E \longrightarrow K
+\]
+es una forma lineal sobre $E$. Esto define una aplicación
+\[
+\psi^* : G^* \longrightarrow E^*,
+\qquad
+\psi^*(g^*) = g^* \circ \psi.
+\]
+
+\medskip
+
+La aplicación $\psi^*$ es lineal y se llama la \emph{transpuesta}
+(o transformación dual) de $\psi$. La dirección de la flecha se invierte:
+\[
+E \xrightarrow{\;\psi\;} G
+\quad\Longrightarrow\quad
+G^* \xrightarrow{\;\psi^*\;} E^*.
+\]
+
+\medskip
+
+Esta construcción es intrínseca: depende únicamente de la transformación
+lineal $\psi$ y no requiere ninguna elección de base, coordenadas o producto interno.
+
+\medskip
+
+Cuando se eligen bases para $E$ y $G$, y se eligen las bases duales
+correspondientes para $E^*$ y $G^*$, la transformación lineal $\psi$ queda
+representada por una matriz $A$, y la transformación dual $\psi^*$ queda
+representada por la matriz transpuesta $A^T$.
+Así, la transposición matricial familiar es la expresión coordenada de la
+transformación dual intrínseca $\psi^*$.
+
+\medskip
+
+El producto interno hace más que asignar longitudes.
+Establece una identificación canónica entre el espacio vectorial y su dual.
+
+\medskip
+
+Para cada vector $x \in E$, definimos la aplicación
+\[
+\Phi(x) : E \longrightarrow \mathbb{R},
+\qquad
+\Phi(x)(y) = \langle x,y \rangle.
+\]
+
+Por bilinealidad, $\Phi(x)$ es una forma lineal sobre $E$.
+Obtenemos así una aplicación
+\[
+\Phi : E \longrightarrow E^*.
+\]
+
+\medskip
+
+Si el producto interno es no degenerado, esta aplicación es inyectiva.
+En dimensión finita, como $\dim E = \dim E^*$, es por tanto un isomorfismo.
+
+\medskip
+
+Así, una vez fijado un producto interno, cada vector determina una forma lineal
+única, y toda forma lineal proviene de un vector único.
+La distinción entre $E$ y $E^*$ desaparece a nivel estructural.
+
+\medskip
+
+Es precisamente esta identificación la que permite considerar la transpuesta
+de una transformación lineal como un operador sobre el propio $E$.
+Cuando se introduce la geometría, la dualidad se vuelve interna.
+
+\medskip
+
+Una vez fijado un producto interno, los vectores adquieren longitud.
+La norma de un vector $x \in E$ se define por
+\[
+\|x\| = \sqrt{\langle x,x \rangle}.
+\]
+
+\medskip
+
+Así, el espacio vectorial $E$ introducido en el Capítulo I queda ahora dotado
+de estructura geométrica adicional:
+\[
+\Big\langle
+\langle \mathbb{R},+,\cdot\rangle,\;
+\langle E,+\rangle,\;
+\circ,\;
+\langle\cdot,\cdot\rangle
+\Big\rangle.
+\]
+
+El producto interno no es necesario para la linealidad en sí, pero permite
+introducir nociones geométricas como longitud, ángulo, ortogonalidad y
+transformaciones adjuntas.
+
+\medskip
+
+\textit{Expansión algebraica de la norma.}
+
+Para cualesquiera vectores $x,y \in E$, el cuadrado de la norma de su suma satisface
+\[
+\|x+y\|^2
+=
+\langle x+y, x+y \rangle.
+\]
+Por bilinealidad y simetría del producto interno,
+\[
+\langle x+y, x+y \rangle
+=
+\langle x,x \rangle
++
+\langle x,y \rangle
++
+\langle y,x \rangle
++
+\langle y,y \rangle
+=
+\|x\|^2
++
+2\langle x,y \rangle
++
+\|y\|^2.
+\]
+
+Por tanto,
+\[
+\|x+y\|^2
+=
+\|x\|^2
++
+\|y\|^2
++
+2\langle x,y \rangle.
+\]
+
+Esta identidad se cumple en todo espacio con producto interno.
+Expresa cómo el término de interacción $\langle x,y \rangle$ mide la
+desviación respecto a la aditividad pura de los cuadrados de las longitudes.
+
+\medskip
+
+El producto interno satisface también la desigualdad
+\[
+|\langle x,y \rangle|
+\le
+\|x\|\,\|y\|,
+\]
+conocida como la \emph{desigualdad de Cauchy--Schwarz}.
+Como consecuencia,
+\[
+\|x+y\|^2
+\le
+\|x\|^2
++
+\|y\|^2
++
+2\|x\|\,\|y\|
+=
+(\|x\|+\|y\|)^2.
+\]
+
+Tomando raíces cuadradas se obtiene la \emph{desigualdad triangular}
+\[
+\|x+y\|
+\le
+\|x\|
++
+\|y\|.
+\]
+
+\medskip
+
+La \textit{identidad de Pitágoras} surge como el caso especial
+$\langle x,y \rangle = 0$,
+en el que el término de interacción se anula y
+\[
+\|x+y\|^2
+=
+\|x\|^2
++
+\|y\|^2.
+\]
+
+\medskip
+
+La ortogonalidad también adquiere significado.
+Se dice que dos vectores $x,y \in E$ son ortogonales si
+\[
+\langle x,y \rangle = 0.
+\]
+
+\medskip
+
+El orden de los vectores es irrelevante.
+La simetría del producto interno implica
+\[
+\langle x,y \rangle = \langle y,x \rangle,
+\]
+de modo que la ortogonalidad es una relación mutua.
+
+\medskip
+
+El vector cero es ortogonal a todo vector de $E$.
+En efecto, para cualquier $v \in E$,
+\[
+\langle 0,v \rangle
+=
+\langle 0\cdot v, v \rangle
+=
+0\langle v,v \rangle
+=
+0.
+\]
+Más aún, el vector cero es el único con esta propiedad.
+
+\medskip
+
+Así, la ortogonalidad es precisamente la condición bajo la cual el término
+de interacción se anula.
+En ese caso,
+\[
+\|x+y\|^2 = \|x\|^2 + \|y\|^2.
+\]
+Los cuadrados de las longitudes se vuelven aditivos exactamente cuando los
+vectores no interactúan.
+
+\medskip
+
+% CORRECCIÓN 4: El interludio sobre vectores propios se ha trasladado a aquí,
+% después de establecer la norma, la ortogonalidad y el adjunto. Anteriormente
+% aparecía entre la identidad de Pitágoras y la sección sobre distancia,
+% interrumpiendo la cadena norma -> distancia -> topología en su punto más crítico.
+
+\textit{Interludio: Direcciones invariantes}
+
+Hasta este punto, las transformaciones lineales se han tratado algebraicamente:
+una aplicación $\psi : E \to E$ envía vectores a vectores preservando la
+estructura lineal.
+Todavía no se ha atribuido ningún significado geométrico a esta acción.
+
+\medskip
+
+Una vez introducido un producto interno, sin embargo, la acción de una
+transformación lineal puede examinarse geométricamente.
+Dado un vector $x \in E$, la imagen $\psi(x)$ puede diferir de $x$ de dos
+maneras independientes: su longitud puede cambiar y su dirección puede cambiar.
+
+\medskip
+
+Para un vector genérico, ambos efectos ocurren simultáneamente.
+La mayoría de los vectores son estirados y rotados.
+
+\medskip
+
+Se produce un fenómeno notable cuando existe un vector no nulo $x \in E$
+tal que
+\[
+\psi(x) = \lambda x
+\]
+para algún escalar $\lambda$.
+En este caso, la transformación actúa sobre $x$ mediante un reescalado puro.
+La dirección de $x$ se preserva.
+
+\medskip
+
+Tal vector se llama \emph{vector propio} de $\psi$, y el escalar $\lambda$
+es su \emph{valor propio} correspondiente.
+Los vectores propios identifican direcciones en el espacio que son
+geométricamente invariantes bajo la transformación.
+
+\medskip
+
+Esta invariancia es una propiedad intrínseca de la propia transformación lineal.
+Cambiar la base puede alterar la representación de $\psi$, pero no puede
+destruir ni crear vectores propios.
+
+\medskip
+
+Bajo la identificación $E \cong E^*$ inducida por el producto interno, la
+transpuesta $\psi^*$ corresponde a un operador lineal sobre $E$, llamado
+el \emph{adjunto} de $\psi$.
+
+\medskip
+
+Cuando una transformación lineal proviene de una forma bilineal simétrica (o,
+equivalentemente, de un operador autoadjunto), sus vectores propios
+correspondientes a valores propios distintos son ortogonales.
+Estas direcciones definen un sistema de coordenadas preferido dictado por la
+geometría, no por una elección arbitraria.
+
+\medskip
+
+Es en este sentido que los vectores propios sirven como ejes principales de
+los elipsoides asociados a las formas cuadráticas.
+La diagonalización es el acto de alinear las coordenadas con las direcciones
+invariantes ya presentes en la estructura.
+
+\medskip
+
+% CORRECCIÓN 4 (continuación): Con los vectores propios establecidos aquí,
+% la sección sobre distancia y topología sigue sin interrupción.
+
+\textit{Distancia y emergencia de la geometría.}
+
+Una vez disponible un producto interno sobre un espacio vectorial $E$, este
+determina una norma, y a partir de la norma obtenemos una noción de distancia
+entre vectores,
+\[
+d(x,y)=\|x-y\|.
+\]
+
+En este punto no se introduce ninguna estructura nueva: la distancia es
+simplemente una reformulación de datos algebraicos ya presentes.
+
+\medskip
+
+Esta distancia nos permite describir la proximidad. Para un vector $x \in E$
+y un número real $r > 0$, consideramos el conjunto
+\[
+B(x,r) = \{\, y \in E \mid d(x,y) < r \,\}.
+\]
+Dicho conjunto se llama \textit{bola abierta} centrada en $x$ con radio $r$.
+Geométricamente, consiste en todos los vectores que se encuentran más cerca
+de $x$ que el umbral prescrito.
+
+\medskip
+
+La desigualdad estricta es esencial. Garantiza que todo punto interior a la
+bola admite puntos cercanos adicionales, de modo que no se incluye ninguna
+frontera.
+Este «margen de holgura» es lo que en última instancia nos permite hablar de
+continuidad y deformación.
+
+\medskip
+
+La colección de todas las bolas abiertas determina qué subconjuntos de $E$
+deben llamarse abiertos: un conjunto es abierto si, alrededor de cada uno de
+sus puntos, contiene alguna bola abierta.
+De este modo, la distancia genera una noción de apertura sin axiomas adicionales.
+
+% CORRECCIÓN 5: Una frase de transición prepara ahora al lector para la
+% definición axiomática de espacio topológico, conectándola con la intuición
+% geométrica construida justo antes, en lugar de introducir los axiomas
+% abruptamente.
+
+\medskip
+
+Esta noción de apertura puede capturarse mediante un pequeño conjunto de
+axiomas que preservan sus propiedades esenciales y permiten extender el concepto
+mucho más allá del contexto métrico.
+La estructura resultante es lo que se conoce como una \textit{topología} sobre $E$.
+
+\medskip
+
+Un \textit{espacio topológico} es un par ordenado $(X, \tau)$, donde $X$ es un
+conjunto y $\tau$ es una colección de subconjuntos de $X$.
+Para que $\tau$ sea una \textit{topología}, debe satisfacer los siguientes axiomas:
+
+\begin{enumerate}
+    \item $\emptyset \in \tau$ y $X \in \tau$.
+    \item La unión de cualquier colección de conjuntos en $\tau$ también pertenece a $\tau$.
+    \item La intersección de cualquier número \textit{finito} de conjuntos en $\tau$
+    también pertenece a $\tau$.
+\end{enumerate}
+
+Los elementos de $\tau$ se llaman \textit{conjuntos abiertos}.
+
+\medskip
+
+Así, la topología no aparece aquí como una teoría independiente, sino como una
+consecuencia estructural de la métrica inducida por el producto interno.
+La geometría da lugar a la distancia, la distancia da lugar a los entornos,
+y los entornos dan lugar a la estructura topológica.
+
+\medskip
+
+\textit{Interpretación geométrica.}
+
+En $\mathbb{R}^n$ dotado de su producto interno estándar, las bolas abiertas
+corresponden a las esferas familiares de la geometría euclídea.
+Normas más generales deforman estas bolas en formas elipsoidales, reflejando
+un escalado anisotrópico a lo largo de distintas direcciones del espacio.
+En todos los casos, cada punto
+\[
+x = (x_1,\dots,x_n)
+\]
+es un vector del espacio vectorial ambiente, y los objetos geométricos
+considerados son subconjuntos de ese espacio definidos por relaciones de
+distancia entre sus vectores.
+
+\medskip
+
+Una vez que los objetos quedan representados como vectores de este modo, las
+estructuras geométricas introducidas anteriormente ---normas, distancias, bolas
+y elipsoides--- se convierten en herramientas para organizarlos y compararlos.
+
+\medskip
+
+Sus posiciones relativas, medidas mediante una métrica elegida, codifican
+similitud.
+Esta métrica no tiene por qué ser euclídea: en la práctica puede diseñarse
+para reflejar invariancias propias del dominio o incluso aprenderse a partir
+de datos.
+Los entornos de significado se describen entonces mediante bolas abiertas,
+y el aprendizaje puede interpretarse como el descubrimiento de una organización
+geométrica y topológica subyacente a los datos.
+
+\medskip
+
+Una vez introducida una norma, ciertos conjuntos geométricos emergen como
+consecuencias directas de la estructura y no requieren hipótesis adicionales.
+
+\medskip
+
+Sea $(E,\langle\cdot,\cdot\rangle)$ un espacio con producto interno y sea
+$\|x\|=\sqrt{\langle x,x\rangle}$ la norma asociada.
+Para un vector fijo $x_0\in E$ y un escalar $r>0$, la \emph{bola cerrada}
+de radio $r$ centrada en $x_0$ se define como
+\[
+B_r(x_0)=\{\,x\in E \mid \|x-x_0\|\le r\,\}.
+\]
+
+La \emph{esfera} correspondiente es la frontera de este conjunto,
+\[
+S_r(x_0)=\{\,x\in E \mid \|x-x_0\|= r\,\}.
+\]
+
+\textit{Observación (Descripción coordenada en $\mathbb{R}^n$):}
+Cuando $E=\mathbb{R}^n$ está dotado de su producto interno estándar y se
+utilizan las coordenadas estándar $x=(x_1,\dots,x_n)$, las mismas definiciones
+intrínsecas toman la familiar forma de «suma de cuadrados».
+Para una bola centrada en el origen,
+\[
+B_r(0)=\left\{x\in\mathbb{R}^n\;\middle|\;x_1^2+\cdots+x_n^2\le r^2\right\},
+\]
+y su esfera frontera es
+\[
+S_r(0)=\left\{x\in\mathbb{R}^n\;\middle|\;x_1^2+\cdots+x_n^2=r^2\right\}.
+\]
+Esto es simplemente la expresión coordenada de
+$\|x\|=\sqrt{x_1^2+\cdots+x_n^2}$.
+
+\medskip
+
+Estas definiciones son intrínsecas y no dependen de ninguna elección de
+coordenadas o base.
+
+\medskip
+
+\textit{Observación (Simetría):}
+En el caso euclídeo $E=\mathbb{R}^n$ con su producto interno estándar, la
+bola es invariante bajo transformaciones ortogonales.
+Si $Q\in O(n)$, entonces $\|Qx\|=\|x\|$, y por tanto
+\[
+Q\bigl(B_r(0)\bigr)=B_r(0).
+\]
+Más en general, toda isometría de un espacio con producto interno transforma
+bolas en bolas.
+
+\medskip
+
+\textit{Observación (Secciones en $\mathbb{R}^n$):}
+En $\mathbb{R}^n$, fijar la última coordenada $x_n=t$ muestra que la
+sección transversal de una bola de radio $r$ por el hiperplano $x_n=t$ es
+una bola $(n-1)$-dimensional de radio $\sqrt{r^2-t^2}$.
+Esta observación contiene el contenido geométrico que subyace al método
+habitual de «integrar por secciones» para calcular volúmenes $n$-dimensionales.
+
+\medskip
+
+\textit{Observación (Volumen de bolas euclídeas):}
+En $\mathbb{R}^n$, el volumen $n$-dimensional de una bola euclídea escala como
+una constante multiplicada por $r^n$:
+\[
+\operatorname{Vol}_n\bigl(B_r(0)\bigr)=\omega_n\,r^n,
+\]
+donde $\omega_n=\operatorname{Vol}_n\bigl(B_1(0)\bigr)$ es el volumen de la
+bola unidad. Una fórmula cerrada es
+\[
+\omega_n=\frac{\pi^{n/2}}{\Gamma\!\left(\frac{n}{2}+1\right)}.
+\]
+En particular, $\omega_1=2$, $\omega_2=\pi$ y $\omega_3=\frac{4\pi}{3}$.
+
+\medskip
+
+\textit{Observación (Un efecto en alta dimensión):}
+Aunque $B_1(0)\subset \mathbb{R}^n$ contiene siempre muchos puntos, su
+volumen $n$-dimensional satisface $\omega_n\to 0$ cuando $n\to\infty$.
+Esto ilustra un fenómeno básico de la geometría en alta dimensión: conjuntos
+que parecen grandes en baja dimensión pueden ocupar una fracción despreciable
+del volumen ambiente al aumentar la dimensión.
+
+\medskip
+
+Más en general, sea $B:E\times E\to \mathbb{R}$ una forma bilineal simétrica
+definida positiva. El conjunto
+\[
+\mathcal{E}=\{\,x\in E \mid B(x-x_0,x-x_0)\le r^2\,\}
+\]
+se llama \emph{elipsoide}.
+Así, un elipsoide es la bola unidad asociada a una forma bilineal, o
+equivalentemente, a un producto interno modificado sobre $E$.
+
+\medskip
+
+Cuando la forma bilineal $B$ es simétrica y definida positiva, existe un
+único operador lineal autoadjunto $A:E\to E$ tal que
+\[
+B(x,y)=\langle Ax,y\rangle
+\]
+para todo $x,y\in E$.
+
+\medskip
+
+El operador $A$ codifica la geometría del elipsoide.
+Como $A$ es autoadjunto sobre un espacio con producto interno de dimensión
+finita, admite una base ortonormal de vectores propios.
+Si $\{e_1,\dots,e_n\}$ es tal base y $A e_i=\lambda_i e_i$ con
+$\lambda_i>0$, entonces la desigualdad definidora
+\[
+B(x-x_0,x-x_0)\le r^2
+\]
+se convierte en
+\[
+\sum_{i=1}^n \lambda_i\, \xi_i^2 \le r^2,
+\]
+donde $\xi_i=\langle x-x_0,e_i\rangle$ son las coordenadas en esta
+base propia.
+
+% CORRECCIÓN 6: La observación de que la diagonalización «revela las direcciones
+% invariantes ya presentes» aparecía dos veces en sucesión cercana. Se conserva
+% la primera aparición (aquí, en la derivación del elipsoide) ya que concluye el
+% argumento algebraico. La reiteración redundante que aparecía unas líneas más
+% tarde, justo antes de la fórmula coordenada, ha sido eliminada.
+
+\medskip
+
+Así, los ejes principales del elipsoide son precisamente los vectores propios
+de $A$, y los valores propios determinan el escalado a lo largo de esas
+direcciones.
+La diagonalización no crea los ejes; simplemente revela las direcciones
+invariantes ya presentes en la estructura.
+
+\medskip
+
+En consecuencia, cuando se elige una base en la que la forma bilineal es
+diagonal, esta definición invariante se reduce a una expresión coordenada
+familiar.
+En $\mathbb{R}^n$, se obtiene
+\[
+\mathcal{E}
+=
+\left\{
+(x_1,\dots,x_n)\in\mathbb{R}^n
+\;\middle|\;
+\sum_{i=1}^n \frac{(x_i-a_i)^2}{h_i^2} \le r^2
+\right\}.
+\]
+
+Escrita por componentes, esta desigualdad es
+\[
+\left(\frac{x_1-a_1}{h_1}\right)^2
++
+\left(\frac{x_2-a_2}{h_2}\right)^2
++
+\cdots
++
+\left(\frac{x_n-a_n}{h_n}\right)^2
+\le r^2.
+\]
+
+La ecuación depende de las coordenadas elegidas; el elipsoide en sí, no.
+
+\medskip
+
+\emph{Observación (Casos degenerados).}
+La naturaleza geométrica del conjunto definido anteriormente depende de los
+coeficientes $h_1,\dots,h_n$.
+Si $h_1=\cdots=h_n$, el elipsoide se reduce a una esfera $n$-dimensional.
+Si uno o más de los parámetros $h_i$ se anulan, la forma cuadrática
+definidora se vuelve degenerada y el elipsoide colapsa en un objeto de
+dimensión inferior: un disco, un segmento o, en el caso extremo, un punto.
+
+\medskip
+
+Desde el punto de vista estructural, estas degeneraciones corresponden a una
+pérdida de rango en la forma cuadrática o bilineal asociada.
+Así, los cambios en la estructura algebraica se traducen directamente en
+cambios en la dimensión geométrica.
+
+\medskip
+
+\emph{Observación.}
+A lo largo de esta discusión, el espacio ambiente $E=\mathbb{R}^n$ es un
+espacio vectorial en el sentido del Capítulo I.
+Cada elemento
+\[
+x=(x_1,\dots,x_n)
+\]
+es por tanto un vector de $E$.
+
+\medskip
+
+Sin embargo, los conjuntos definidos por estas expresiones son \emph{subconjuntos}
+de $E$ seleccionados mediante restricciones cuadráticas.
+No son espacios vectoriales en sí mismos, pues no son cerrados bajo la suma
+ni bajo la multiplicación por escalares.
+
+\bigskip
+
+\textit{Resumen conceptual.}
+Los espacios vectoriales proporcionan el escenario.
+Las transformaciones lineales describen los cambios de estado admisibles.
+La geometría aparece únicamente cuando se permite a los vectores interactuar
+mediante una regla bilineal estructurada que produce escalares.
+A partir de esta interacción emergen longitudes, ángulos, distancias y formas
+geométricas.
+La transición del álgebra a la geometría no es por tanto un salto, sino un
+enriquecimiento controlado de la estructura.
+El libro \cite{iribarren2} es una referencia excelente sobre la topología de
+los espacios métricos.
+
+\section*{Notas y Observaciones}
+
+\textit{Perspectivas.}
+
+En aplicaciones contemporáneas como el aprendizaje de representaciones,
+los elementos de un conjunto (palabras, imágenes o señales) se proyectan en
+espacios vectoriales de alta dimensión, donde las relaciones geométricas
+codifican similitud e información estructural.
+Estas construcciones proporcionan realizaciones concretas de ideas abstractas
+del álgebra lineal.
+
+\medskip
+
+Los sistemas computacionales modernos ofrecen otro ejemplo ilustrativo.
+Las plataformas dedicadas a la \emph{observabilidad} ---es decir, a la medición
+sistemática del estado interno de un sistema en ejecución--- recopilan grandes
+familias de cantidades numéricas como latencia, rendimiento, consumo de
+memoria, tasas de error y utilización de recursos.
+
+\medskip
+
+En un instante de tiempo fijo, estas mediciones pueden ensamblarse en un vector
+\[
+x(t) = (x_1(t),\dots,x_n(t)) \in \mathbb{R}^n,
+\]
+cuyas coordenadas representan características observables del sistema.
+A medida que evoluciona el tiempo, el sistema determina una trayectoria en este
+espacio lineal ambiente, de modo que la monitorización y el análisis pueden
+interpretarse geométricamente como el estudio de trayectorias en un espacio
+vectorial de dimensión finita.
+
+\medskip
+
+Las consideraciones operacionales imponen típicamente cotas sobre cada observable,
+expresadas mediante desigualdades de la forma
+\[
+a_i \le x_i \le b_i,
+\]
+que reflejan limitaciones físicas o rangos de operación aceptables.
+Geométricamente, estas restricciones definen un producto cartesiano de
+intervalos, es decir, un hiperrectángulo $n$-dimensional (o, tras
+normalización, un hipercubo).
+El comportamiento normal del sistema puede verse por tanto como confinado a
+una región acotada del espacio ambiente, mientras que el comportamiento
+anómalo corresponde a trayectorias que se alejan de dicha región.
+
+\medskip
+
+Conviene subrayar que esta construcción es un modelo matemático idealizado:
+en los sistemas prácticos, la colección de observables puede variar con el
+tiempo, por lo que la dimensión $n$ debe considerarse fija únicamente de manera
+local o dentro de una representación elegida.
+No obstante, el marco de los espacios lineales proporciona un lenguaje natural
+para describir estados, restricciones y evolución.
+
+\medskip
+
+De este modo, los sistemas de observabilidad ilustran un tema recurrente del
+álgebra lineal: un espacio ambiente plano sirve como escenario universal sobre
+el cual los fenómenos significativos se caracterizan mediante subconjuntos
+definidos geométricamente.
+Las restricciones de norma dan lugar a esferas, los escalados anisotrópicos
+producen elipsoides, y las cotas coordenadas definen hiperrectángulos.
+A pesar de sus diferentes apariencias geométricas, todos ellos emergen como
+subconjuntos estructurados embebidos en el mismo espacio lineal ambiente.
+
+\bigskip
+\hrule
+\medskip
+
+% CORRECCIÓN 7: La observación histórica sobre Lambert se ha trasladado a
+% inmediatamente después del Interludio sobre Direcciones Invariantes en la
+% sección de Notas, donde su conexión con los vectores propios y la preservación
+% de ángulos es contextualmente inmediata. Anteriormente aparecía más adelante
+% en las notas, separada de la discusión que la motivaba.
+
+\textit{Observación histórica (Ángulos e invariancia).}
+
+Antes de que los vectores propios se comprendieran como direcciones invariantes,
+su detección solía ser indirecta.
+En dos dimensiones, determinar si una transformación preserva una dirección se
+reduce a detectar si preserva un ángulo.
+
+\medskip
+
+Este problema condujo de manera natural al cálculo de arcotangentes.
+En el siglo XVIII, J.H.~Lambert introdujo la fracción continua
+\[
+\arctan(z)
+=
+\cfrac{z}{1 + \cfrac{z^2}{3 + \cfrac{4z^2}{5 + \cfrac{9z^2}{7 + \cdots}}}},
+\]
+en el marco de sus trabajos sobre mecánica orbital y fenómenos de rotación.
+
+\medskip
+
+Desde el punto de vista moderno, este esfuerzo analítico refleja una pregunta
+geométrica: ¿rota una transformación lineal una dirección, o simplemente la
+escala?
+Los vectores propios proporcionan la respuesta estructural a esta pregunta,
+haciendo del cálculo de ángulos algo auxiliar en lugar de fundamental.
+
+\medskip
+\hrule
+\bigskip
+
+\textit{Observación (Formas cuadráticas y el estadístico chi-cuadrado).}
+Las expresiones de la forma que definen elipsoides aparecen de manera natural
+en contextos que no son, a primera vista, geométricos.
+Un ejemplo notable surge en la teoría de las pruebas de números aleatorios,
+donde se encuentra la cantidad
+\[
+V
+=
+\frac{(Y_1 - np_1)^2}{np_1}
++
+\frac{(Y_2 - np_2)^2}{np_2}
++
+\cdots
++
+\frac{(Y_n - np_n)^2}{np_n},
+\]
+conocida en estadística como el \emph{estadístico chi-cuadrado} asociado a
+las cantidades observadas $Y_1,\dots,Y_n$ y los valores de referencia
+$np_1,\dots,np_n$.
+
+\medskip
+
+Desde el presente punto de vista, esta expresión es simplemente una forma
+cuadrática sobre $\mathbb{R}^n$.
+Mide el cuadrado de la longitud del vector de desviación
+\[
+(Y_1 - np_1,\dots,Y_n - np_n)
+\]
+respecto a una forma bilineal simétrica definida positiva cuya matriz, en la
+base estándar, es diagonal con entradas
+$(np_1)^{-1},\dots,(np_n)^{-1}$.
+
+\medskip
+
+En consecuencia, los conjuntos definidos por desigualdades de la forma
+\[
+V \le c
+\]
+son elipsoides centrados en el punto $(np_1,\dots,np_n)$.
+Los denominadores $np_i$ determinan el escalado anisotrópico a lo largo de
+las direcciones coordenadas, exactamente como en el elipsoide general
+\[
+\sum_{i=1}^n \frac{(x_i-a_i)^2}{h_i^2} \le r^2.
+\]
+
+\medskip
+
+Así, antes de imponer cualquier interpretación probabilística, la expresión
+chi-cuadrado es ya un objeto geométrico: es la norma al cuadrado inducida
+por un producto interno particular sobre $\mathbb{R}^n$.
+La teoría estadística hace uso de esta geometría, pero no la crea.
+
+\medskip
+
+\textit{Observación (El espacio vectorial ambiente y las regiones restringidas).}
+El propio espacio vectorial $E$ es el \emph{espacio ambiente} en el que viven
+todos los vectores.
+En coordenadas, cuando se elige una base, este espacio aparece como
+$\mathbb{R}^n$, un entorno lineal plano en el que los vectores pueden sumarse
+y escalarse libremente.
+
+\medskip
+
+Los objetos geométricos como bolas, esferas y elipsoides no reemplazan a este
+espacio ambiente; son subconjuntos del mismo definidos por restricciones sobre
+la norma o sobre una forma cuadrática.
+Por ejemplo, la esfera
+\[
+S_r(x_0)=\{x\in E \mid \|x-x_0\|=r\}
+\]
+selecciona los vectores cuya distancia a $x_0$ es fija, mientras que un
+elipsoide selecciona los vectores cuyas coordenadas satisfacen una desigualdad
+cuadrática anisotrópica.
+
+\medskip
+
+En muchas aplicaciones modernas (el aprendizaje profundo en inteligencia
+artificial, por ejemplo), los algoritmos operan sobre vectores en un espacio
+ambiente de alta dimensión imponiendo tales restricciones durante el cálculo.
+Los pasos de normalización pueden restringir los vectores a esferas, los
+procedimientos de regularización pueden confinar los parámetros a regiones
+elipsoidales, y los métodos de optimización buscan soluciones dentro de
+entornos descritos por bolas.
+El espacio vectorial ambiente proporciona el universo lineal en el que existen
+los vectores, mientras que estos subconjuntos geométricos describen las regiones
+seleccionadas por las reglas o restricciones del problema.
